@@ -56,3 +56,4 @@ The easiest way to run Wabot is using Docker Compose.
 - Database: Persisted in `./server/dev.db` mounted to `/app/dev.db`.
 - Sessions: Persisted in `./server/sessions`.
 - Uploads: Persisted in `./server/uploads`.
+# wabot
