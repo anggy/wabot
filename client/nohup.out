@@ -1,0 +1,20 @@
+
+> client@0.0.0 dev
+> vite
+
+
+  VITE v7.3.1  ready in 176 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+8:05:16 AM [vite] (client) hmr update /src/pages/Rules.jsx, /src/index.css
+8:05:17 AM [vite] (client) warning: Duplicate key "apiPayload" in object literal
+38 |        apiMethod: 'POST',
+39 |        apiPayload: '{}',
+40 |        apiPayload: '{}',
+   |        ^
+41 |        responseContent: '',
+42 |        responseMediaType: 'TEXT',
+
+  Plugin: vite:esbuild
+  File: /home/gie/workspace/wabot/client/src/pages/Rules.jsx

@@ -1,0 +1,56 @@
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import api from '../api';
+import { Loader } from 'lucide-react';
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            api.get('/auth/me')
+                .then(res => setUser(res.data))
+                .catch(() => {
+                    localStorage.removeItem('token');
+                    setUser(null);
+                })
+                .finally(() => setLoading(false));
+        } else {
+            setLoading(false);
+        }
+    }, []);
+
+    const login = async (username, password) => {
+        const res = await api.post('/auth/login', { username, password });
+        const { token, role, username: dbUsername } = res.data;
+
+        localStorage.setItem('token', token);
+        localStorage.setItem('role', role);
+        localStorage.setItem('username', dbUsername);
+
+        setUser({ username: dbUsername, role });
+        return res.data;
+    };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        localStorage.removeItem('username');
+        setUser(null);
+    };
+
+    if (loading) {
+        return <div className="h-screen flex items-center justify-center"><Loader className="animate-spin text-wa-green" size={48} /></div>;
+    }
+
+    return (
+        <AuthContext.Provider value={{ user, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+export const useAuth = () => useContext(AuthContext);

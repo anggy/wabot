@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./server
+    container_name: wabot-backend
+    ports:
+      - "3003:3002"
+    volumes:
+      - ./server/dev.db:/app/dev.db
+      - ./server/uploads:/app/uploads
+      - ./server/sessions:/app/sessions
+    environment:
+      - DATABASE_URL=file:./dev.db
+      - JWT_SECRET=supersecretkeychangedinprod
+      - PORT=3002
+    restart: always
+
+  frontend:
+    build: ./client
+    container_name: wabot-frontend
+    ports:
+      - "8002:80"
+    depends_on:
+      - backend
+    restart: always

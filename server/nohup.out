@@ -1,0 +1,1106 @@
+
+> server@1.0.0 start
+> tsx index.js
+
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+[19:40:09.137] INFO (1060946): Server running on port 3002
+[19:40:09.137] INFO (1060946): Initializing sessions...
+[19:40:09.148] INFO (1060946): Resuming session test
+[19:40:09.150] INFO (1060946): Initialized 0 schedules
+{"level":30,"time":"2026-01-17T12:40:09.493Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","browser":["Mac OS","Desktop","14.4.1"],"helloMsg":{"clientHello":{"ephemeral":"DMb+GmPA+gsUFFZ3NIrKCFTUmGpy0UrlTfIA3kFg91w="}},"msg":"connected to WA"}
+{"level":30,"time":"2026-01-17T12:40:09.734Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","node":{"username":"6283876995423","passive":true,"userAgent":{"platform":"WEB","appVersion":{"primary":2,"secondary":3000,"tertiary":1027934701},"mcc":"000","mnc":"000","osVersion":"0.1","device":"Desktop","osBuildNumber":"0.1","releaseChannel":"RELEASE","localeLanguageIso6391":"en","localeCountryIso31661Alpha2":"US"},"webInfo":{"webSubPlatform":"WEB_BROWSER"},"connectType":"WIFI_UNKNOWN","connectReason":"USER_ACTIVATED","device":18,"pull":true,"lidDbMigrated":false},"msg":"logging in..."}
+{"level":30,"time":"2026-01-17T12:40:10.566Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","msg":"5 pre-keys found on server"}
+{"level":30,"time":"2026-01-17T12:40:10.566Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","msg":"Current prekey ID: 818, exists in storage: true"}
+{"level":30,"time":"2026-01-17T12:40:10.566Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","msg":"Uploading PreKeys due to: server count low (5)"}
+{"level":30,"time":"2026-01-17T12:40:10.566Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","count":5,"retryCount":0,"msg":"uploading pre-keys"}
+{"level":30,"time":"2026-01-17T12:40:11.052Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","count":5,"msg":"uploaded pre-keys successfully"}
+{"level":30,"time":"2026-01-17T12:40:11.344Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","msg":"handled 0 offline messages/notifications"}
+{"level":30,"time":"2026-01-17T12:40:11.344Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","msg":"Connection is now AwaitingInitialSync, buffering events"}
+{"level":30,"time":"2026-01-17T12:40:11.344Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","msg":"History sync is disabled by config, not waiting for notification. Transitioning to Online."}
+{"level":30,"time":"2026-01-17T12:40:11.745Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","msg":"opened connection to WA"}
+[19:40:11.748] INFO (1060946): Session test opened successfully
+{"level":30,"time":"2026-01-17T12:40:11.754Z","pid":1060946,"hostname":"gie-OptiPlex-9020","class":"baileys","myPN":"6283876995423:18@s.whatsapp.net","myLID":"114569024434333:18@lid","msg":"Own LID session created successfully"}
+[19:40:12.135] INFO (1060946): Socket connected: Xgc6FlAAm0C88mrXAAAB
+[19:40:15.508] INFO (1060946): Socket disconnected: Xgc6FlAAm0C88mrXAAAB
+[19:40:16.710] INFO (1060946): Socket connected: g5mhJlO1n1Q2F02bAAAE
+[19:40:17.568] INFO (1060946): Socket disconnected: g5mhJlO1n1Q2F02bAAAE
+[19:40:19.087] INFO (1060946): Socket connected: QCsu7V9AO3ml35PYAAAH
+[19:40:20.058] INFO (1060946): Socket disconnected: QCsu7V9AO3ml35PYAAAH
+[19:42:33.706] ERROR (1060946): Invalid cron expression for schedule 2: * * * *11
+[19:43:34.302] INFO (1060946): Socket connected: K-CB4Oj--sRwx_zfAAAK
+[19:43:35.159] INFO (1060946): Socket disconnected: K-CB4Oj--sRwx_zfAAAK
+[20:05:45.731] INFO (1060946): Rule 1 matched for session test
+[20:05:46.241] INFO (1060946): Rule 1 auto-reply sent to 39367804453016@lid
+[20:14:12.051] INFO (1060946): Rule 7 matched for session test
+[20:14:19.571] ERROR (1060946): Rule 7 execution failed: Unexpected end of JSON input
+[20:14:50.358] INFO (1060946): Rule 7 matched for session test
+[20:15:01.936] ERROR (1060946): Rule 7 execution failed: Unexpected end of JSON input
+[20:15:43.788] INFO (1060946): Rule 7 matched for session test
+[20:15:48.371] ERROR (1060946): Rule 7 execution failed: Unexpected end of JSON input
+[20:30:28.314] INFO (1060946): Rule 7 matched for session test
+[20:30:31.831] ERROR (1060946): Rule 7 execution failed: Unexpected end of JSON input
+[08:02:08.230] INFO (1060946): Rule 8 matched for session test
+[08:02:09.299] INFO (1060946): Rule 8 auto-reply sent to 120363344727107749@g.us
+[08:13:23.071] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\\n\\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:29.175] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\\n\\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:39.923] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\\n\\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:40.271] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\\n\\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:40.424] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\\n\\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّة\n\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:44.436] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"\\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "\nBarang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:47.562] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:47.728] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:58.132] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:58.497] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:58.675] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:58.851] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:59.038] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:13:59.578] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:14:00.390] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:15:32.929] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "kajian senin",
+    triggerType: "KEYWORD",
+    triggerValue: "kajiansenin",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"kajian senin\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"kajiansenin\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\\n\\nKami mengundang bapak2 warga SIS setiap , Senin malam\\nBA'DA ISYA sampai selesai\\nDi Masjid Al Nufais\\nKajian Tafsir\\nbersama Ustad Mukhtar Nashir..\\n\\nSiapkan Infaq terbaiknya.\\n\\nWasalam..\\nDKM Masjid Al Nufais\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "kajian senin",
+              triggerType: "KEYWORD",
+              triggerValue: "kajiansenin",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "Barang siapa menempuh jalan untuk menuntut ilmu, maka Allah akan memudahkan baginya jalan ke surga. ( HR. Muslim)\n\nKami mengundang bapak2 warga SIS setiap , Senin malam\nBA'DA ISYA sampai selesai\nDi Masjid Al Nufais\nKajian Tafsir\nbersama Ustad Mukhtar Nashir..\n\nSiapkan Infaq terbaiknya.\n\nWasalam..\nDKM Masjid Al Nufais",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:15:46.848] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "test",
+    triggerType: "KEYWORD",
+    triggerValue: "test",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "test",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"test\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"test\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"test\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "test",
+              triggerType: "KEYWORD",
+              triggerValue: "test",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "test",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
+[08:15:48.312] ERROR (1060946): 
+Invalid `prisma.rule.create()` invocation:
+
+{
+  data: {
+    name: "test",
+    triggerType: "KEYWORD",
+    triggerValue: "test",
+    actionType: "RESPONSE",
+    apiUrl: "",
+    apiMethod: "POST",
+    apiPayload: "{}",
+    responseContent: "test",
+    responseMediaType: "IMAGE",
+    ~~~~~~~~~~~~~~~~~
+    responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+?   isActive?: Boolean,
+?   createdAt?: DateTime,
+?   updatedAt?: DateTime
+  }
+}
+
+Unknown argument `responseMediaType`. Available options are marked with ?.
+    err: {
+      "type": "PrismaClientValidationError",
+      "message": "\nInvalid `prisma.rule.create()` invocation:\n\n{\n  data: {\n    name: \"test\",\n    triggerType: \"KEYWORD\",\n    triggerValue: \"test\",\n    actionType: \"RESPONSE\",\n    apiUrl: \"\",\n    apiMethod: \"POST\",\n    apiPayload: \"{}\",\n    responseContent: \"test\",\n    responseMediaType: \"IMAGE\",\n    ~~~~~~~~~~~~~~~~~\n    responseMediaUrl: \"https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001\",\n?   isActive?: Boolean,\n?   createdAt?: DateTime,\n?   updatedAt?: DateTime\n  }\n}\n\nUnknown argument `responseMediaType`. Available options are marked with ?.",
+      "stack":
+          PrismaClientValidationError: 
+          Invalid `prisma.rule.create()` invocation:
+          
+          {
+            data: {
+              name: "test",
+              triggerType: "KEYWORD",
+              triggerValue: "test",
+              actionType: "RESPONSE",
+              apiUrl: "",
+              apiMethod: "POST",
+              apiPayload: "{}",
+              responseContent: "test",
+              responseMediaType: "IMAGE",
+              ~~~~~~~~~~~~~~~~~
+              responseMediaUrl: "https://photo.homesislab.my.id/share/FbgIo5s5bZHZ3TV3op3m5AfHI6jrtlS6G53FEJwOJiHznkQZWadH-LGB_WELczqHi18/photos/4858cf47-30df-4711-ab53-09522f841001",
+          ?   isActive?: Boolean,
+          ?   createdAt?: DateTime,
+          ?   updatedAt?: DateTime
+            }
+          }
+          
+          Unknown argument `responseMediaType`. Available options are marked with ?.
+              at Cn (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:116:5888)
+              at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6510)
+              at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)
+              at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)
+              at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)
+              at async createRule (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:11:22)
+      "name": "PrismaClientValidationError",
+      "clientVersion": "5.10.2"
+    }
