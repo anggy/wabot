@@ -8,3 +8,57 @@
 {"level":30,"time":1768815022348,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-misconfig"}
 {"level":30,"time":1768815022503,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
 {"level":30,"time":1768815033895,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: -lPfpA0qcfBsrZmjAAAC"}
+{"level":30,"time":1768817886103,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768817886104,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768817886125,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Resuming session test-session-mention-rule"}
+{"level":30,"time":1768817886126,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Resuming session test-session-misconfig"}
+{"level":30,"time":1768817886128,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768817887056,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
+{"level":30,"time":1768817887262,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-misconfig"}
+{"level":30,"time":1768817910183,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: TY0Oy_yGmripsoq-AAAB"}
+{"level":30,"time":1768817947105,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
+{"level":30,"time":1768817947274,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-misconfig"}
+{"level":30,"time":1768817967124,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
+{"level":30,"time":1768817967291,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-misconfig"}
+{"level":30,"time":1768817987141,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
+{"level":30,"time":1768817987308,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-misconfig"}
+{"level":30,"time":1768817991460,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: HSEOUi6F5DQ9H5VtAAAE"}
+{"level":50,"time":1768817995256,"pid":1967181,"hostname":"gie-OptiPlex-9020","err":{"type":"Error","message":"EACCES: permission denied, unlink 'sessions/homesislab/app-state-sync-key-AAAAAGVD.json'","stack":"Error: EACCES: permission denied, unlink 'sessions/homesislab/app-state-sync-key-AAAAAGVD.json'\n    at unlinkSync (node:fs:1889:11)\n    at _unlinkSync (node:internal/fs/rimraf:216:14)\n    at rimrafSync (node:internal/fs/rimraf:197:7)\n    at node:internal/fs/rimraf:255:9\n    at Array.forEach (<anonymous>)\n    at _rmdirSync (node:internal/fs/rimraf:252:7)\n    at rimrafSync (node:internal/fs/rimraf:195:7)\n    at Object.rmSync (node:fs:1263:10)\n    at Module.deleteSession (file:///home/gie/workspace/wabot/server/src/services/sessionManager.js:145:12)\n    at deleteSession (file:///home/gie/workspace/wabot/server/src/controllers/sessionController.js:69:30)","errno":-13,"code":"EACCES","syscall":"unlink","path":"sessions/homesislab/app-state-sync-key-AAAAAGVD.json"},"msg":"EACCES: permission denied, unlink 'sessions/homesislab/app-state-sync-key-AAAAAGVD.json'"}
+{"level":30,"time":1768818000873,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: HSEOUi6F5DQ9H5VtAAAE"}
+{"level":30,"time":1768818007150,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
+{"level":30,"time":1768818007316,"pid":1967181,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-misconfig"}
+{"level":30,"time":1768818087301,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768818087301,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768818087318,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Resuming session test-session-mention-rule"}
+{"level":30,"time":1768818087320,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768818088249,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
+{"level":30,"time":1768818090191,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: IJTG1uyWO8TPLY7FAAAB"}
+{"level":30,"time":1768818106188,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: h3bjvuZGo430uPx5AAAE"}
+{"level":50,"time":1768818109062,"pid":1970205,"hostname":"gie-OptiPlex-9020","err":{"type":"Error","message":"EACCES: permission denied, unlink 'sessions/homesislab/app-state-sync-key-AAAAAGVD.json'","stack":"Error: EACCES: permission denied, unlink 'sessions/homesislab/app-state-sync-key-AAAAAGVD.json'\n    at unlinkSync (node:fs:1889:11)\n    at _unlinkSync (node:internal/fs/rimraf:216:14)\n    at rimrafSync (node:internal/fs/rimraf:197:7)\n    at node:internal/fs/rimraf:255:9\n    at Array.forEach (<anonymous>)\n    at _rmdirSync (node:internal/fs/rimraf:252:7)\n    at rimrafSync (node:internal/fs/rimraf:195:7)\n    at Object.rmSync (node:fs:1263:10)\n    at Module.deleteSession (file:///home/gie/workspace/wabot/server/src/services/sessionManager.js:145:12)\n    at deleteSession (file:///home/gie/workspace/wabot/server/src/controllers/sessionController.js:69:30)","errno":-13,"code":"EACCES","syscall":"unlink","path":"sessions/homesislab/app-state-sync-key-AAAAAGVD.json"},"msg":"EACCES: permission denied, unlink 'sessions/homesislab/app-state-sync-key-AAAAAGVD.json'"}
+{"level":30,"time":1768818112809,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: h3bjvuZGo430uPx5AAAE"}
+{"level":30,"time":1768818112982,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: Euv6NsLIlxjssNoFAAAH"}
+{"level":50,"time":1768818117261,"pid":1970205,"hostname":"gie-OptiPlex-9020","err":{"type":"Error","message":"EACCES: permission denied, unlink 'sessions/homesislab/app-state-sync-key-AAAAAGVD.json'","stack":"Error: EACCES: permission denied, unlink 'sessions/homesislab/app-state-sync-key-AAAAAGVD.json'\n    at unlinkSync (node:fs:1889:11)\n    at _unlinkSync (node:internal/fs/rimraf:216:14)\n    at rimrafSync (node:internal/fs/rimraf:197:7)\n    at node:internal/fs/rimraf:255:9\n    at Array.forEach (<anonymous>)\n    at _rmdirSync (node:internal/fs/rimraf:252:7)\n    at rimrafSync (node:internal/fs/rimraf:195:7)\n    at Object.rmSync (node:fs:1263:10)\n    at Module.deleteSession (file:///home/gie/workspace/wabot/server/src/services/sessionManager.js:145:12)\n    at deleteSession (file:///home/gie/workspace/wabot/server/src/controllers/sessionController.js:69:30)","errno":-13,"code":"EACCES","syscall":"unlink","path":"sessions/homesislab/app-state-sync-key-AAAAAGVD.json"},"msg":"EACCES: permission denied, unlink 'sessions/homesislab/app-state-sync-key-AAAAAGVD.json'"}
+{"level":30,"time":1768818148309,"pid":1970205,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
+{"level":30,"time":1768818229951,"pid":1971916,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768818229951,"pid":1971916,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768818229967,"pid":1971916,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768818232868,"pid":1971916,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: nbzCJjbcxczV__iFAAAB"}
+{"level":30,"time":1768818234174,"pid":1971916,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: sSEqUji4uaEI3KpNAAAD"}
+{"level":30,"time":1768818235101,"pid":1971916,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: nbzCJjbcxczV__iFAAAB"}
+{"level":30,"time":1768818236213,"pid":1971916,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: i0n8HLbw0wOp0BdRAAAG"}
+{"level":30,"time":1768818240779,"pid":1971916,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: i0n8HLbw0wOp0BdRAAAG"}
+{"level":30,"time":1768818242425,"pid":1971916,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: gMq-oL3bcEc4qUiEAAAJ"}
+{"level":30,"time":1768818255794,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768818255795,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768818255816,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768818256165,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 5Joq3U0tYk8lh88ZAAAB"}
+{"level":30,"time":1768818258474,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 0MgwB5ugOtB99wiLAAAD"}
+{"level":30,"time":1768818261326,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 0MgwB5ugOtB99wiLAAAD"}
+{"level":30,"time":1768818262343,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: cF2e0MdZ85X8FjpWAAAG"}
+{"level":30,"time":1768818266839,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768818275174,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: cF2e0MdZ85X8FjpWAAAG"}
+{"level":30,"time":1768818275174,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 5Joq3U0tYk8lh88ZAAAB"}
+{"level":30,"time":1768818283176,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: F49SH394cljPbpU6AAAI"}
+{"level":30,"time":1768818284636,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: KPqJBVqGG7iUxE28AAAL"}
+{"level":30,"time":1768818301502,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: F49SH394cljPbpU6AAAI"}
+{"level":30,"time":1768818301503,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: KPqJBVqGG7iUxE28AAAL"}
