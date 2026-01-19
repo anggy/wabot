@@ -264,3 +264,184 @@
 {"level":30,"time":1768841710874,"pid":2125556,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: kKkYFSgpmdLKLaAtAAAC"}
 {"level":30,"time":1768841724294,"pid":2125556,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: kKkYFSgpmdLKLaAtAAAC"}
 {"level":30,"time":1768841728770,"pid":2125556,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: aFePIXT8TgTjHmrnAAAF"}
+{"level":30,"time":1768842585154,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842585154,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842586834,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842586835,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842588490,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842588491,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842590488,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842590489,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842592827,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842592827,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842595931,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842595931,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842600636,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842600636,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842608552,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842608552,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842622861,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842622861,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842649983,"pid":30,"hostname":"917c2de35d0f","msg":"Server running on port 3002"}
+{"level":30,"time":1768842649984,"pid":30,"hostname":"917c2de35d0f","msg":"Initializing sessions..."}
+{"level":30,"time":1768842899634,"pid":30,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842899635,"pid":30,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842901364,"pid":30,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842901364,"pid":30,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842903075,"pid":30,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842903075,"pid":30,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842905050,"pid":30,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842905050,"pid":30,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842907339,"pid":30,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842907339,"pid":30,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842910458,"pid":29,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842910458,"pid":29,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842915184,"pid":30,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842915185,"pid":30,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842923311,"pid":30,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842923311,"pid":30,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842937832,"pid":30,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842937832,"pid":30,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842964992,"pid":30,"hostname":"cb3e3465feb8","msg":"Server running on port 3002"}
+{"level":30,"time":1768842964992,"pid":30,"hostname":"cb3e3465feb8","msg":"Initializing sessions..."}
+{"level":30,"time":1768842968253,"pid":30,"hostname":"a67b95b29cae","msg":"Server running on port 3002"}
+{"level":30,"time":1768842968253,"pid":30,"hostname":"a67b95b29cae","msg":"Initializing sessions..."}
+{"level":30,"time":1768842968274,"pid":30,"hostname":"a67b95b29cae","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768842969652,"pid":30,"hostname":"a67b95b29cae","msg":"Socket connected: ialJHByYNEs1zENfAAAB"}
+{"level":30,"time":1768843183902,"pid":30,"hostname":"a67b95b29cae","msg":"Socket connected: ifg2b8ZAedvB3NjuAAAD"}
+{"level":30,"time":1768843184415,"pid":30,"hostname":"a67b95b29cae","msg":"Socket disconnected: ifg2b8ZAedvB3NjuAAAD"}
+{"level":30,"time":1768843186503,"pid":30,"hostname":"a67b95b29cae","msg":"Socket connected: X6-Ik4d0eaC04PhQAAAF"}
+{"level":30,"time":1768843194635,"pid":30,"hostname":"a67b95b29cae","msg":"Socket disconnected: X6-Ik4d0eaC04PhQAAAF"}
+{"level":30,"time":1768844513585,"pid":30,"hostname":"a67b95b29cae","msg":"Socket disconnected: ialJHByYNEs1zENfAAAB"}
+{"level":30,"time":1768844523305,"pid":30,"hostname":"a67b95b29cae","msg":"Socket connected: w8FLkewMxJghst0jAAAH"}
+{"level":30,"time":1768861921970,"pid":30,"hostname":"a67b95b29cae","msg":"Socket connected: Oj00d6bT3FtKl1ZHAAAJ"}
+{"level":30,"time":1768861930193,"pid":30,"hostname":"a67b95b29cae","msg":"Socket disconnected: Oj00d6bT3FtKl1ZHAAAJ"}
+{"level":30,"time":1768861965241,"pid":30,"hostname":"a67b95b29cae","msg":"Socket connected: PYXJchcUbtqW7r48AAAL"}
+{"level":30,"time":1768861966787,"pid":30,"hostname":"a67b95b29cae","msg":"Socket disconnected: PYXJchcUbtqW7r48AAAL"}
+{"level":30,"time":1768861970959,"pid":30,"hostname":"a67b95b29cae","msg":"Socket connected: g7V_wSdPREIggqchAAAO"}
+{"level":30,"time":1768862030206,"pid":30,"hostname":"a67b95b29cae","msg":"Socket disconnected: g7V_wSdPREIggqchAAAO"}
+{"level":30,"time":1768863223371,"pid":2234804,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768863223371,"pid":2234804,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768863223384,"pid":2234804,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768863233178,"pid":2234804,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: giYDkHiufcKisI8BAAAB"}
+{"level":30,"time":1768863237859,"pid":2234804,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: giYDkHiufcKisI8BAAAB"}
+{"level":30,"time":1768863246174,"pid":2234804,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: FGWGhmYfZpPPFFtNAAAD"}
+{"level":30,"time":1768863888682,"pid":2239496,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768863888683,"pid":2239496,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768863888699,"pid":2239496,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768863892173,"pid":2239496,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 5cOR8_gyg6_3Fb14AAAB"}
+{"level":30,"time":1768864264630,"pid":30,"hostname":"a67b95b29cae","msg":"Socket disconnected: w8FLkewMxJghst0jAAAH"}
+{"level":30,"time":1768864278054,"pid":30,"hostname":"981a8338f2e4","msg":"Server running on port 3002"}
+{"level":30,"time":1768864278054,"pid":30,"hostname":"981a8338f2e4","msg":"Initializing sessions..."}
+{"level":30,"time":1768864278091,"pid":30,"hostname":"981a8338f2e4","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768864283542,"pid":30,"hostname":"981a8338f2e4","msg":"Socket connected: niLdkuDZ2OmB5BqzAAAB"}
+{"level":30,"time":1768864580591,"pid":30,"hostname":"981a8338f2e4","msg":"Socket disconnected: niLdkuDZ2OmB5BqzAAAB"}
+{"level":30,"time":1768865098729,"pid":30,"hostname":"981a8338f2e4","msg":"Socket connected: x_7Mp84DbKsWbbjdAAAD"}
+{"level":30,"time":1768865106887,"pid":30,"hostname":"981a8338f2e4","msg":"Generating QR for session homesislab"}
+{"level":50,"time":1768865149236,"pid":30,"hostname":"981a8338f2e4","msg":"Session homesislab closed. StatusCode: 515, Error: Stream Errored (restart required). Reconnecting: true"}
+{"level":30,"time":1768865151921,"pid":30,"hostname":"981a8338f2e4","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1768865164675,"pid":30,"hostname":"981a8338f2e4","msg":"Socket disconnected: x_7Mp84DbKsWbbjdAAAD"}
+{"level":30,"time":1768865211157,"pid":30,"hostname":"981a8338f2e4","msg":"Socket connected: F6pNELrAKoLrjxkuAAAF"}
+{"level":30,"time":1768865227900,"pid":30,"hostname":"981a8338f2e4","msg":"Socket disconnected: F6pNELrAKoLrjxkuAAAF"}
+{"level":30,"time":1768865310206,"pid":30,"hostname":"981a8338f2e4","msg":"Socket connected: MhHSITJtu1_NFtahAAAH"}
+{"level":30,"time":1768865315575,"pid":30,"hostname":"981a8338f2e4","msg":"Socket disconnected: MhHSITJtu1_NFtahAAAH"}
+{"level":30,"time":1768865530903,"pid":30,"hostname":"a2c7685abea8","msg":"Server running on port 3002"}
+{"level":30,"time":1768865530903,"pid":30,"hostname":"a2c7685abea8","msg":"Initializing sessions..."}
+{"level":30,"time":1768865530932,"pid":30,"hostname":"a2c7685abea8","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768865617820,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: 7FUrrhH-dWr4_HfHAAAB"}
+{"level":30,"time":1768865623660,"pid":30,"hostname":"a2c7685abea8","msg":"Generating QR for session homesislab"}
+{"level":50,"time":1768865644074,"pid":30,"hostname":"a2c7685abea8","msg":"Session homesislab closed. StatusCode: 515, Error: Stream Errored (restart required). Reconnecting: true"}
+{"level":30,"time":1768865647174,"pid":30,"hostname":"a2c7685abea8","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1768865666231,"pid":30,"hostname":"a2c7685abea8","msg":"Socket disconnected: 7FUrrhH-dWr4_HfHAAAB"}
+{"level":30,"time":1768865774540,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: j1vf45zFzWi6xVwLAAAD"}
+{"level":30,"time":1768865785074,"pid":30,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768865811840,"pid":29,"hostname":"a2c7685abea8","msg":"Server running on port 3002"}
+{"level":30,"time":1768865811841,"pid":29,"hostname":"a2c7685abea8","msg":"Initializing sessions..."}
+{"level":30,"time":1768865811858,"pid":29,"hostname":"a2c7685abea8","msg":"Resuming session homesislab"}
+{"level":30,"time":1768865811859,"pid":29,"hostname":"a2c7685abea8","msg":"Resuming session anggy"}
+{"level":30,"time":1768865811878,"pid":29,"hostname":"a2c7685abea8","msg":"Initialized 1 schedules"}
+{"level":30,"time":1768865812797,"pid":29,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768865813539,"pid":29,"hostname":"a2c7685abea8","msg":"Socket connected: VQy5T81U2oQVxrd_AAAB"}
+{"level":30,"time":1768865814154,"pid":29,"hostname":"a2c7685abea8","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1768865864887,"pid":29,"hostname":"a2c7685abea8","msg":"Socket disconnected: VQy5T81U2oQVxrd_AAAB"}
+{"level":30,"time":1768865872831,"pid":29,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768865883923,"pid":29,"hostname":"a2c7685abea8","msg":"Socket connected: qMQhPAOwZUKS1hdHAAAD"}
+{"level":30,"time":1768865893412,"pid":30,"hostname":"a2c7685abea8","msg":"Server running on port 3002"}
+{"level":30,"time":1768865893413,"pid":30,"hostname":"a2c7685abea8","msg":"Initializing sessions..."}
+{"level":30,"time":1768865893438,"pid":30,"hostname":"a2c7685abea8","msg":"Resuming session homesislab"}
+{"level":30,"time":1768865893438,"pid":30,"hostname":"a2c7685abea8","msg":"Resuming session anggy"}
+{"level":30,"time":1768865893457,"pid":30,"hostname":"a2c7685abea8","msg":"Initialized 1 schedules"}
+{"level":30,"time":1768865893779,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: SpZ-sZKtGQx47xYiAAAB"}
+{"level":30,"time":1768865894465,"pid":30,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768865895400,"pid":30,"hostname":"a2c7685abea8","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1768865904087,"pid":30,"hostname":"a2c7685abea8","msg":"Socket disconnected: SpZ-sZKtGQx47xYiAAAB"}
+{"level":30,"time":1768865930083,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: mE6MyXQQ8LHPPYOmAAAD"}
+{"level":30,"time":1768865946763,"pid":30,"hostname":"a2c7685abea8","msg":"Socket disconnected: mE6MyXQQ8LHPPYOmAAAD"}
+{"level":30,"time":1768865947505,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: pAmZ1GOSXO29uXMpAAAF"}
+{"level":30,"time":1768865954490,"pid":30,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768865964283,"pid":30,"hostname":"a2c7685abea8","msg":"Server running on port 3002"}
+{"level":30,"time":1768865964283,"pid":30,"hostname":"a2c7685abea8","msg":"Initializing sessions..."}
+{"level":30,"time":1768865964300,"pid":30,"hostname":"a2c7685abea8","msg":"Resuming session homesislab"}
+{"level":30,"time":1768865964300,"pid":30,"hostname":"a2c7685abea8","msg":"Resuming session anggy"}
+{"level":30,"time":1768865964315,"pid":30,"hostname":"a2c7685abea8","msg":"Initialized 1 schedules"}
+{"level":30,"time":1768865965202,"pid":30,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768865966567,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: oziMYimXS8YfwI0oAAAB"}
+{"level":30,"time":1768865966632,"pid":30,"hostname":"a2c7685abea8","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1768865973805,"pid":30,"hostname":"a2c7685abea8","msg":"Socket disconnected: oziMYimXS8YfwI0oAAAB"}
+{"level":30,"time":1768865979801,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: zVh92UqWmYgDkqPmAAAD"}
+{"level":30,"time":1768865986953,"pid":30,"hostname":"a2c7685abea8","msg":"Socket disconnected: zVh92UqWmYgDkqPmAAAD"}
+{"level":30,"time":1768866023001,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: bgptnMLRHMKMNjehAAAF"}
+{"level":30,"time":1768866025244,"pid":30,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768866043729,"pid":30,"hostname":"a2c7685abea8","msg":"Server running on port 3002"}
+{"level":30,"time":1768866043730,"pid":30,"hostname":"a2c7685abea8","msg":"Initializing sessions..."}
+{"level":30,"time":1768866043748,"pid":30,"hostname":"a2c7685abea8","msg":"Resuming session homesislab"}
+{"level":30,"time":1768866043748,"pid":30,"hostname":"a2c7685abea8","msg":"Resuming session anggy"}
+{"level":30,"time":1768866043766,"pid":30,"hostname":"a2c7685abea8","msg":"Initialized 1 schedules"}
+{"level":30,"time":1768866044650,"pid":30,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768866045184,"pid":30,"hostname":"a2c7685abea8","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1768866046815,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: I9r14ylduqBSCGTNAAAB"}
+{"level":30,"time":1768866104696,"pid":30,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768866106042,"pid":30,"hostname":"a2c7685abea8","msg":"Socket disconnected: I9r14ylduqBSCGTNAAAB"}
+{"level":30,"time":1768866106625,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: 4ExAtVa4pzZPndtDAAAD"}
+{"level":30,"time":1768866112395,"pid":30,"hostname":"a2c7685abea8","msg":"Server running on port 3002"}
+{"level":30,"time":1768866112396,"pid":30,"hostname":"a2c7685abea8","msg":"Initializing sessions..."}
+{"level":30,"time":1768866112407,"pid":30,"hostname":"a2c7685abea8","msg":"Resuming session homesislab"}
+{"level":30,"time":1768866112407,"pid":30,"hostname":"a2c7685abea8","msg":"Resuming session anggy"}
+{"level":30,"time":1768866112421,"pid":30,"hostname":"a2c7685abea8","msg":"Initialized 1 schedules"}
+{"level":30,"time":1768866113405,"pid":30,"hostname":"a2c7685abea8","msg":"Generating QR for session anggy"}
+{"level":30,"time":1768866114320,"pid":30,"hostname":"a2c7685abea8","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1768866115122,"pid":30,"hostname":"a2c7685abea8","msg":"Socket connected: UBd2Jc_IIfyA1MGiAAAB"}
+{"level":30,"time":1768866182159,"pid":30,"hostname":"a2c7685abea8","msg":"Socket disconnected: UBd2Jc_IIfyA1MGiAAAB"}
+{"level":30,"time":1768866269349,"pid":30,"hostname":"9ab699182dbc","msg":"Server running on port 3002"}
+{"level":30,"time":1768866269350,"pid":30,"hostname":"9ab699182dbc","msg":"Initializing sessions..."}
+{"level":30,"time":1768866269368,"pid":30,"hostname":"9ab699182dbc","msg":"Resuming session homesislab"}
+{"level":30,"time":1768866269387,"pid":30,"hostname":"9ab699182dbc","msg":"Initialized 1 schedules"}
+{"level":30,"time":1768866272653,"pid":30,"hostname":"9ab699182dbc","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1768866274331,"pid":30,"hostname":"9ab699182dbc","msg":"Socket connected: vnm7c0wyg6puPw2DAAAB"}
+{"level":30,"time":1768866280961,"pid":30,"hostname":"9ab699182dbc","msg":"Socket disconnected: vnm7c0wyg6puPw2DAAAB"}
+{"level":30,"time":1768866281728,"pid":30,"hostname":"9ab699182dbc","msg":"Socket connected: 58H2MktBVFtOJKezAAAD"}
+{"level":30,"time":1768866297992,"pid":30,"hostname":"9ab699182dbc","msg":"Generating QR for session anggy"}
+{"level":50,"time":1768866306384,"pid":30,"hostname":"9ab699182dbc","msg":"Session anggy closed. StatusCode: 515, Error: Stream Errored (restart required). Reconnecting: true"}
+{"level":30,"time":1768866309484,"pid":30,"hostname":"9ab699182dbc","msg":"Session anggy opened successfully"}
+{"level":30,"time":1768866319691,"pid":30,"hostname":"9ab699182dbc","msg":"Generating QR for session anggy2"}
+{"level":50,"time":1768866328342,"pid":30,"hostname":"9ab699182dbc","msg":"Session anggy2 closed. StatusCode: 515, Error: Stream Errored (restart required). Reconnecting: true"}
+{"level":30,"time":1768866331228,"pid":30,"hostname":"9ab699182dbc","msg":"Session anggy2 opened successfully"}
+{"level":50,"time":1768866338069,"pid":30,"hostname":"9ab699182dbc","msg":"Session anggy2 closed. StatusCode: 401, Error: Stream Errored (conflict). Reconnecting: false"}
+{"level":50,"time":1768866343306,"pid":30,"hostname":"9ab699182dbc","msg":"Session anggy closed. StatusCode: 401, Error: Stream Errored (conflict). Reconnecting: false"}
+{"level":30,"time":1768866351453,"pid":30,"hostname":"9ab699182dbc","msg":"Socket disconnected: 58H2MktBVFtOJKezAAAD"}
+{"level":30,"time":1768866351986,"pid":30,"hostname":"9ab699182dbc","msg":"Socket connected: Wrkb5IMQCY7hME61AAAF"}
+{"level":30,"time":1768866358698,"pid":30,"hostname":"9ab699182dbc","msg":"Socket disconnected: Wrkb5IMQCY7hME61AAAF"}
+{"level":30,"time":1768866359228,"pid":30,"hostname":"9ab699182dbc","msg":"Socket connected: -7qQHLJ4a2zRYd6gAAAH"}
+{"level":30,"time":1768866360417,"pid":30,"hostname":"9ab699182dbc","msg":"Socket disconnected: -7qQHLJ4a2zRYd6gAAAH"}
+{"level":30,"time":1768866360606,"pid":30,"hostname":"9ab699182dbc","msg":"Socket connected: 3ocYLKwVWdtdqwg9AAAJ"}
+{"level":30,"time":1768866376221,"pid":30,"hostname":"9ab699182dbc","msg":"Socket disconnected: 3ocYLKwVWdtdqwg9AAAJ"}
+{"level":30,"time":1768866384757,"pid":30,"hostname":"9ab699182dbc","msg":"Server running on port 3002"}
+{"level":30,"time":1768866384757,"pid":30,"hostname":"9ab699182dbc","msg":"Initializing sessions..."}
+{"level":30,"time":1768866384776,"pid":30,"hostname":"9ab699182dbc","msg":"Resuming session homesislab"}
+{"level":30,"time":1768866384795,"pid":30,"hostname":"9ab699182dbc","msg":"Initialized 1 schedules"}
+{"level":30,"time":1768866386178,"pid":30,"hostname":"9ab699182dbc","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1768866409446,"pid":30,"hostname":"9ab699182dbc","msg":"Socket connected: weEuCooX6nU9tfi3AAAB"}
+{"level":30,"time":1768866412185,"pid":30,"hostname":"9ab699182dbc","msg":"Socket disconnected: weEuCooX6nU9tfi3AAAB"}
+{"level":30,"time":1768866444003,"pid":30,"hostname":"9ab699182dbc","msg":"Socket connected: Uxsw3zg_cN-oNsToAAAD"}
+{"level":30,"time":1768866444788,"pid":30,"hostname":"9ab699182dbc","msg":"Socket disconnected: Uxsw3zg_cN-oNsToAAAD"}
+{"level":30,"time":1768866519526,"pid":30,"hostname":"9ab699182dbc","msg":"Socket connected: x6JLGjbTAGNFuRz5AAAF"}

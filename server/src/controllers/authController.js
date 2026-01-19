@@ -2,6 +2,7 @@ import { prisma } from '../prisma.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { logger } from '../config/logger.js';
+import { getSession } from '../services/sessionManager.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkeychangedinprod';
 
@@ -38,6 +39,7 @@ export const register = async (req, res) => {
         if (userCount === 0) {
             userRole = 'ADMIN';
             isActive = true; // First user is always active admin
+            planType = 'UNLIMITED'; // Admin gets unlimited plan
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -52,6 +54,32 @@ export const register = async (req, res) => {
                 planType: planType || 'PAY_AS_YOU_GO'
             }
         });
+
+        // Notify Admin
+        try {
+            const adminPhone = process.env.ADMIN_PHONE;
+            if (adminPhone) {
+                // Find an active admin session to send from
+                const adminSession = await prisma.session.findFirst({
+                    where: {
+                        user: { role: 'ADMIN' },
+                        status: 'CONNECTED'
+                    }
+                });
+
+                if (adminSession) {
+                    const sock = getSession(adminSession.id);
+                    if (sock) {
+                        const message = `*New User Registered!*\n\nUsername: ${username}\nEmail: ${email}\nPhone: ${phone}\nPlan: ${planType || 'PAY_AS_YOU_GO'}\n\nPlease check the dashboard to activate this user.`;
+                        const jid = adminPhone.includes('@') ? adminPhone : `${adminPhone}@s.whatsapp.net`;
+                        await sock.sendMessage(jid, { text: message });
+                    }
+                }
+            }
+        } catch (notifyErr) {
+            logger.error(`Failed to notify admin: ${notifyErr.message}`);
+            // Continue even if notification fails
+        }
 
         res.status(201).json({ message: 'User created', userId: user.id });
     } catch (error) {

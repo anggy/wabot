@@ -27,6 +27,11 @@ const Register = () => {
             return;
         }
 
+        if (formData.password.length < 8) {
+            setError("Password must be at least 8 characters long");
+            return;
+        }
+
         setLoading(true);
 
         try {
@@ -65,11 +70,23 @@ const Register = () => {
                             <h3 className="text-xl font-bold text-gray-900 mb-2">Registration Successful!</h3>
                             <p className="text-gray-600 mb-6">
                                 Your account has been created and is pending approval.
-                                Please contact the administrator to activate your account.
+                                <br />
+                                To activate your account and make a payment, please contact the administrator.
                             </p>
-                            <Link to="/login" className="inline-block w-full bg-sisia-primary text-white py-3 px-4 rounded-xl font-semibold hover:bg-sisia-dark transition-colors">
-                                Back to Login
-                            </Link>
+
+                            <div className="flex flex-col gap-3">
+                                <a
+                                    href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I just registered as ${formData.username}. I would like to activate my account.`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="inline-block w-full bg-[#25D366] text-white py-3 px-4 rounded-xl font-semibold hover:bg-[#20bd5a] transition-colors flex items-center justify-center gap-2"
+                                >
+                                    Chat with Admin
+                                </a>
+                                <Link to="/login" className="inline-block w-full bg-sisia-primary text-white py-3 px-4 rounded-xl font-semibold hover:bg-sisia-dark transition-colors">
+                                    Back to Login
+                                </Link>
+                            </div>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-5">

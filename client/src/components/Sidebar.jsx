@@ -49,7 +49,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 </button>
             </div>
 
-            <nav className="space-y-1 flex-1">
+            <nav className="space-y-1 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
                 {links.map((link) => {
                     const Icon = link.icon;
                     const isActive = location.pathname === link.path;
@@ -88,15 +88,23 @@ const Sidebar = ({ isOpen, onClose }) => {
                                             <Coins size={12} />
                                             <span>{user?.credits || 0} Credits</span>
                                         </div>
-                                        <a
-                                            href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to buy more credits for my account: ${user?.username}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="bg-amber-500 text-black px-1.5 rounded hover:bg-amber-400 transition-colors cursor-pointer"
-                                            title="Buy Credits"
-                                        >
-                                            +
-                                        </a>
+                                        {user?.planType !== 'UNLIMITED' && (
+                                            <a
+                                                href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to buy more credits for my account: ${user?.username}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="bg-amber-500 text-black px-1.5 rounded hover:bg-amber-400 transition-colors cursor-pointer"
+                                                title="Buy Credits"
+                                            >
+                                                +
+                                            </a>
+                                        )}
+                                    </div>
+                                )}
+                                {user?.planType === 'UNLIMITED' && (
+                                    <div className="flex items-center justify-center text-xs font-bold bg-sisia-primary/20 text-sisia-primary px-2 py-1 rounded select-none">
+                                        <Zap size={12} className="mr-1" />
+                                        <span>Unlimited Plan</span>
                                     </div>
                                 )}
                                 <div className="flex items-center justify-between text-xs font-medium bg-blue-500/10 text-blue-400 px-2 py-1 rounded select-none group relative">
@@ -105,17 +113,19 @@ const Sidebar = ({ isOpen, onClose }) => {
                                         <span className="truncate max-w-[80px]">
                                             {user?.planType === 'TIME_BASED'
                                                 ? (user?.planExpiresAt ? `Exp: ${new Date(user.planExpiresAt).toLocaleDateString()}` : 'Pending')
-                                                : 'Pay As You Go'}
+                                                : (user?.planType === 'UNLIMITED' ? 'Active' : 'Pay As You Go')}
                                         </span>
                                     </div>
-                                    <a
-                                        href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to change my plan schema for account: ${user?.username}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded hover:bg-blue-400 transition-colors uppercase tracking-wider cursor-pointer"
-                                    >
-                                        {user?.planType === 'TIME_BASED' ? 'Renew' : 'Change'}
-                                    </a>
+                                    {user?.planType !== 'UNLIMITED' && (
+                                        <a
+                                            href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to change my plan schema for account: ${user?.username}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded hover:bg-blue-400 transition-colors uppercase tracking-wider cursor-pointer"
+                                        >
+                                            {user?.planType === 'TIME_BASED' ? 'Renew' : 'Change'}
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>

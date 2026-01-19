@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MessageSquare, Zap, Shield, Smartphone, Globe, ArrowRight, Settings, Calendar } from 'lucide-react';
+import { MessageSquare, Zap, Shield, Smartphone, Globe, ArrowRight, Settings, Calendar, Menu, X } from 'lucide-react';
 
 const LandingPage = () => {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
     return (
         <div className="min-h-screen bg-bone-white font-sans text-sisia-dark">
             {/* Navbar */}
@@ -12,6 +14,12 @@ const LandingPage = () => {
                         <div className="flex-shrink-0 flex items-center gap-2">
                             <span className="font-bold text-2xl tracking-tight text-sisia-primary">SISIA</span>
                         </div>
+                        <div className="md:hidden">
+                            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-gray-600 hover:text-sisia-primary p-2">
+                                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                            </button>
+                        </div>
+
                         <div className="hidden md:flex items-center space-x-8">
                             <a href="#features" className="text-gray-600 hover:text-sisia-primary transition-colors font-medium">Features</a>
                             <a href="#pricing" className="text-gray-600 hover:text-sisia-primary transition-colors font-medium">Pricing</a>
@@ -22,6 +30,17 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </div>
+                {/* Mobile Menu */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden bg-white border-t border-gray-100 absolute top-20 left-0 w-full shadow-lg py-4 px-4 flex flex-col gap-4 animate-in slide-in-from-top-5">
+                        <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-600 hover:text-sisia-primary font-medium p-2">Features</a>
+                        <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-600 hover:text-sisia-primary font-medium p-2">Pricing</a>
+                        <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="text-gray-600 hover:text-sisia-primary font-medium p-2">Contact</a>
+                        <Link to="/login" onClick={() => setIsMobileMenuOpen(false)} className="px-5 py-3 text-center rounded-xl bg-sisia-primary text-white font-medium hover:bg-sisia-dark shadow-md">
+                            Login / Register
+                        </Link>
+                    </div>
+                )}
             </nav>
 
             {/* Hero Section */}
@@ -45,9 +64,7 @@ const LandingPage = () => {
                             <Link to="/login" className="px-8 py-4 rounded-full bg-sisia-primary text-white font-bold text-lg hover:bg-sisia-dark transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2">
                                 Get Started Free <ArrowRight size={20} />
                             </Link>
-                            <a href="#demo" className="px-8 py-4 rounded-full bg-white text-sisia-primary border border-gray-200 font-bold text-lg hover:bg-gray-50 transition-all shadow-md hover:shadow-lg">
-                                View Demo
-                            </a>
+
                         </div>
                     </div>
                 </div>

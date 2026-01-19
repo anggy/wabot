@@ -33,7 +33,7 @@ const Login = () => {
                 <div className="absolute -right-24 -bottom-24 w-96 h-96 bg-sisia-primary/30 rounded-full blur-3xl"></div>
 
                 <div className="relative z-10 flex items-center gap-3">
-                    <span className="text-2xl font-bold tracking-tight">Sisia</span>
+                    <span className="text-2xl font-bold tracking-tight">SISIA</span>
                 </div>
 
                 <div className="relative z-10 max-w-md">
@@ -53,7 +53,9 @@ const Login = () => {
                 <div className="w-full max-w-md space-y-8">
                     <div className="text-center lg:text-left">
                         <div className="flex justify-center lg:hidden mb-6">
-                            <img src="/logo.svg" alt="Sisia" className="h-12 w-auto" />
+                            <div className="relative z-10 flex items-center gap-3">
+                                <span className="text-2xl font-bold tracking-tight text-sisia-primary">SISIA</span>
+                            </div>
                         </div>
                         <h2 className="text-3xl font-bold tracking-tight text-sisia-dark">Welcome back</h2>
                         <p className="mt-2 text-gray-500">Please enter your credentials to access the dashboard.</p>

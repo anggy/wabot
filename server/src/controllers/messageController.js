@@ -16,6 +16,8 @@ export const sendMessage = async (req, res) => {
         if (!user.planExpiresAt || new Date(user.planExpiresAt) < new Date()) {
             return res.status(403).json({ error: 'Subscription expired. Please renew your plan.' });
         }
+    } else if (user.planType === 'UNLIMITED') {
+        // No checks needed
     } else {
         // PAY_AS_YOU_GO check
         if (!hasCredits) {
@@ -99,11 +101,13 @@ export const broadcastMessage = async (req, res) => {
 
         (async () => {
             for (const contact of contacts) {
-                // Check credits before EACH message to ensure they don't go negative mid-broadcast
-                const hasCredits = await creditService.checkCredits(userId);
-                if (!hasCredits) {
-                    logger.warn(`User ${userId} ran out of credits during broadcast`);
-                    break;
+                // Check credits before EACH message (only for Pay As You Go)
+                if (user.planType === 'PAY_AS_YOU_GO') {
+                    const hasCredits = await creditService.checkCredits(userId);
+                    if (!hasCredits) {
+                        logger.warn(`User ${userId} ran out of credits during broadcast`);
+                        break;
+                    }
                 }
 
                 try {
@@ -118,7 +122,9 @@ export const broadcastMessage = async (req, res) => {
                         });
                     }
 
-                    await creditService.deductCredit(userId);
+                    if (user.planType === 'PAY_AS_YOU_GO') {
+                        await creditService.deductCredit(userId);
+                    }
                     sentCount++;
 
                     // Random delay 2-5s

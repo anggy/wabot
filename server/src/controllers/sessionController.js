@@ -29,7 +29,7 @@ export const createSession = async (req, res) => {
         });
 
         // Start logic
-        sessionManager.startSession(id);
+        await sessionManager.startSession(id);
 
         res.status(201).json({ message: 'Session created and starting' });
     } catch (error) {

@@ -3,13 +3,20 @@ FROM node:20-slim
 WORKDIR /app
 
 # Install system dependencies (needed for Prisma and Baileys sometimes)
-RUN apt-get update && apt-get install -y openssl
+# Run as root for apt-get
+RUN apt-get update && apt-get install -y openssl procps
 
-COPY package.json package-lock.json ./
+# Create app directory permission
+RUN chown node:node /app
+
+# Switch to non-root user
+USER node
+
+COPY --chown=node:node package.json package-lock.json ./
 
 RUN npm install
 
-COPY . .
+COPY --chown=node:node . .
 
 # Generate Prisma Client
 RUN npx prisma generate

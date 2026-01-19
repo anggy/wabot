@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 
 const Users = () => {
     const [users, setUsers] = useState([]);
-    const [formData, setFormData] = useState({ username: '', password: '', role: 'USER', email: '', phone: '' });
+    const [formData, setFormData] = useState({ username: '', password: '', role: 'USER' });
     const [editingPasswordId, setEditingPasswordId] = useState(null);
     const [newPassword, setNewPassword] = useState('');
     const [creditModalOpen, setCreditModalOpen] = useState(false);
@@ -18,9 +18,7 @@ const Users = () => {
         planExpiresAt: '',
         aiApiKey: '',
         aiBriefing: '',
-        isAiEnabled: false,
-        email: '',
-        phone: ''
+        isAiEnabled: false
     });
 
     const { user: currentUser } = useAuth();
@@ -42,7 +40,7 @@ const Users = () => {
         e.preventDefault();
         try {
             await api.post('/users', formData);
-            setFormData({ username: '', password: '', role: 'USER', email: '', phone: '' });
+            setFormData({ username: '', password: '', role: 'USER' });
             fetchUsers();
             alert("User created");
         } catch (error) {
@@ -149,24 +147,7 @@ const Users = () => {
                             required
                         />
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Email</label>
-                        <input
-                            type="email"
-                            className="mt-1 border p-2 rounded w-48 outline-none focus:ring-sisia-primary focus:border-sisia-primary"
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">Phone</label>
-                        <input
-                            type="text"
-                            className="mt-1 border p-2 rounded w-48 outline-none focus:ring-sisia-primary focus:border-sisia-primary"
-                            value={formData.phone}
-                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        />
-                    </div>
+
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Password</label>
                         <input
@@ -218,11 +199,15 @@ const Users = () => {
                                 </td>
                                 <td className="p-4">
                                     <div className="text-sm font-medium">{u.planType}</div>
-                                    <div className="text-xs text-gray-500">Cost: {u.messageCost}</div>
-                                    {u.planExpiresAt && (
-                                        <div className="text-xs text-gray-500">
-                                            Expires: {new Date(u.planExpiresAt).toLocaleDateString()}
-                                        </div>
+                                    {u.planType !== 'UNLIMITED' && (
+                                        <>
+                                            <div className="text-xs text-gray-500">Cost: {u.messageCost}</div>
+                                            {u.planExpiresAt && (
+                                                <div className="text-xs text-gray-500">
+                                                    Expires: {new Date(u.planExpiresAt).toLocaleDateString()}
+                                                </div>
+                                            )}
+                                        </>
                                     )}
                                 </td>
                                 <td className="p-4">{u.credits}</td>
@@ -337,21 +322,24 @@ const Users = () => {
                                     onChange={e => setSettingsData({ ...settingsData, planType: e.target.value })}
                                 >
                                     <option value="PAY_AS_YOU_GO">PAY_AS_YOU_GO</option>
-                                    <option value="TIME_BASED">TIME_BASED (By Date)</option>
+                                    <option value="TIME_BASED">TIME_BASED (By Date & Time)</option>
+                                    <option value="UNLIMITED">UNLIMITED (Admin Only)</option>
                                 </select>
                             </div>
                             {settingsData.planType === 'TIME_BASED' && (
                                 <div className="mb-4">
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Plan Expires At</label>
                                     <input
-                                        type="date"
+                                        type="datetime-local"
                                         className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
-                                        value={settingsData.planExpiresAt ? settingsData.planExpiresAt.split('T')[0] : ''}
-                                        onChange={e => setSettingsData({ ...settingsData, planExpiresAt: e.target.value })}
+                                        value={settingsData.planExpiresAt && settingsData.planExpiresAt !== ''
+                                            ? new Date(new Date(settingsData.planExpiresAt).getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16)
+                                            : ''}
+                                        onChange={e => setSettingsData({ ...settingsData, planExpiresAt: e.target.value ? new Date(e.target.value).toISOString() : '' })}
                                     />
                                 </div>
                             )}
-                            {settingsData.planType !== 'TIME_BASED' && (
+                            {settingsData.planType !== 'TIME_BASED' && settingsData.planType !== 'UNLIMITED' && (
                                 <div className="mb-4">
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Cost Per Message (Credits)</label>
                                     <input
@@ -364,26 +352,7 @@ const Users = () => {
                                 </div>
                             )}
 
-                            <hr className="my-4" />
-                            <h4 className="text-md font-semibold mb-2">Contact Info</h4>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input
-                                    type="email"
-                                    className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
-                                    value={settingsData.email}
-                                    onChange={e => setSettingsData({ ...settingsData, email: e.target.value })}
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                                <input
-                                    type="text"
-                                    className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
-                                    value={settingsData.phone}
-                                    onChange={e => setSettingsData({ ...settingsData, phone: e.target.value })}
-                                />
-                            </div>
+
 
                             <hr className="my-4" />
                             <h4 className="text-md font-semibold mb-2">AI Auto-Response</h4>

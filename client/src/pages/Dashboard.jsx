@@ -81,7 +81,9 @@ const Dashboard = () => {
                 </div>
                 <div className="flex items-center gap-3">
                     <span className="px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-medium text-gray-600 shadow-sm">
-                        Plan: <span className="text-sisia-primary font-bold">{user?.planType === 'TIME_BASED' ? 'Time Based' : 'Pay As You Go'}</span>
+                        Plan: <span className="text-sisia-primary font-bold">
+                            {user?.planType === 'TIME_BASED' ? 'Time Based' : (user?.planType === 'UNLIMITED' ? 'Unlimited' : 'Pay As You Go')}
+                        </span>
                     </span>
                     <button
                         onClick={fetchStats}
@@ -202,6 +204,24 @@ const Dashboard = () => {
                             </div>
                             <div className="absolute -right-6 -bottom-6 text-white/5 transform rotate-12">
                                 <Calendar size={140} />
+                            </div>
+                        </div>
+                    ) : user?.planType === 'UNLIMITED' ? (
+                        <div className="bg-gradient-to-br from-purple-900 to-indigo-900 p-6 rounded-2xl shadow-md text-white relative overflow-hidden">
+                            <div className="relative z-10">
+                                <div className="flex items-center gap-2 mb-2 text-white/80">
+                                    <Zap size={18} />
+                                    <span className="text-sm font-medium">Plan Status</span>
+                                </div>
+                                <h3 className="text-3xl font-extrabold mb-4">Unlimited</h3>
+
+                                <div className="inline-flex items-center gap-2 text-xs font-bold bg-white/20 hover:bg-white/30 transition-colors px-3 py-2 rounded-lg backdrop-blur-sm cursor-default">
+                                    <Users size={14} />
+                                    Admin Access
+                                </div>
+                            </div>
+                            <div className="absolute -right-6 -bottom-6 text-white/5 transform rotate-12">
+                                <Zap size={140} />
                             </div>
                         </div>
                     ) : (
