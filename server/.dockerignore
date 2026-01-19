@@ -1,0 +1,15 @@
+node_modules
+logs
+nohup.out
+.env
+sessions
+uploads
+*.db
+prisma/*.db
+src/generated
+coverage
+.git
+.gitignore
+README.md
+Dockerfile
+test-*.js

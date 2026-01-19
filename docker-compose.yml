@@ -7,16 +7,18 @@ services:
     ports:
       - "3003:3002"
     volumes:
-      - ./server/dev.db:/app/dev.db
+      - ./server/prisma:/app/prisma
       - ./server/uploads:/app/uploads
       - ./server/sessions:/app/sessions
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
-      - DATABASE_URL=file:./dev.db
+      - DATABASE_URL=file:./prisma/dev.db
       - JWT_SECRET=supersecretkeychangedinprod
       - PORT=3002
       - TZ=Asia/Jakarta
+    command: >
+      sh -c "ls -la /app/prisma && npm start"
     restart: always
 
   frontend:
