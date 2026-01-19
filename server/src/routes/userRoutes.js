@@ -11,17 +11,17 @@ router.use(requireAdmin);
 
 router.get('/', async (req, res) => {
     const users = await prisma.user.findMany({
-        select: { id: true, username: true, role: true, credits: true, isActive: true, planType: true, messageCost: true, planExpiresAt: true, aiApiKey: true, aiBriefing: true, isAiEnabled: true, createdAt: true }
+        select: { id: true, username: true, email: true, phone: true, role: true, credits: true, isActive: true, planType: true, messageCost: true, planExpiresAt: true, aiApiKey: true, aiBriefing: true, isAiEnabled: true, createdAt: true }
     });
     res.json(users);
 });
 
 router.post('/', async (req, res) => {
-    const { username, password, role } = req.body;
+    const { username, password, role, email, phone } = req.body;
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await prisma.user.create({
-            data: { username, password: hashedPassword, role: role || 'USER' }
+            data: { username, password: hashedPassword, role: role || 'USER', email, phone }
         });
         res.status(201).json({ id: user.id, username: user.username, role: user.role });
     } catch (error) {
@@ -36,6 +36,8 @@ router.put('/:id', async (req, res) => {
         const data = {};
         if (password) data.password = await bcrypt.hash(password, 10);
         if (role) data.role = role;
+        if (req.body.email !== undefined) data.email = req.body.email;
+        if (req.body.phone !== undefined) data.phone = req.body.phone;
         if (req.body.isActive !== undefined) data.isActive = req.body.isActive;
         if (req.body.planType) data.planType = req.body.planType;
         if (req.body.messageCost !== undefined) data.messageCost = parseInt(req.body.messageCost);

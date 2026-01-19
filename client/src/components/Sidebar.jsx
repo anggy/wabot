@@ -9,38 +9,41 @@ const Sidebar = ({ isOpen, onClose }) => {
     const [isCollapsed, setIsCollapsed] = React.useState(false);
 
     const links = [
-        { path: '/', label: 'Dashboard', icon: LayoutDashboard },
-        { path: '/sessions', label: 'Devices', icon: Smartphone },
-        { path: '/contacts', label: 'Contacts', icon: Users },
-        { path: '/history', label: 'Messages', icon: MessageSquare },
-        { path: '/rules', label: 'Auto Reply', icon: Zap },
-        { path: '/scheduler', label: 'Scheduler', icon: Calendar },
-        { path: '/broadcast', label: 'Broadcast', icon: Megaphone },
-        { path: '/groups', label: 'Groups', icon: Database },
-        { path: '/gallery', label: 'Gallery', icon: ImageIcon },
-        { path: '/send', label: 'Send Test', icon: Send },
+        { path: '/app/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        { path: '/app/sessions', label: 'Devices', icon: Smartphone },
+        { path: '/app/contacts', label: 'Contacts', icon: Users },
+        { path: '/app/history', label: 'Messages', icon: MessageSquare },
+        { path: '/app/rules', label: 'Auto Reply', icon: Zap },
+        { path: '/app/scheduler', label: 'Scheduler', icon: Calendar },
+        { path: '/app/broadcast', label: 'Broadcast', icon: Megaphone },
+        { path: '/app/groups', label: 'Groups', icon: Database },
+        { path: '/app/gallery', label: 'Gallery', icon: ImageIcon },
+        { path: '/app/profile', label: 'My Profile', icon: Users },
+        { path: '/app/send', label: 'Send Test', icon: Send },
+        { path: '/app/docs', label: 'Documentation', icon: BookOpen },
     ];
 
     if (user?.role === 'ADMIN') {
-        links.push({ path: '/logs', label: 'Logs', icon: ScrollText });
-        links.push({ path: '/users', label: 'Users', icon: Shield });
+        links.push({ path: '/app/logs', label: 'Logs', icon: ScrollText });
+        links.push({ path: '/app/users', label: 'User Management', icon: Shield });
     }
 
     return (
         <div className={`
             fixed md:static inset-y-0 left-0 z-50
-            h-screen bg-white border-r border-gray-200 text-gray-700 p-4 flex flex-col transition-all duration-300
+            h-screen bg-sisia-dark border-r border-gray-800 text-gray-300 p-4 flex flex-col transition-all duration-300
             ${isCollapsed ? 'w-20' : 'w-64'}
             ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
             shadow-xl md:shadow-none
         `}>
             <div className="flex justify-center mb-8 px-2 relative">
-                <img src="/logo.svg" alt="Wabot" className={`h-12 w-auto object-contain transition-all duration-300 ${isCollapsed ? 'scale-0 opacity-0' : 'scale-100 opacity-100'}`} />
-                {isCollapsed && <div className="absolute inset-0 flex items-center justify-center font-bold text-wa-green text-xl">WB</div>}
+                <div className={`flex-shrink-0 flex items-center gap-2 transition-all duration-300 ${isCollapsed ? 'scale-0 opacity-0' : 'scale-100 opacity-100'}`}>
+                    <span className="font-bold text-2xl tracking-tight text-white">SISIA</span>
+                </div>               {isCollapsed && <div className="absolute inset-0 flex items-center justify-center font-bold text-white text-xl">SS</div>}
 
                 <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
-                    className="absolute -right-3 top-6 bg-white border border-gray-200 p-1.5 rounded-full shadow-md hover:bg-gray-50 text-gray-500 hidden md:flex z-50 items-center justify-center transition-all"
+                    className="absolute -right-3 top-6 bg-sisia-primary border border-sisia-secondary p-1.5 rounded-full shadow-md hover:bg-sisia-light text-white hidden md:flex z-50 items-center justify-center transition-all"
                 >
                     {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
                 </button>
@@ -56,41 +59,64 @@ const Sidebar = ({ isOpen, onClose }) => {
                             to={link.path}
                             onClick={onClose} // Close sidebar on mobile when link clicked
                             title={isCollapsed ? link.label : ''}
-                            className={`flex items-center p-3 rounded-lg transition-all duration-200 font-medium ${isActive
-                                ? 'bg-emerald-50 text-wa-green border-r-4 border-wa-green'
-                                : 'hover:bg-gray-50 text-gray-600 hover:text-wa-green'
+                            className={`flex items-center p-3 rounded-xl transition-all duration-200 font-medium ${isActive
+                                ? 'bg-white text-sisia-dark shadow-lg transform scale-[1.02]'
+                                : 'hover:bg-white/10 text-gray-400 hover:text-white'
                                 } ${isCollapsed ? 'justify-center' : 'space-x-3'}`}
                         >
-                            <Icon size={20} className={isActive ? 'text-wa-green' : 'text-gray-400'} />
+                            <Icon size={20} className={isActive ? 'text-sisia-dark' : 'text-gray-400 group-hover:text-white'} />
                             {!isCollapsed && <span>{link.label}</span>}
                         </Link>
                     );
                 })}
-
-                <a
-                    href={`${(import.meta.env.VITE_API_URL || 'https://wabot.homesislab.my.id').replace(/\/$/, '')}/api/docs`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={isCollapsed ? "API Docs" : ""}
-                    className={`flex items-center p-3 rounded-lg transition-all duration-200 font-medium hover:bg-gray-50 text-gray-600 hover:text-wa-green ${isCollapsed ? 'justify-center' : 'space-x-3'}`}
-                >
-                    <BookOpen size={20} className="text-gray-400" />
-                    {!isCollapsed && <span>API Docs</span>}
-                </a>
             </nav>
 
-            <div className="pt-4 border-t bg-white mt-auto">
+            <div className="pt-4 border-t border-gray-800 bg-sisia-dark mt-auto">
                 <div className={`flex items-center gap-3 mb-3 px-2 ${isCollapsed ? 'justify-center' : ''}`}>
-                    <div className="w-8 h-8 min-w-[2rem] rounded-full bg-wa-green/10 flex items-center justify-center text-wa-green font-bold">
+                    <div className="w-8 h-8 min-w-[2rem] rounded-full bg-white/10 flex items-center justify-center text-white font-bold">
                         {user?.username?.charAt(0).toUpperCase()}
                     </div>
                     {!isCollapsed && (
-                        <div className="overflow-hidden">
-                            <div className="text-xs text-gray-400 font-medium uppercase tracking-wider">Logged in as</div>
-                            <div className="text-sm font-semibold text-gray-800 truncate">{user?.username}</div>
-                            <div className="flex items-center gap-1 text-xs text-amber-600 font-medium mt-0.5">
-                                <Coins size={12} />
-                                <span>{user?.credits || 0} Credits</span>
+                        <div className="overflow-hidden w-full">
+                            <div className="text-xs text-gray-500 font-medium uppercase tracking-wider">Logged in as</div>
+                            <div className="text-sm font-semibold text-white truncate">{user?.username}</div>
+
+                            <div className="flex flex-col gap-1 mt-2">
+                                {user?.planType !== 'TIME_BASED' && (
+                                    <div className="flex items-center justify-between text-xs font-medium bg-amber-500/10 text-amber-500 px-2 py-1 rounded select-none group relative">
+                                        <div className="flex items-center gap-1.5">
+                                            <Coins size={12} />
+                                            <span>{user?.credits || 0} Credits</span>
+                                        </div>
+                                        <a
+                                            href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to buy more credits for my account: ${user?.username}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="bg-amber-500 text-black px-1.5 rounded hover:bg-amber-400 transition-colors cursor-pointer"
+                                            title="Buy Credits"
+                                        >
+                                            +
+                                        </a>
+                                    </div>
+                                )}
+                                <div className="flex items-center justify-between text-xs font-medium bg-blue-500/10 text-blue-400 px-2 py-1 rounded select-none group relative">
+                                    <div className="flex items-center gap-1.5">
+                                        {(user?.planType === 'TIME_BASED' && user?.planExpiresAt) ? <Calendar size={12} /> : <Zap size={12} />}
+                                        <span className="truncate max-w-[80px]">
+                                            {user?.planType === 'TIME_BASED'
+                                                ? (user?.planExpiresAt ? `Exp: ${new Date(user.planExpiresAt).toLocaleDateString()}` : 'Pending')
+                                                : 'Pay As You Go'}
+                                        </span>
+                                    </div>
+                                    <a
+                                        href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to change my plan schema for account: ${user?.username}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded hover:bg-blue-400 transition-colors uppercase tracking-wider cursor-pointer"
+                                    >
+                                        {user?.planType === 'TIME_BASED' ? 'Renew' : 'Change'}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     )}
@@ -98,7 +124,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 <button
                     onClick={logout}
                     title={isCollapsed ? "Logout" : ""}
-                    className={`w-full flex items-center justify-center p-2 rounded-lg bg-white border border-gray-200 text-red-500 hover:bg-red-50 hover:border-red-100 transition-all text-sm font-medium shadow-sm ${isCollapsed ? '' : 'space-x-2'}`}
+                    className={`w-full flex items-center justify-center p-2 rounded-xl bg-white/5 border border-white/10 text-red-400 hover:bg-red-500/10 hover:border-red-500/30 transition-all text-sm font-medium ${isCollapsed ? '' : 'space-x-2'}`}
                 >
                     <LogOut size={16} />
                     {!isCollapsed && <span>Logout</span>}

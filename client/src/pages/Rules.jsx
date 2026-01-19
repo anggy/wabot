@@ -142,7 +142,7 @@ const Rules = () => {
         <div>
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Auto-Reply Rules</h2>
 
-            <form onSubmit={handleSubmit} className={`bg-white p-6 rounded-xl shadow-sm border ${editingRuleId ? 'border-wa-green' : 'border-gray-100'} mb-8 transition-colors`}>
+            <form onSubmit={handleSubmit} className={`bg-white p-6 rounded-xl shadow-sm border ${editingRuleId ? 'border-sisia-primary' : 'border-gray-100'} mb-8 transition-colors`}>
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="font-semibold text-gray-700">{editingRuleId ? 'Edit Rule' : 'Create New Rule'}</h3>
                     {editingRuleId && (
@@ -154,12 +154,12 @@ const Rules = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Rule Name</label>
-                        <input className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" placeholder="e.g. Welcome Message" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required />
+                        <input className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" placeholder="e.g. Welcome Message" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required />
                     </div>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Session (Optional)</label>
-                        <select className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" value={formData.sessionId} onChange={e => setFormData({ ...formData, sessionId: e.target.value })}>
+                        <select className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" value={formData.sessionId} onChange={e => setFormData({ ...formData, sessionId: e.target.value })}>
                             <option value="">All Sessions (Global)</option>
                             {sessions.map(s => (
                                 <option key={s.id} value={s.id}>{s.name}</option>
@@ -169,7 +169,7 @@ const Rules = () => {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Trigger Type</label>
-                        <select className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" value={formData.triggerType} onChange={e => setFormData({ ...formData, triggerType: e.target.value })}>
+                        <select className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" value={formData.triggerType} onChange={e => setFormData({ ...formData, triggerType: e.target.value })}>
                             <option value="KEYWORD">Keyword Includes</option>
                             <option value="ALL">All Messages (Default)</option>
                             <option value="REGEX">Regex Match</option>
@@ -180,19 +180,19 @@ const Rules = () => {
                     {(formData.triggerType !== 'ALL' && formData.triggerType !== 'MENTION') && (
                         <div className="md:col-span-2">
                             <label className="block text-sm font-medium text-gray-700 mb-1">Trigger Value</label>
-                            <input className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" placeholder={formData.triggerType === 'REGEX' ? '^Hello.*' : 'hello'} value={formData.triggerValue} onChange={e => setFormData({ ...formData, triggerValue: e.target.value })} required />
+                            <input className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" placeholder={formData.triggerType === 'REGEX' ? '^Hello.*' : 'hello'} value={formData.triggerValue} onChange={e => setFormData({ ...formData, triggerValue: e.target.value })} required />
                         </div>
                     )}
 
                     <div className="md:col-span-2">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Action Type</label>
                         <div className="flex gap-4">
-                            <label className={`flex-1 p-3 border rounded-lg cursor-pointer flex items-center gap-2 ${formData.actionType === 'RESPONSE' ? 'bg-emerald-50 border-wa-green text-wa-green' : 'hover:bg-gray-50'}`}>
+                            <label className={`flex-1 p-3 border rounded-lg cursor-pointer flex items-center gap-2 ${formData.actionType === 'RESPONSE' ? 'bg-emerald-50 border-sisia-primary text-sisia-primary' : 'hover:bg-gray-50'}`}>
                                 <input type="radio" name="actionType" value="RESPONSE" checked={formData.actionType === 'RESPONSE'} onChange={() => setFormData({ ...formData, actionType: 'RESPONSE' })} className="hidden" />
                                 <MessageSquare size={18} />
                                 <span className="font-medium">Reply with Message</span>
                             </label>
-                            <label className={`flex-1 p-3 border rounded-lg cursor-pointer flex items-center gap-2 ${formData.actionType === 'API_CALL' ? 'bg-emerald-50 border-wa-green text-wa-green' : 'hover:bg-gray-50'}`}>
+                            <label className={`flex-1 p-3 border rounded-lg cursor-pointer flex items-center gap-2 ${formData.actionType === 'API_CALL' ? 'bg-emerald-50 border-sisia-primary text-sisia-primary' : 'hover:bg-gray-50'}`}>
                                 <input type="radio" name="actionType" value="API_CALL" checked={formData.actionType === 'API_CALL'} onChange={() => setFormData({ ...formData, actionType: 'API_CALL' })} className="hidden" />
                                 <Globe size={18} />
                                 <span className="font-medium">Call Webhook API</span>
@@ -216,11 +216,11 @@ const Rules = () => {
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Message Type</label>
                                 <div className="flex gap-4">
                                     <label className="flex items-center gap-2 cursor-pointer">
-                                        <input type="radio" name="responseMediaType" value="TEXT" checked={formData.responseMediaType === 'TEXT'} onChange={() => setFormData({ ...formData, responseMediaType: 'TEXT' })} className="text-wa-green" />
+                                        <input type="radio" name="responseMediaType" value="TEXT" checked={formData.responseMediaType === 'TEXT'} onChange={() => setFormData({ ...formData, responseMediaType: 'TEXT' })} className="text-sisia-primary" />
                                         <span className="text-gray-700">Text Only</span>
                                     </label>
                                     <label className="flex items-center gap-2 cursor-pointer">
-                                        <input type="radio" name="responseMediaType" value="IMAGE" checked={formData.responseMediaType === 'IMAGE'} onChange={() => setFormData({ ...formData, responseMediaType: 'IMAGE' })} className="text-wa-green" />
+                                        <input type="radio" name="responseMediaType" value="IMAGE" checked={formData.responseMediaType === 'IMAGE'} onChange={() => setFormData({ ...formData, responseMediaType: 'IMAGE' })} className="text-sisia-primary" />
                                         <span className="text-gray-700">Image & Caption</span>
                                     </label>
                                 </div>
@@ -229,7 +229,7 @@ const Rules = () => {
                             {formData.responseMediaType === 'IMAGE' && (
                                 <div>
                                     <div className="flex gap-2">
-                                        <input className="flex-1 border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" placeholder="https://example.com/image.jpg" value={formData.responseMediaUrl} onChange={e => setFormData({ ...formData, responseMediaUrl: e.target.value })} required />
+                                        <input className="flex-1 border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" placeholder="https://example.com/image.jpg" value={formData.responseMediaUrl} onChange={e => setFormData({ ...formData, responseMediaUrl: e.target.value })} required />
                                         <label className="cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-lg border flex items-center justify-center w-12 transition-colors">
                                             {uploading ? <Loader size={20} className="animate-spin" /> : <Upload size={20} />}
                                             <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} />
@@ -249,7 +249,7 @@ const Rules = () => {
 
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">{formData.responseMediaType === 'IMAGE' ? 'Caption' : 'Response Message'}</label>
-                                <textarea rows={3} className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" placeholder={formData.responseMediaType === 'IMAGE' ? 'Image caption...' : 'Type the auto-reply message here...'} value={formData.responseContent} onChange={e => setFormData({ ...formData, responseContent: e.target.value })} required />
+                                <textarea rows={3} className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" placeholder={formData.responseMediaType === 'IMAGE' ? 'Image caption...' : 'Type the auto-reply message here...'} value={formData.responseContent} onChange={e => setFormData({ ...formData, responseContent: e.target.value })} required />
                             </div>
                         </div>
                     )}
@@ -258,18 +258,18 @@ const Rules = () => {
                         <>
                             <div className="md:col-span-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Webhook URL</label>
-                                <input className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" placeholder="https://api.myapp.com/webhook" value={formData.apiUrl} onChange={e => setFormData({ ...formData, apiUrl: e.target.value })} required />
+                                <input className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" placeholder="https://api.myapp.com/webhook" value={formData.apiUrl} onChange={e => setFormData({ ...formData, apiUrl: e.target.value })} required />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Method</label>
-                                <select className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" value={formData.apiMethod} onChange={e => setFormData({ ...formData, apiMethod: e.target.value })}>
+                                <select className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" value={formData.apiMethod} onChange={e => setFormData({ ...formData, apiMethod: e.target.value })}>
                                     <option value="POST">POST</option>
                                     <option value="GET">GET</option>
                                 </select>
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Payload (JSON)</label>
-                                <textarea className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green font-mono text-sm" placeholder="{}" value={formData.apiPayload} onChange={e => setFormData({ ...formData, apiPayload: e.target.value })} />
+                                <textarea className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary font-mono text-sm" placeholder="{}" value={formData.apiPayload} onChange={e => setFormData({ ...formData, apiPayload: e.target.value })} />
                             </div>
                         </>
                     )}
@@ -290,7 +290,7 @@ const Rules = () => {
                     )}
                 </div>
                 <div className="mt-6 flex justify-end">
-                    <button type="submit" className="bg-wa-green text-white px-6 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2">
+                    <button type="submit" className="bg-sisia-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2">
                         {editingRuleId ? <Edit size={18} /> : <Plus size={18} />}
                         {editingRuleId ? 'Update Rule' : 'Create Rule'}
                     </button>
@@ -315,7 +315,7 @@ const Rules = () => {
                                     <div>
                                         <div className="flex items-center gap-2 mb-1">
                                             <h4 className="font-bold text-gray-800">{rule.name}</h4>
-                                            <span className={`text-xs px-2 py-0.5 rounded-full ${rule.triggerType === 'ALL' ? 'bg-purple-100 text-purple-700' : 'bg-emerald-50 text-wa-green'}`}>
+                                            <span className={`text-xs px-2 py-0.5 rounded-full ${rule.triggerType === 'ALL' ? 'bg-purple-100 text-purple-700' : 'bg-emerald-50 text-sisia-primary'}`}>
                                                 {rule.triggerType}
                                             </span>
                                         </div>
@@ -347,7 +347,7 @@ const Rules = () => {
                                         </div>
                                     </div>
                                     <div className="flex gap-2">
-                                        <button onClick={() => handleEdit(rule)} className="p-2 rounded-lg text-gray-400 hover:text-wa-green hover:bg-emerald-50 transition-all" title="Edit Rule">
+                                        <button onClick={() => handleEdit(rule)} className="p-2 rounded-lg text-gray-400 hover:text-sisia-primary hover:bg-emerald-50 transition-all" title="Edit Rule">
                                             <Edit size={18} />
                                         </button>
                                         <button onClick={() => handleDelete(rule.id)} className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all" title="Delete Rule">

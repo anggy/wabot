@@ -75,13 +75,13 @@ const Sessions = () => {
                     <input
                         type="text"
                         placeholder="New Session ID"
-                        className="border p-2 rounded w-64 focus:ring-wa-green focus:border-wa-green outline-none"
+                        className="border p-2 rounded w-64 focus:ring-sisia-primary focus:border-sisia-primary outline-none"
                         value={newSessionId}
                         onChange={(e) => setNewSessionId(e.target.value)}
                     />
                     <button
                         onClick={handleCreate}
-                        className="bg-wa-green text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-emerald-700 transition"
+                        className="bg-sisia-primary text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-emerald-700 transition"
                     >
                         <Plus size={20} /> Create
                     </button>
@@ -105,7 +105,7 @@ const Sessions = () => {
                             ) : (
                                 <div className="flex items-center gap-2">
                                     <h3 className="text-xl font-bold">{session.name}</h3>
-                                    <button onClick={() => { setEditingSessionId(session.id); setEditingName(session.name); }} className="text-gray-400 hover:text-wa-green transition-colors">
+                                    <button onClick={() => { setEditingSessionId(session.id); setEditingName(session.name); }} className="text-gray-400 hover:text-sisia-primary transition-colors">
                                         <Edit size={16} />
                                     </button>
                                 </div>

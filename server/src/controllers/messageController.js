@@ -8,8 +8,19 @@ export const sendMessage = async (req, res) => {
     const userId = req.user.id;
 
     const hasCredits = await creditService.checkCredits(userId);
-    if (!hasCredits) {
-        return res.status(403).json({ error: 'Insufficient credits' });
+
+    // Fetch user to check plan type and expiration
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    if (user.planType === 'TIME_BASED') {
+        if (!user.planExpiresAt || new Date(user.planExpiresAt) < new Date()) {
+            return res.status(403).json({ error: 'Subscription expired. Please renew your plan.' });
+        }
+    } else {
+        // PAY_AS_YOU_GO check
+        if (!hasCredits) {
+            return res.status(403).json({ error: 'Insufficient credits' });
+        }
     }
 
     try {
@@ -63,6 +74,15 @@ export const broadcastMessage = async (req, res) => {
 
         if (contacts.length === 0) {
             return res.status(404).json({ error: 'No contacts found with this tag' });
+        }
+
+        // Fetch user to check plan type and expiration
+        const user = await prisma.user.findUnique({ where: { id: userId } });
+
+        if (user.planType === 'TIME_BASED') {
+            if (!user.planExpiresAt || new Date(user.planExpiresAt) < new Date()) {
+                return res.status(403).json({ error: 'Subscription expired. Please renew your plan.' });
+            }
         }
 
         let sentCount = 0;

@@ -71,3 +71,196 @@
 {"level":30,"time":1768818441717,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: rm8t3HNZKaFVyjnhAAAG"}
 {"level":30,"time":1768818443834,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: rm8t3HNZKaFVyjnhAAAG"}
 {"level":30,"time":1768818463268,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: SyNZG4qJwGnWJyqmAAAC"}
+{"level":30,"time":1768834516974,"pid":2060018,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768834516974,"pid":2060018,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768834516993,"pid":2060018,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768834745519,"pid":2060018,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 5f13b9PF4VFHPDk2AAAC"}
+{"level":30,"time":1768834747617,"pid":2060018,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 5f13b9PF4VFHPDk2AAAC"}
+{"level":50,"time":1768834750175,"pid":2060018,"hostname":"gie-OptiPlex-9020","err":{"type":"PrismaClientKnownRequestError","message":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.","stack":"PrismaClientKnownRequestError: \nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.\n    at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6854)\n    at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)\n    at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)\n    at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)\n    at async getRules (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:6:23)","name":"PrismaClientKnownRequestError","code":"P2022","clientVersion":"5.10.2","meta":{"modelName":"Rule","column":"main.Rule.sessionId"}},"msg":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database."}
+{"level":50,"time":1768834750188,"pid":2060018,"hostname":"gie-OptiPlex-9020","err":{"type":"PrismaClientKnownRequestError","message":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.","stack":"PrismaClientKnownRequestError: \nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.\n    at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6854)\n    at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)\n    at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)\n    at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)\n    at async getRules (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:6:23)","name":"PrismaClientKnownRequestError","code":"P2022","clientVersion":"5.10.2","meta":{"modelName":"Rule","column":"main.Rule.sessionId"}},"msg":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database."}
+{"level":50,"time":1768834751966,"pid":2060018,"hostname":"gie-OptiPlex-9020","err":{"type":"PrismaClientKnownRequestError","message":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.","stack":"PrismaClientKnownRequestError: \nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.\n    at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6854)\n    at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)\n    at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)\n    at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)\n    at async getRules (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:6:23)","name":"PrismaClientKnownRequestError","code":"P2022","clientVersion":"5.10.2","meta":{"modelName":"Rule","column":"main.Rule.sessionId"}},"msg":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database."}
+{"level":50,"time":1768834751979,"pid":2060018,"hostname":"gie-OptiPlex-9020","err":{"type":"PrismaClientKnownRequestError","message":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.","stack":"PrismaClientKnownRequestError: \nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.\n    at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6854)\n    at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)\n    at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)\n    at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)\n    at async getRules (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:6:23)","name":"PrismaClientKnownRequestError","code":"P2022","clientVersion":"5.10.2","meta":{"modelName":"Rule","column":"main.Rule.sessionId"}},"msg":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database."}
+{"level":30,"time":1768834758022,"pid":2060018,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: g0fCe0giVMpJq60oAAAF"}
+{"level":30,"time":1768834767468,"pid":2060018,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: g0fCe0giVMpJq60oAAAF"}
+{"level":50,"time":1768834769726,"pid":2060018,"hostname":"gie-OptiPlex-9020","err":{"type":"PrismaClientKnownRequestError","message":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.","stack":"PrismaClientKnownRequestError: \nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.\n    at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6854)\n    at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)\n    at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)\n    at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)\n    at async getRules (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:6:23)","name":"PrismaClientKnownRequestError","code":"P2022","clientVersion":"5.10.2","meta":{"modelName":"Rule","column":"main.Rule.sessionId"}},"msg":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database."}
+{"level":50,"time":1768834769738,"pid":2060018,"hostname":"gie-OptiPlex-9020","err":{"type":"PrismaClientKnownRequestError","message":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.","stack":"PrismaClientKnownRequestError: \nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database.\n    at _n.handleRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6854)\n    at _n.handleAndLogRequestError (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:6188)\n    at _n.request (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:123:5896)\n    at async l (/home/gie/workspace/wabot/server/node_modules/@prisma/client/runtime/library.js:128:10871)\n    at async getRules (file:///home/gie/workspace/wabot/server/src/controllers/rulesController.js:6:23)","name":"PrismaClientKnownRequestError","code":"P2022","clientVersion":"5.10.2","meta":{"modelName":"Rule","column":"main.Rule.sessionId"}},"msg":"\nInvalid `prisma.rule.findMany()` invocation:\n\n\nThe column `main.Rule.sessionId` does not exist in the current database."}
+{"level":30,"time":1768834780585,"pid":2060018,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: QTkwLltJCjoGeP9UAAAI"}
+{"level":30,"time":1768834781719,"pid":2060018,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: QTkwLltJCjoGeP9UAAAI"}
+{"level":30,"time":1768834911900,"pid":2063116,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768834911900,"pid":2063116,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768834911922,"pid":2063116,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768835033814,"pid":2064047,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768835033814,"pid":2064047,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768835033833,"pid":2064047,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768835064099,"pid":2064047,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: Z053utik9dWr2O2XAAAC"}
+{"level":30,"time":1768835064833,"pid":2064047,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: Z053utik9dWr2O2XAAAC"}
+{"level":30,"time":1768835097587,"pid":2064047,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: dma6ceuiDmx2tLPjAAAF"}
+{"level":30,"time":1768835238850,"pid":2064047,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: dma6ceuiDmx2tLPjAAAF"}
+{"level":30,"time":1768835289413,"pid":2065940,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768835289414,"pid":2065940,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768835289431,"pid":2065940,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768835617879,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768835617880,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768835617903,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768836236986,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: GEXgHwyGZSPeCBUxAAAC"}
+{"level":30,"time":1768836237961,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: GEXgHwyGZSPeCBUxAAAC"}
+{"level":30,"time":1768836240820,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: TQ17jgETa--Af-XIAAAF"}
+{"level":30,"time":1768836241110,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: TQ17jgETa--Af-XIAAAF"}
+{"level":30,"time":1768836505285,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: kjXpse1jNKKDHQkVAAAI"}
+{"level":30,"time":1768836505726,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: kjXpse1jNKKDHQkVAAAI"}
+{"level":30,"time":1768836519637,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: RgnrAr2R0EAbliu1AAAL"}
+{"level":30,"time":1768836520354,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: RgnrAr2R0EAbliu1AAAL"}
+{"level":30,"time":1768836577386,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: IgwRF52l5ZAMTjEvAAAO"}
+{"level":30,"time":1768836585658,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: IgwRF52l5ZAMTjEvAAAO"}
+{"level":30,"time":1768836587860,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: ROUjtaDSj6YkKW6-AAAR"}
+{"level":30,"time":1768836588680,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: ROUjtaDSj6YkKW6-AAAR"}
+{"level":30,"time":1768836589661,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: KhLlJ0ZJvP4VyRx3AAAU"}
+{"level":30,"time":1768836664671,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: KhLlJ0ZJvP4VyRx3AAAU"}
+{"level":30,"time":1768837429736,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: WmBPfkMJTo_hy73GAAAX"}
+{"level":30,"time":1768837430816,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: WmBPfkMJTo_hy73GAAAX"}
+{"level":30,"time":1768838425317,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 1cNyM6gyv8RG16KqAAAa"}
+{"level":30,"time":1768838425900,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 1cNyM6gyv8RG16KqAAAa"}
+{"level":30,"time":1768838426787,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: wMf7agT031_66pbZAAAd"}
+{"level":30,"time":1768838428386,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: wMf7agT031_66pbZAAAd"}
+{"level":30,"time":1768838747431,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 29usSCZh5H0WnSL7AAAg"}
+{"level":30,"time":1768838751326,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 29usSCZh5H0WnSL7AAAg"}
+{"level":30,"time":1768838835641,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: xpKUTw0ASKg8YCQFAAAj"}
+{"level":30,"time":1768838837197,"pid":2067927,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: xpKUTw0ASKg8YCQFAAAj"}
+{"level":30,"time":1768838875537,"pid":2094135,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768838875538,"pid":2094135,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768838875553,"pid":2094135,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768838911832,"pid":2094135,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 9X6dkeK9NnUHUwYwAAAC"}
+{"level":30,"time":1768838915379,"pid":2094135,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 9X6dkeK9NnUHUwYwAAAC"}
+{"level":30,"time":1768839145516,"pid":2097392,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768839145516,"pid":2097392,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768839145540,"pid":2097392,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768839229514,"pid":2097392,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: LETVx60zDojvjJgXAAAC"}
+{"level":30,"time":1768839230209,"pid":2097392,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: LETVx60zDojvjJgXAAAC"}
+{"level":30,"time":1768839350391,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768839350391,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768839350422,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768839547493,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: Dfk0L__IEuvtxhDMAAAC"}
+{"level":30,"time":1768839551490,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839553197,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: Dfk0L__IEuvtxhDMAAAC"}
+{"level":50,"time":1768839572535,"pid":2098815,"hostname":"gie-OptiPlex-9020","err":{"type":"TypeError","message":"Cannot read properties of undefined (reading 'id')","stack":"TypeError: Cannot read properties of undefined (reading 'id')\n    at Object.sendMessage (/home/gie/workspace/wabot/server/node_modules/@whiskeysockets/baileys/src/Socket/messages-send.ts:1120:40)\n    at sendMessage (file:///home/gie/workspace/wabot/server/src/controllers/messageController.js:27:24)"},"msg":"Cannot read properties of undefined (reading 'id')"}
+{"level":30,"time":1768839575991,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: aDUyfDoRTIK2RMajAAAF"}
+{"level":30,"time":1768839576728,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: aDUyfDoRTIK2RMajAAAF"}
+{"level":30,"time":1768839584008,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: -4tMeFejvIxw5_BAAAAI"}
+{"level":30,"time":1768839584449,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: -4tMeFejvIxw5_BAAAAI"}
+{"level":30,"time":1768839591696,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: MihTXfzlNIjOaAN_AAAL"}
+{"level":30,"time":1768839593071,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: MihTXfzlNIjOaAN_AAAL"}
+{"level":30,"time":1768839611520,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839631540,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839647030,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 1UxBfPCAcR4de87_AAAO"}
+{"level":30,"time":1768839647519,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 1UxBfPCAcR4de87_AAAO"}
+{"level":30,"time":1768839651551,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839671570,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839691577,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839709664,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: mKcI6y1weaFB58mrAAAR"}
+{"level":30,"time":1768839710031,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: mKcI6y1weaFB58mrAAAR"}
+{"level":50,"time":1768839711597,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Session test closed. StatusCode: 408, Error: QR refs attempts ended. Reconnecting: true"}
+{"level":30,"time":1768839712491,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839716762,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: x9bNTPxwWBeoC3igAAAU"}
+{"level":30,"time":1768839717146,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: x9bNTPxwWBeoC3igAAAU"}
+{"level":30,"time":1768839772532,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839792557,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839812568,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839832583,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839852593,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":50,"time":1768839872605,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Session test closed. StatusCode: 408, Error: QR refs attempts ended. Reconnecting: true"}
+{"level":30,"time":1768839873527,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839899275,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: HHShTrDoKNS62V8nAAAX"}
+{"level":30,"time":1768839900373,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: HHShTrDoKNS62V8nAAAX"}
+{"level":30,"time":1768839933533,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839953541,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839973556,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768839993567,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840013579,"pid":2098815,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840220595,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768840220596,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768840220610,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Resuming session test"}
+{"level":30,"time":1768840220612,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768840221580,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840281625,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840301649,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840321667,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840341699,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840361721,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":50,"time":1768840381736,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Session test closed. StatusCode: 408, Error: QR refs attempts ended. Reconnecting: true"}
+{"level":30,"time":1768840382647,"pid":2108905,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840438130,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768840438130,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768840438148,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Resuming session test"}
+{"level":30,"time":1768840438151,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768840439088,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840498035,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: SLvYwFEi9xLy2yCqAAAC"}
+{"level":30,"time":1768840498767,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: SLvYwFEi9xLy2yCqAAAC"}
+{"level":30,"time":1768840499122,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840499444,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: A-IKYR2qAnWKMtT6AAAF"}
+{"level":30,"time":1768840505870,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: A-IKYR2qAnWKMtT6AAAF"}
+{"level":30,"time":1768840519148,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840539170,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840559180,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840579189,"pid":2111154,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840585403,"pid":2113437,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768840585404,"pid":2113437,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768840585421,"pid":2113437,"hostname":"gie-OptiPlex-9020","msg":"Resuming session test"}
+{"level":30,"time":1768840585423,"pid":2113437,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768840586348,"pid":2113437,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840600025,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768840600025,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768840600043,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Resuming session test"}
+{"level":30,"time":1768840600045,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768840601441,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840654904,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: nnRLgrEAMxN2lTWOAAAC"}
+{"level":30,"time":1768840655398,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: nnRLgrEAMxN2lTWOAAAC"}
+{"level":30,"time":1768840661484,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840681513,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840701523,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840721533,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840741559,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":50,"time":1768840761568,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Session test closed. StatusCode: 408, Error: QR refs attempts ended. Reconnecting: true"}
+{"level":30,"time":1768840762466,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840822477,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840831060,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: sebv5FFmGKpgavbRAAAF"}
+{"level":30,"time":1768840834106,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: sebv5FFmGKpgavbRAAAF"}
+{"level":30,"time":1768840842486,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840862494,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840877073,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: nRpvSMJvr9hAv5SnAAAI"}
+{"level":30,"time":1768840882508,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test"}
+{"level":30,"time":1768840885509,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: nRpvSMJvr9hAv5SnAAAI"}
+{"level":50,"time":1768840895914,"pid":2113638,"hostname":"gie-OptiPlex-9020","err":{"type":"Error","message":"Session not found","stack":"Error: Session not found\n    at Module.getGroups (file:///home/gie/workspace/wabot/server/src/services/sessionManager.js:156:22)\n    at getGroups (file:///home/gie/workspace/wabot/server/src/controllers/sessionController.js:81:45)\n    at Layer.handleRequest (/home/gie/workspace/wabot/server/node_modules/router/lib/layer.js:152:17)\n    at next (/home/gie/workspace/wabot/server/node_modules/router/lib/route.js:157:13)\n    at Route.dispatch (/home/gie/workspace/wabot/server/node_modules/router/lib/route.js:117:3)\n    at handle (/home/gie/workspace/wabot/server/node_modules/router/index.js:435:11)\n    at Layer.handleRequest (/home/gie/workspace/wabot/server/node_modules/router/lib/layer.js:152:17)\n    at /home/gie/workspace/wabot/server/node_modules/router/index.js:295:15\n    at param (/home/gie/workspace/wabot/server/node_modules/router/index.js:600:14)\n    at param (/home/gie/workspace/wabot/server/node_modules/router/index.js:610:14)"},"msg":"Session not found"}
+{"level":30,"time":1768840979990,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: ds1HUyqjRXmqbIhyAAAL"}
+{"level":30,"time":1768840980470,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: ds1HUyqjRXmqbIhyAAAL"}
+{"level":30,"time":1768840990872,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: Hc_lPdlpH9e1cNQVAAAO"}
+{"level":30,"time":1768840991708,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: Hc_lPdlpH9e1cNQVAAAO"}
+{"level":30,"time":1768841086168,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: lsar1uzmUbbyFk_lAAAR"}
+{"level":30,"time":1768841092541,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: lsar1uzmUbbyFk_lAAAR"}
+{"level":30,"time":1768841133649,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: PHzdlAFm8U4E1aQhAAAU"}
+{"level":30,"time":1768841133978,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: PHzdlAFm8U4E1aQhAAAU"}
+{"level":30,"time":1768841139595,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: cah5G6vDjjoUFtuTAAAX"}
+{"level":30,"time":1768841140120,"pid":2113638,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: cah5G6vDjjoUFtuTAAAX"}
+{"level":30,"time":1768841252389,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768841252390,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768841252408,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768841379749,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 0HFeVuM6SRwDWXRxAAAC"}
+{"level":30,"time":1768841380393,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 0HFeVuM6SRwDWXRxAAAC"}
+{"level":30,"time":1768841500381,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 3Ac8LStq9d4FdiC2AAAF"}
+{"level":30,"time":1768841500792,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 3Ac8LStq9d4FdiC2AAAF"}
+{"level":30,"time":1768841523664,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: WOSW3fL-JMF9pcx1AAAI"}
+{"level":30,"time":1768841524160,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: WOSW3fL-JMF9pcx1AAAI"}
+{"level":30,"time":1768841549468,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 8PzKSK9LarqY1tIdAAAL"}
+{"level":30,"time":1768841550515,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 8PzKSK9LarqY1tIdAAAL"}
+{"level":30,"time":1768841668524,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: RssIu86iM4e2-7GZAAAO"}
+{"level":30,"time":1768841669351,"pid":2120481,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: RssIu86iM4e2-7GZAAAO"}
+{"level":30,"time":1768841679590,"pid":2125297,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768841679590,"pid":2125297,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768841679607,"pid":2125297,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768841687880,"pid":2125297,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: 1zwLVvbJ08pliB1zAAAC"}
+{"level":30,"time":1768841688633,"pid":2125297,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: 1zwLVvbJ08pliB1zAAAC"}
+{"level":30,"time":1768841695156,"pid":2125556,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768841695157,"pid":2125556,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768841695173,"pid":2125556,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768841710874,"pid":2125556,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: kKkYFSgpmdLKLaAtAAAC"}
+{"level":30,"time":1768841724294,"pid":2125556,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: kKkYFSgpmdLKLaAtAAAC"}
+{"level":30,"time":1768841728770,"pid":2125556,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: aFePIXT8TgTjHmrnAAAF"}

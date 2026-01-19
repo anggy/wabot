@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 
 const Users = () => {
     const [users, setUsers] = useState([]);
-    const [formData, setFormData] = useState({ username: '', password: '', role: 'USER' });
+    const [formData, setFormData] = useState({ username: '', password: '', role: 'USER', email: '', phone: '' });
     const [editingPasswordId, setEditingPasswordId] = useState(null);
     const [newPassword, setNewPassword] = useState('');
     const [creditModalOpen, setCreditModalOpen] = useState(false);
@@ -18,7 +18,9 @@ const Users = () => {
         planExpiresAt: '',
         aiApiKey: '',
         aiBriefing: '',
-        isAiEnabled: false
+        isAiEnabled: false,
+        email: '',
+        phone: ''
     });
 
     const { user: currentUser } = useAuth();
@@ -40,7 +42,7 @@ const Users = () => {
         e.preventDefault();
         try {
             await api.post('/users', formData);
-            setFormData({ username: '', password: '', role: 'USER' });
+            setFormData({ username: '', password: '', role: 'USER', email: '', phone: '' });
             fetchUsers();
             alert("User created");
         } catch (error) {
@@ -130,28 +132,46 @@ const Users = () => {
     return (
         <div>
             <div className="flex items-center gap-2 mb-6">
-                <Shield className="text-wa-green" size={28} />
+                <Shield className="text-sisia-primary" size={28} />
                 <h2 className="text-2xl font-bold text-gray-800">User Management</h2>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md mb-8 border-t-4 border-wa-green">
+            <div className="bg-white p-6 rounded-lg shadow-md mb-8 border-t-4 border-sisia-primary">
                 <h3 className="text-xl font-bold mb-4">Add New User</h3>
-                <form onSubmit={handleSubmit} className="flex gap-4 items-end">
+                <form onSubmit={handleSubmit} className="flex flex-wrap gap-4 items-end">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Username</label>
                         <input
                             type="text"
-                            className="mt-1 border p-2 rounded w-48 outline-none focus:ring-wa-green focus:border-wa-green"
+                            className="mt-1 border p-2 rounded w-48 outline-none focus:ring-sisia-primary focus:border-sisia-primary"
                             value={formData.username}
                             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                             required
                         />
                     </div>
                     <div>
+                        <label className="block text-sm font-medium text-gray-700">Email</label>
+                        <input
+                            type="email"
+                            className="mt-1 border p-2 rounded w-48 outline-none focus:ring-sisia-primary focus:border-sisia-primary"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">Phone</label>
+                        <input
+                            type="text"
+                            className="mt-1 border p-2 rounded w-48 outline-none focus:ring-sisia-primary focus:border-sisia-primary"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        />
+                    </div>
+                    <div>
                         <label className="block text-sm font-medium text-gray-700">Password</label>
                         <input
                             type="password"
-                            className="mt-1 border p-2 rounded w-48 outline-none focus:ring-wa-green focus:border-wa-green"
+                            className="mt-1 border p-2 rounded w-48 outline-none focus:ring-sisia-primary focus:border-sisia-primary"
                             value={formData.password}
                             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                             required
@@ -160,7 +180,7 @@ const Users = () => {
                     <div>
                         <label className="block text-sm font-medium text-gray-700">Role</label>
                         <select
-                            className="mt-1 border p-2 rounded w-32 outline-none focus:ring-wa-green focus:border-wa-green"
+                            className="mt-1 border p-2 rounded w-32 outline-none focus:ring-sisia-primary focus:border-sisia-primary"
                             value={formData.role}
                             onChange={(e) => setFormData({ ...formData, role: e.target.value })}
                         >
@@ -168,7 +188,7 @@ const Users = () => {
                             <option value="ADMIN">Admin</option>
                         </select>
                     </div>
-                    <button type="submit" className="bg-wa-green text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-emerald-700 transition">
+                    <button type="submit" className="bg-sisia-primary text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-emerald-700 transition">
                         <Plus size={18} /> Add User
                     </button>
                 </form>
@@ -284,7 +304,7 @@ const Users = () => {
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Amount</label>
                                 <input
                                     type="number"
-                                    className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-wa-green"
+                                    className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
                                     value={creditAmount}
                                     onChange={e => setCreditAmount(e.target.value)}
                                     autoFocus
@@ -293,7 +313,7 @@ const Users = () => {
                             </div>
                             <div className="flex justify-end gap-2">
                                 <button type="button" onClick={() => setCreditModalOpen(false)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-wa-green text-white rounded hover:bg-emerald-700">Save</button>
+                                <button type="submit" className="px-4 py-2 bg-sisia-primary text-white rounded hover:bg-emerald-700">Save</button>
                             </div>
                         </form>
                     </div>
@@ -312,7 +332,7 @@ const Users = () => {
                                     className="hidden" // Keep this hidden if we ever need custom input, or just remove it. For now, replacing with select.
                                 />
                                 <select
-                                    className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-wa-green"
+                                    className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
                                     value={settingsData.planType}
                                     onChange={e => setSettingsData({ ...settingsData, planType: e.target.value })}
                                 >
@@ -325,7 +345,7 @@ const Users = () => {
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Plan Expires At</label>
                                     <input
                                         type="date"
-                                        className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-wa-green"
+                                        className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
                                         value={settingsData.planExpiresAt ? settingsData.planExpiresAt.split('T')[0] : ''}
                                         onChange={e => setSettingsData({ ...settingsData, planExpiresAt: e.target.value })}
                                     />
@@ -337,12 +357,33 @@ const Users = () => {
                                     <input
                                         type="number"
                                         min="1"
-                                        className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-wa-green"
+                                        className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
                                         value={settingsData.messageCost}
                                         onChange={e => setSettingsData({ ...settingsData, messageCost: parseInt(e.target.value) })}
                                     />
                                 </div>
                             )}
+
+                            <hr className="my-4" />
+                            <h4 className="text-md font-semibold mb-2">Contact Info</h4>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input
+                                    type="email"
+                                    className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
+                                    value={settingsData.email}
+                                    onChange={e => setSettingsData({ ...settingsData, email: e.target.value })}
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                <input
+                                    type="text"
+                                    className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
+                                    value={settingsData.phone}
+                                    onChange={e => setSettingsData({ ...settingsData, phone: e.target.value })}
+                                />
+                            </div>
 
                             <hr className="my-4" />
                             <h4 className="text-md font-semibold mb-2">AI Auto-Response</h4>
@@ -365,7 +406,7 @@ const Users = () => {
                                         <label className="block text-sm font-medium text-gray-700 mb-1">OpenAI API Key</label>
                                         <input
                                             type="password"
-                                            className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-wa-green"
+                                            className="w-full border p-2 rounded outline-none focus:ring-2 focus:ring-sisia-primary"
                                             value={settingsData.aiApiKey}
                                             onChange={e => setSettingsData({ ...settingsData, aiApiKey: e.target.value })}
                                             placeholder="sk-..."
@@ -375,7 +416,7 @@ const Users = () => {
                             )}
                             <div className="flex justify-end gap-2">
                                 <button type="button" onClick={() => setSettingsModalOpen(false)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-wa-green text-white rounded hover:bg-emerald-700">Save</button>
+                                <button type="submit" className="px-4 py-2 bg-sisia-primary text-white rounded hover:bg-emerald-700">Save</button>
                             </div>
                         </form>
                     </div>

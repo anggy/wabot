@@ -124,7 +124,7 @@ const Contacts = () => {
                     </label>
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="bg-wa-green text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-emerald-700 transition-colors shadow-sm"
+                        className="bg-sisia-primary text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-emerald-700 transition-colors shadow-sm"
                     >
                         <Plus size={18} /> Add Contact
                     </button>
@@ -158,7 +158,7 @@ const Contacts = () => {
                                 <tr key={contact.id} className="hover:bg-gray-50 transition-colors">
                                     <td className="p-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-wa-green-100 text-wa-green-600 flex items-center justify-center">
+                                            <div className="w-8 h-8 rounded-full bg-sisia-primary-100 text-sisia-primary-600 flex items-center justify-center">
                                                 <User size={16} />
                                             </div>
                                             <span className="font-medium text-gray-800">{contact.name}</span>

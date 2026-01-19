@@ -28,25 +28,16 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-    const { username, password, role } = req.body;
-
-    // Simple protection: Check if any users exist. If not, allow creating ADMIN.
-    // If users exist, check if requester is ADMIN (middleware should handle this, but double check)
-    // For initial setup, we allow creating if table is empty.
+    const { username, password, role, email, phone, planType } = req.body;
 
     try {
         const userCount = await prisma.user.count();
         let userRole = 'USER';
+        let isActive = false;
 
         if (userCount === 0) {
             userRole = 'ADMIN';
-        } else {
-            // If users exist, this endpoint should optionally be protected or validated.
-            // For simplicity in this iteration, we trust the `role` passed IF the creator is auth'd or we just default to USER.
-            // But let's enforce: If creating subsequent users, maybe default to USER unless specified.
-            if (role && ['ADMIN', 'USER'].includes(role)) {
-                userRole = role;
-            }
+            isActive = true; // First user is always active admin
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -54,7 +45,11 @@ export const register = async (req, res) => {
             data: {
                 username,
                 password: hashedPassword,
-                role: userRole
+                role: userRole,
+                isActive,
+                email,
+                phone,
+                planType: planType || 'PAY_AS_YOU_GO'
             }
         });
 
@@ -72,11 +67,49 @@ export const getMe = async (req, res) => {
     try {
         const user = await prisma.user.findUnique({
             where: { id: req.user.id },
-            select: { id: true, username: true, role: true, credits: true, isActive: true, planType: true, messageCost: true, planExpiresAt: true, aiApiKey: true, aiBriefing: true, isAiEnabled: true }
+            select: { id: true, username: true, role: true, credits: true, isActive: true, planType: true, messageCost: true, planExpiresAt: true, aiApiKey: true, aiBriefing: true, isAiEnabled: true, email: true, phone: true }
         });
         if (!user) return res.sendStatus(404);
         res.json(user);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch user' });
+    }
+};
+
+export const updateProfile = async (req, res) => {
+    const { email, phone } = req.body;
+    try {
+        const user = await prisma.user.update({
+            where: { id: req.user.id },
+            data: { email, phone }
+        });
+        res.json({ id: user.id, username: user.username, email: user.email, phone: user.phone });
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Failed to update profile' });
+    }
+};
+
+export const changePassword = async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    try {
+        const user = await prisma.user.findUnique({ where: { id: req.user.id } });
+        if (!user) return res.status(404).json({ error: 'User not found' });
+
+        const validPassword = await bcrypt.compare(currentPassword, user.password);
+        if (!validPassword) {
+            return res.status(400).json({ error: 'Invalid current password' });
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await prisma.user.update({
+            where: { id: req.user.id },
+            data: { password: hashedPassword }
+        });
+
+        res.json({ message: 'Password updated successfully' });
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Failed to update password' });
     }
 };

@@ -2,8 +2,13 @@ import { prisma } from '../prisma.js';
 import { logger } from '../config/logger.js';
 
 export const getRules = async (req, res) => {
-    const rules = await prisma.rule.findMany({ where: { userId: req.user.id } });
-    res.json(rules);
+    try {
+        const rules = await prisma.rule.findMany({ where: { userId: req.user.id } });
+        res.json(rules);
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 };
 
 export const createRule = async (req, res) => {

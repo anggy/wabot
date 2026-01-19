@@ -10,14 +10,21 @@ export const authenticateToken = (req, res, next) => {
     if (!token) return res.sendStatus(401);
 
     jwt.verify(token, JWT_SECRET, async (err, user) => {
-        if (err) return res.sendStatus(403);
+        if (err) {
+            console.log('JWT Verify Error:', err.message);
+            return res.sendStatus(403);
+        }
 
-        // Check if user still exists (invalidated by DB reset)
         try {
+            console.log('Verifying user in DB:', user.id);
             const dbUser = await prisma.user.findUnique({ where: { id: user.id } });
-            if (!dbUser) return res.sendStatus(401);
+            if (!dbUser) {
+                console.log('User not found in DB');
+                return res.sendStatus(401);
+            }
 
             req.user = user;
+            console.log('Auth success:', user.username);
             next();
         } catch (e) {
             console.error('Auth verification error:', e);

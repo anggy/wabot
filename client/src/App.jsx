@@ -14,6 +14,10 @@ import Users from './pages/Users';
 import Gallery from './pages/Gallery';
 import Logs from './pages/Logs';
 import Broadcast from './pages/Broadcast';
+import LandingPage from './pages/LandingPage';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
+import Documentation from './pages/Documentation';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
 
@@ -30,9 +34,12 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+          <Route path="/register" element={<Register />} />
+          <Route path="/app" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
             <Route index element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="sessions" element={<Sessions />} />
             <Route path="groups" element={<Groups />} />
             <Route path="rules" element={<Rules />} />
@@ -43,7 +50,10 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="logs" element={<Logs />} />
+
             <Route path="broadcast" element={<Broadcast />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="docs" element={<Documentation />} />
           </Route>
         </Routes>
       </Router>

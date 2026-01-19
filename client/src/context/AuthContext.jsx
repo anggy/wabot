@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     if (loading) {
-        return <div className="h-screen flex items-center justify-center"><Loader className="animate-spin text-wa-green" size={48} /></div>;
+        return <div className="h-screen flex items-center justify-center"><Loader className="animate-spin text-sisia-primary" size={48} /></div>;
     }
 
     return (

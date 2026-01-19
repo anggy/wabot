@@ -79,6 +79,8 @@ model Contact {
 model User {
   id            Int        @id @default(autoincrement())
   username      String     @unique
+  email         String?
+  phone         String?
   password      String
   role          String     @default("USER")
   credits       Int        @default(0)

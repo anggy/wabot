@@ -168,7 +168,7 @@ const Scheduler = () => {
         <div>
             <h2 className="text-2xl font-bold mb-6">Scheduler</h2>
 
-            <form onSubmit={handleSubmit} className={`bg-white p-6 rounded-lg shadow-md mb-8 ${editingId ? 'border border-wa-green' : ''}`}>
+            <form onSubmit={handleSubmit} className={`bg-white p-6 rounded-lg shadow-md mb-8 ${editingId ? 'border border-sisia-primary' : ''}`}>
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="font-semibold text-gray-700">{editingId ? 'Edit Schedule' : 'Schedule New Message'}</h3>
                     {editingId && (
@@ -264,7 +264,7 @@ const Scheduler = () => {
                         </p>
                     </div>
                 </div>
-                <button type="submit" className="mt-4 bg-wa-green text-white px-4 py-2 rounded hover:bg-emerald-700 transition flex items-center gap-2">
+                <button type="submit" className="mt-4 bg-sisia-primary text-white px-4 py-2 rounded hover:bg-emerald-700 transition flex items-center gap-2">
                     {editingId ? <Edit size={18} /> : <Plus size={18} />}
                     {editingId ? 'Update Schedule' : 'Schedule Message'}
                 </button>
@@ -279,7 +279,7 @@ const Scheduler = () => {
                             <p className="text-xs text-gray-400">Last run: {sch.lastRun || 'Never'}</p>
                         </div>
                         <div className="flex gap-2">
-                            <button onClick={() => handleEdit(sch)} className="p-2 rounded-lg text-gray-400 hover:text-wa-green hover:bg-emerald-50 transition-all" title="Edit">
+                            <button onClick={() => handleEdit(sch)} className="p-2 rounded-lg text-gray-400 hover:text-sisia-primary hover:bg-emerald-50 transition-all" title="Edit">
                                 <Edit size={18} />
                             </button>
                             <button onClick={() => handleDelete(sch.id)} className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all" title="Delete">

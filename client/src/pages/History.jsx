@@ -48,7 +48,7 @@ const History = () => {
                 <h2 className="text-2xl font-bold text-gray-800">Message History</h2>
                 <div className="flex gap-4 items-center">
                     <select
-                        className="border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green text-sm"
+                        className="border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary text-sm"
                         value={selectedSession}
                         onChange={(e) => { setSelectedSession(e.target.value); setPage(1); }}
                     >
@@ -56,7 +56,7 @@ const History = () => {
                             <option key={s.id} value={s.id}>{s.name}</option>
                         ))}
                     </select>
-                    <button onClick={() => fetchLogs(page)} className="text-wa-green hover:underline">Refresh</button>
+                    <button onClick={() => fetchLogs(page)} className="text-sisia-primary hover:underline">Refresh</button>
                 </div>
             </div>
 
@@ -80,11 +80,11 @@ const History = () => {
                                 <td className="p-4 truncate max-w-xs" title={log.message}>{log.message}</td>
                                 <td className="p-4">
                                     {log.status === 'SENT' ? (
-                                        <span className="flex items-center text-wa-green text-sm font-medium">
+                                        <span className="flex items-center text-sisia-primary text-sm font-medium">
                                             <CheckCircle size={16} className="mr-1" /> Sent
                                         </span>
                                     ) : (
-                                        <span className="flex items-center text-wa-green text-sm font-medium">
+                                        <span className="flex items-center text-sisia-primary text-sm font-medium">
                                             <ArrowUpRight size={16} className="mr-1" /> Outgoing
                                         </span>
                                     )}

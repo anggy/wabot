@@ -66,5 +66,7 @@ router.post('/login', authController.login);
  */
 router.post('/register', authController.register); // Public for initial setup, can be protected later
 router.get('/me', authenticateToken, authController.getMe);
+router.put('/me', authenticateToken, authController.updateProfile);
+router.put('/change-password', authenticateToken, authController.changePassword);
 
 export default router;

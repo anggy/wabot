@@ -16,7 +16,9 @@ const Layout = () => {
                 >
                     <Menu size={24} />
                 </button>
-                <img src="/logo.svg" alt="Wabot" className="h-8 w-auto ml-3" />
+                <div className="flex-shrink-0 flex items-center gap-2">
+                    <span className="font-bold text-2xl tracking-tight text-sisia-primary">SISIA</span>
+                </div>
             </div>
 
             {/* Sidebar with Mobile Drawer logic */}

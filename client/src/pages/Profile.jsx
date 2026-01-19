@@ -1,0 +1,344 @@
+import React, { useState, useEffect } from 'react';
+import { User, Mail, Phone, Shield, Coins, Zap, Edit2, Key, Loader } from 'lucide-react';
+import api from '../api';
+import { useAuth } from '../context/AuthContext';
+
+const Profile = () => {
+    const { user: authUser, setUser } = useAuth(); // If set user is available in context, use it to update local user state if needed
+
+    const [profile, setProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+
+    // Edit Profile State
+    const [editForm, setEditForm] = useState({ email: '', phone: '' });
+
+    // Change Password State
+    const [passwordForm, setPasswordForm] = useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
+    const [modalError, setModalError] = useState('');
+    const [modalSuccess, setModalSuccess] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
+    const fetchProfile = async () => {
+        try {
+            const res = await api.get('/auth/me');
+            setProfile(res.data);
+            setEditForm({
+                email: res.data.email || '',
+                phone: res.data.phone || ''
+            });
+            if (setUser) setUser(res.data);
+        } catch (err) {
+            setError('Failed to load profile');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleUpdateProfile = async (e) => {
+        e.preventDefault();
+        setModalError('');
+        setModalSuccess('');
+        setIsSubmitting(true);
+
+        try {
+            await api.put('/auth/me', editForm);
+            setModalSuccess('Profile updated successfully');
+            fetchProfile(); // Refresh data
+            setTimeout(() => {
+                setIsEditModalOpen(false);
+                setModalSuccess('');
+            }, 1000);
+        } catch (err) {
+            setModalError(err.response?.data?.error || 'Failed to update profile');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleChangePassword = async (e) => {
+        e.preventDefault();
+        setModalError('');
+        setModalSuccess('');
+
+        if (passwordForm.newPassword !== passwordForm.confirmNewPassword) {
+            setModalError('New passwords do not match');
+            return;
+        }
+
+        setIsSubmitting(true);
+        try {
+            await api.put('/auth/change-password', {
+                currentPassword: passwordForm.currentPassword,
+                newPassword: passwordForm.newPassword
+            });
+            setModalSuccess('Password changed successfully');
+            setPasswordForm({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
+            setTimeout(() => {
+                setIsPasswordModalOpen(false);
+                setModalSuccess('');
+            }, 1000);
+        } catch (err) {
+            setModalError(err.response?.data?.error || 'Failed to change password');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    if (loading) return (
+        <div className="flex items-center justify-center h-full">
+            <Loader className="animate-spin text-sisia-primary" size={32} />
+        </div>
+    );
+
+    if (error) return (
+        <div className="flex items-center justify-center h-full text-red-500">
+            {error}
+        </div>
+    );
+
+    return (
+        <div className="p-6 max-w-4xl mx-auto space-y-6 relative">
+            <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                <User className="text-sisia-primary" />
+                User Profile
+            </h1>
+
+            {/* Profile Header Card */}
+            <div className="bg-white rounded-2xl shadow-md p-6 border border-gray-100 flex flex-col md:flex-row items-center gap-6">
+                <div className="w-24 h-24 rounded-full bg-sisia-primary/10 flex items-center justify-center text-sisia-primary text-3xl font-bold border-4 border-white shadow-sm">
+                    {profile?.username?.charAt(0).toUpperCase()}
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                    <h2 className="text-2xl font-bold text-gray-900">{profile?.username}</h2>
+                    <p className="text-gray-500 flex items-center justify-center md:justify-start gap-1 mt-1">
+                        <Shield size={16} />
+                        <span className="capitalize">{profile?.role?.toLowerCase()}</span>
+                    </p>
+                </div>
+                <div className="flex gap-3">
+                    <button
+                        onClick={() => {
+                            setEditForm({ email: profile?.email || '', phone: profile?.phone || '' });
+                            setModalError('');
+                            setModalSuccess('');
+                            setIsEditModalOpen(true);
+                        }}
+                        className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors flex items-center gap-2"
+                    >
+                        <Edit2 size={16} />
+                        Edit Profile
+                    </button>
+                    <button
+                        onClick={() => {
+                            setPasswordForm({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
+                            setModalError('');
+                            setModalSuccess('');
+                            setIsPasswordModalOpen(true);
+                        }}
+                        className="px-4 py-2 bg-sisia-primary/10 hover:bg-sisia-primary/20 text-sisia-primary rounded-xl font-medium transition-colors flex items-center gap-2"
+                    >
+                        <Key size={16} />
+                        Change Password
+                    </button>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Contact Information */}
+                <div className="bg-white rounded-2xl shadow-md p-6 border border-gray-100 h-full">
+                    <h3 className="text-lg font-bold text-gray-800 mb-4 border-b pb-2">Contact Information</h3>
+                    <div className="space-y-4">
+                        <div className="flex items-start gap-3">
+                            <div className="p-2 bg-blue-50 text-blue-500 rounded-lg shrink-0">
+                                <Mail size={20} />
+                            </div>
+                            <div>
+                                <p className="text-sm text-gray-500 font-medium">Email Address</p>
+                                <p className="text-gray-900 font-medium">{profile?.email || 'Not set'}</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                            <div className="p-2 bg-green-50 text-green-500 rounded-lg shrink-0">
+                                <Phone size={20} />
+                            </div>
+                            <div>
+                                <p className="text-sm text-gray-500 font-medium">Phone Number</p>
+                                <p className="text-gray-900 font-medium">{profile?.phone || 'Not set'}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Plan & Usage */}
+                <div className="bg-white rounded-2xl shadow-md p-6 border border-gray-100 h-full">
+                    <h3 className="text-lg font-bold text-gray-800 mb-4 border-b pb-2">Plan & Usage</h3>
+                    <div className="space-y-4">
+                        <div className="flex items-start gap-3">
+                            <div className="p-2 bg-amber-50 text-amber-500 rounded-lg shrink-0">
+                                <Coins size={20} />
+                            </div>
+                            <div className="flex-1">
+                                <div className="flex justify-between items-center mb-1">
+                                    <p className="text-sm text-gray-500 font-medium">Credits Balance</p>
+                                    <a
+                                        href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to buy more credits for my account: ${profile?.username}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-xs font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded hover:bg-amber-200 transition-colors"
+                                    >
+                                        BUY CREDITS
+                                    </a>
+                                </div>
+                                <p className="text-2xl font-bold text-gray-900">{profile?.credits || 0}</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                            <div className="p-2 bg-purple-50 text-purple-500 rounded-lg shrink-0">
+                                <Zap size={20} />
+                            </div>
+                            <div className="flex-1">
+                                <div className="flex justify-between items-center mb-1">
+                                    <p className="text-sm text-gray-500 font-medium">Current Plan</p>
+                                    <a
+                                        href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to change my plan schema for account: ${profile?.username}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-xs font-bold text-purple-600 bg-purple-100 px-2 py-0.5 rounded hover:bg-purple-200 transition-colors"
+                                    >
+                                        CHANGE PLAN
+                                    </a>
+                                </div>
+                                <p className="text-lg font-bold text-gray-900">
+                                    {profile?.planType === 'TIME_BASED' ? 'Time Based Subscription' : 'Pay As You Go'}
+                                </p>
+                                {profile?.planType === 'TIME_BASED' && (
+                                    <p className={`text-xs font-medium mt-1 ${profile?.planExpiresAt ? 'text-gray-600' : 'text-amber-600'}`}>
+                                        Valid Until: {profile?.planExpiresAt ? new Date(profile.planExpiresAt).toLocaleDateString() : 'Pending verification'}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Edit Profile Modal */}
+            {isEditModalOpen && (
+                <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+                    <div className="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl animate-in fade-in zoom-in duration-200">
+                        <h3 className="text-xl font-bold mb-4">Edit Profile</h3>
+                        {modalError && <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm">{modalError}</div>}
+                        {modalSuccess && <div className="bg-green-50 text-green-600 p-3 rounded-lg mb-4 text-sm">{modalSuccess}</div>}
+
+                        <form onSubmit={handleUpdateProfile} className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input
+                                    type="email"
+                                    value={editForm.email}
+                                    onChange={e => setEditForm({ ...editForm, email: e.target.value })}
+                                    className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                <input
+                                    type="text"
+                                    value={editForm.phone}
+                                    onChange={e => setEditForm({ ...editForm, phone: e.target.value })}
+                                    className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary"
+                                />
+                            </div>
+                            <div className="flex justify-end gap-3 pt-4">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsEditModalOpen(false)}
+                                    className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-xl transition-colors font-medium"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="px-4 py-2 bg-sisia-primary text-white rounded-xl hover:bg-sisia-dark transition-colors font-medium disabled:opacity-50"
+                                >
+                                    {isSubmitting ? 'Saving...' : 'Save Changes'}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Change Password Modal */}
+            {isPasswordModalOpen && (
+                <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+                    <div className="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl animate-in fade-in zoom-in duration-200">
+                        <h3 className="text-xl font-bold mb-4">Change Password</h3>
+                        {modalError && <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm">{modalError}</div>}
+                        {modalSuccess && <div className="bg-green-50 text-green-600 p-3 rounded-lg mb-4 text-sm">{modalSuccess}</div>}
+
+                        <form onSubmit={handleChangePassword} className="space-y-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                                <input
+                                    type="password"
+                                    value={passwordForm.currentPassword}
+                                    onChange={e => setPasswordForm({ ...passwordForm, currentPassword: e.target.value })}
+                                    className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                                <input
+                                    type="password"
+                                    value={passwordForm.newPassword}
+                                    onChange={e => setPasswordForm({ ...passwordForm, newPassword: e.target.value })}
+                                    className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                                <input
+                                    type="password"
+                                    value={passwordForm.confirmNewPassword}
+                                    onChange={e => setPasswordForm({ ...passwordForm, confirmNewPassword: e.target.value })}
+                                    className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary"
+                                    required
+                                />
+                            </div>
+                            <div className="flex justify-end gap-3 pt-4">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsPasswordModalOpen(false)}
+                                    className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-xl transition-colors font-medium"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="px-4 py-2 bg-sisia-primary text-white rounded-xl hover:bg-sisia-dark transition-colors font-medium disabled:opacity-50"
+                                >
+                                    {isSubmitting ? 'Changing...' : 'Change Password'}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default Profile;

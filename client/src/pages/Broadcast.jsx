@@ -115,7 +115,7 @@ const Broadcast = () => {
     return (
         <div>
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <Send className="text-wa-green" /> Broadcast
+                <Send className="text-sisia-primary" /> Broadcast
             </h2>
 
             <div className="bg-white p-6 rounded-lg shadow-md max-w-2xl">
@@ -129,7 +129,7 @@ const Broadcast = () => {
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Session</label>
                         <select
-                            className="w-full border p-2 rounded focus:ring-2 focus:ring-wa-green focus:border-transparent outline-none"
+                            className="w-full border p-2 rounded focus:ring-2 focus:ring-sisia-primary focus:border-transparent outline-none"
                             value={formData.sessionId}
                             onChange={e => setFormData({ ...formData, sessionId: e.target.value })}
                             required
@@ -144,7 +144,7 @@ const Broadcast = () => {
                         <div className="relative">
                             <Tag className="absolute left-3 top-3 text-gray-400" size={16} />
                             <select
-                                className="w-full border p-2 pl-10 rounded focus:ring-2 focus:ring-wa-green focus:border-transparent outline-none"
+                                className="w-full border p-2 pl-10 rounded focus:ring-2 focus:ring-sisia-primary focus:border-transparent outline-none"
                                 value={formData.tag}
                                 onChange={e => setFormData({ ...formData, tag: e.target.value })}
                                 required
@@ -166,7 +166,7 @@ const Broadcast = () => {
                                     value="TEXT"
                                     checked={formData.messageType === 'TEXT'}
                                     onChange={e => setFormData({ ...formData, messageType: e.target.value })}
-                                    className="text-wa-green focus:ring-wa-green"
+                                    className="text-sisia-primary focus:ring-sisia-primary"
                                 />
                                 <span>Text</span>
                             </label>
@@ -177,7 +177,7 @@ const Broadcast = () => {
                                     value="IMAGE"
                                     checked={formData.messageType === 'IMAGE'}
                                     onChange={e => setFormData({ ...formData, messageType: e.target.value })}
-                                    className="text-wa-green focus:ring-wa-green"
+                                    className="text-sisia-primary focus:ring-sisia-primary"
                                 />
                                 <span>Image</span>
                             </label>
@@ -187,7 +187,7 @@ const Broadcast = () => {
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Message Content</label>
                         <textarea
-                            className="w-full border p-2 rounded h-32 focus:ring-2 focus:ring-wa-green focus:border-transparent outline-none resize-none"
+                            className="w-full border p-2 rounded h-32 focus:ring-2 focus:ring-sisia-primary focus:border-transparent outline-none resize-none"
                             placeholder="Type your message here..."
                             value={formData.content}
                             onChange={e => setFormData({ ...formData, content: e.target.value })}
@@ -200,7 +200,7 @@ const Broadcast = () => {
                             <label className="block text-sm font-medium text-gray-700 mb-1">Image Source</label>
                             <div className="flex gap-2">
                                 <input
-                                    className="flex-1 border p-2 rounded focus:ring-2 focus:ring-wa-green focus:border-transparent outline-none"
+                                    className="flex-1 border p-2 rounded focus:ring-2 focus:ring-sisia-primary focus:border-transparent outline-none"
                                     placeholder="Image URL"
                                     value={formData.mediaUrl}
                                     onChange={e => setFormData({ ...formData, mediaUrl: e.target.value })}
@@ -233,7 +233,7 @@ const Broadcast = () => {
                             className={`w-full py-2.5 rounded-lg text-white font-medium flex items-center justify-center gap-2 transition-all
                                 ${sending || !formData.sessionId || !formData.tag
                                     ? 'bg-gray-400 cursor-not-allowed'
-                                    : 'bg-wa-green hover:bg-emerald-700 shadow-lg hover:shadow-xl'
+                                    : 'bg-sisia-primary hover:bg-emerald-700 shadow-lg hover:shadow-xl'
                                 }`}
                         >
                             {sending ? <Loader size={20} className="animate-spin" /> : <Send size={20} />}

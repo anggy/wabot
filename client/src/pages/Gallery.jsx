@@ -66,7 +66,7 @@ const Gallery = () => {
                         onChange={handleFileUpload}
                         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <button className="bg-wa-green text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition flex items-center gap-2 shadow-sm">
+                    <button className="bg-sisia-primary text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition flex items-center gap-2 shadow-sm">
                         {uploading ? <Loader size={20} className="animate-spin" /> : <Upload size={20} />}
                         Upload New
                     </button>
