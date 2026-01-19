@@ -62,3 +62,12 @@
 {"level":30,"time":1768818284636,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: KPqJBVqGG7iUxE28AAAL"}
 {"level":30,"time":1768818301502,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: F49SH394cljPbpU6AAAI"}
 {"level":30,"time":1768818301503,"pid":1972414,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: KPqJBVqGG7iUxE28AAAL"}
+{"level":30,"time":1768818433543,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768818433544,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768818433559,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768818436189,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: SyNZG4qJwGnWJyqmAAAC"}
+{"level":30,"time":1768818436203,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: B1Qq5mqdos7yx5vGAAAD"}
+{"level":30,"time":1768818438651,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: B1Qq5mqdos7yx5vGAAAD"}
+{"level":30,"time":1768818441717,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: rm8t3HNZKaFVyjnhAAAG"}
+{"level":30,"time":1768818443834,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: rm8t3HNZKaFVyjnhAAAG"}
+{"level":30,"time":1768818463268,"pid":1973985,"hostname":"gie-OptiPlex-9020","msg":"Socket disconnected: SyNZG4qJwGnWJyqmAAAC"}
