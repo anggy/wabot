@@ -31,6 +31,7 @@ model Rule {
   responseMediaType String?  @default("TEXT")
   responseMediaUrl  String?
   isActive          Boolean  @default(true)
+  sessionId         String?  // Optional, if null it applies to all sessions
   userId            Int      @default(1)
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt

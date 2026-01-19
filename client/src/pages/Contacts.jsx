@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api';
-import { Plus, Trash, Search, User, Phone, Tag, Edit, X } from 'lucide-react';
+import { Plus, Trash, Search, User, Phone, Tag, Edit, X, Download, Upload } from 'lucide-react';
 
 const Contacts = () => {
     const [contacts, setContacts] = useState([]);
@@ -59,6 +59,48 @@ const Contacts = () => {
         }
     };
 
+    const handleExport = () => {
+        const token = localStorage.getItem('token');
+        const url = `${(import.meta.env.VITE_API_URL || 'http://localhost:3002').replace(/\/$/, '')}/api/contacts/export`;
+
+        // Use fetch with auth header to get blob, then download
+        fetch(url, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'contacts.csv';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            })
+            .catch(err => console.error("Export failed", err));
+    };
+
+    const handleImport = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const res = await api.post('/contacts/import', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            });
+            alert(res.data.message);
+            fetchContacts();
+        } catch (error) {
+            console.error("Import failed", error);
+            alert("Failed to import contacts");
+        }
+        // Reset input
+        e.target.value = null;
+    };
+
     const filteredContacts = contacts.filter(c =>
         c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         c.phone.includes(searchTerm)
@@ -68,12 +110,25 @@ const Contacts = () => {
         <div>
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-gray-800">Contacts</h2>
-                <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition-colors"
-                >
-                    <Plus size={18} /> Add Contact
-                </button>
+                <div className="flex gap-2">
+                    <button
+                        onClick={handleExport}
+                        className="bg-white border border-gray-300 text-gray-700 px-3 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition-colors shadow-sm"
+                        title="Export CSV"
+                    >
+                        <Download size={18} /> Export
+                    </button>
+                    <label className="bg-white border border-gray-300 text-gray-700 px-3 py-2 rounded-lg flex items-center gap-2 hover:bg-gray-50 transition-colors shadow-sm cursor-pointer">
+                        <Upload size={18} /> Import
+                        <input type="file" className="hidden" accept=".csv" onChange={handleImport} />
+                    </label>
+                    <button
+                        onClick={() => setIsModalOpen(true)}
+                        className="bg-wa-green text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-emerald-700 transition-colors shadow-sm"
+                    >
+                        <Plus size={18} /> Add Contact
+                    </button>
+                </div>
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">

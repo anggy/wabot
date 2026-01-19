@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api';
-import { Plus, Trash, Zap, MessageSquare, Globe, Upload, Loader, Edit, X, Bot } from 'lucide-react';
+import { Plus, Trash, Zap, MessageSquare, Globe, Upload, Loader, Edit, X, Bot, Grid } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Rules = () => {
@@ -16,14 +16,27 @@ const Rules = () => {
         apiUrl: '',
         apiMethod: 'POST',
         apiPayload: '{}',
-        responseContent: '',
         responseMediaType: 'TEXT',
-        responseMediaUrl: ''
+        responseMediaUrl: '',
+        sessionId: ''
     });
+    const [sessions, setSessions] = useState([]);
+    const [showGallery, setShowGallery] = useState(false);
+    const [galleryImages, setGalleryImages] = useState([]);
 
     useEffect(() => {
         fetchRules();
+        fetchSessions();
     }, []);
+
+    const fetchSessions = async () => {
+        try {
+            const res = await api.get('/sessions');
+            setSessions(res.data);
+        } catch (error) {
+            console.error("Failed to fetch sessions", error);
+        }
+    };
 
     const fetchRules = async () => {
         const res = await api.get('/rules');
@@ -60,7 +73,8 @@ const Rules = () => {
             apiPayload: rule.apiPayload || '{}',
             responseContent: rule.responseContent || '',
             responseMediaType: rule.responseMediaType || 'TEXT',
-            responseMediaUrl: rule.responseMediaUrl || ''
+            responseMediaUrl: rule.responseMediaUrl || '',
+            sessionId: rule.sessionId || ''
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -77,7 +91,8 @@ const Rules = () => {
             apiPayload: '{}',
             responseContent: '',
             responseMediaType: 'TEXT',
-            responseMediaUrl: ''
+            responseMediaUrl: '',
+            sessionId: ''
         });
     };
 
@@ -100,6 +115,21 @@ const Rules = () => {
         } finally {
             setUploading(false);
         }
+    };
+
+    const openGallery = async () => {
+        setShowGallery(true);
+        try {
+            const res = await api.get('/upload');
+            setGalleryImages(res.data);
+        } catch (error) {
+            console.error("Failed to load gallery", error);
+        }
+    };
+
+    const selectImage = (url) => {
+        setFormData(prev => ({ ...prev, responseMediaUrl: url }));
+        setShowGallery(false);
     };
 
     const handleDelete = async (id) => {
@@ -125,6 +155,16 @@ const Rules = () => {
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Rule Name</label>
                         <input className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" placeholder="e.g. Welcome Message" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Session (Optional)</label>
+                        <select className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" value={formData.sessionId} onChange={e => setFormData({ ...formData, sessionId: e.target.value })}>
+                            <option value="">All Sessions (Global)</option>
+                            {sessions.map(s => (
+                                <option key={s.id} value={s.id}>{s.name}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <div>
@@ -188,15 +228,22 @@ const Rules = () => {
 
                             {formData.responseMediaType === 'IMAGE' && (
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
                                     <div className="flex gap-2">
                                         <input className="flex-1 border p-2 rounded-lg outline-none focus:ring-2 focus:ring-wa-green" placeholder="https://example.com/image.jpg" value={formData.responseMediaUrl} onChange={e => setFormData({ ...formData, responseMediaUrl: e.target.value })} required />
                                         <label className="cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-600 p-2 rounded-lg border flex items-center justify-center w-12 transition-colors">
                                             {uploading ? <Loader size={20} className="animate-spin" /> : <Upload size={20} />}
                                             <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} />
                                         </label>
+                                        <button
+                                            type="button"
+                                            onClick={openGallery}
+                                            className="bg-purple-600 text-white px-3 py-2 rounded-lg flex items-center justify-center hover:bg-purple-700"
+                                            title="Choose from Gallery"
+                                        >
+                                            <Grid size={20} />
+                                        </button>
                                     </div>
-                                    <p className="text-xs text-gray-500 mt-1">Paste URL or upload an image (max 5MB)</p>
+                                    <p className="text-xs text-gray-500 mt-1">Paste URL, upload, or choose from gallery</p>
                                 </div>
                             )}
 
@@ -250,54 +297,95 @@ const Rules = () => {
                 </div>
             </form>
 
-            <div className="space-y-4">
-                {rules.map(rule => (
-                    <div key={rule.id} className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center group hover:shadow-md transition-shadow">
-                        <div>
-                            <div className="flex items-center gap-2 mb-1">
-                                <h4 className="font-bold text-gray-800">{rule.name}</h4>
-                                <span className={`text-xs px-2 py-0.5 rounded-full ${rule.triggerType === 'ALL' ? 'bg-purple-100 text-purple-700' : 'bg-emerald-50 text-wa-green'}`}>
-                                    {rule.triggerType}
-                                </span>
-                            </div>
-                            <div className="text-sm text-gray-600 flex items-center gap-2">
-                                {rule.triggerType !== 'ALL' && (
-                                    <span className="font-mono bg-gray-50 px-1 rounded text-gray-800">"{rule.triggerValue}"</span>
-                                )}
-                                <span className="text-gray-400">&rarr;</span>
-                                {rule.actionType === 'RESPONSE' ? (
-                                    <span className="flex items-center gap-1 text-green-700">
-                                        <MessageSquare size={14} />
-                                        {rule.responseMediaType === 'IMAGE' ? (
-                                            <span className="flex items-center gap-1">
-                                                <Zap size={14} className="text-orange-500" /> [Image] {rule.responseContent}
+            <div className="space-y-6">
+                {/* Group by Session Logic */}
+                {Object.entries(rules.reduce((acc, rule) => {
+                    const sessionName = rule.sessionId
+                        ? (sessions.find(s => s.id === rule.sessionId)?.name || 'Unknown Session')
+                        : 'All Messages (Global)';
+                    if (!acc[sessionName]) acc[sessionName] = [];
+                    acc[sessionName].push(rule);
+                    return acc;
+                }, {})).map(([groupName, groupRules]) => (
+                    <div key={groupName} className="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <h3 className="font-bold text-gray-700 mb-3 uppercase text-xs tracking-wider">{groupName}</h3>
+                        <div className="space-y-3">
+                            {groupRules.map(rule => (
+                                <div key={rule.id} className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center group hover:shadow-md transition-shadow">
+                                    <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <h4 className="font-bold text-gray-800">{rule.name}</h4>
+                                            <span className={`text-xs px-2 py-0.5 rounded-full ${rule.triggerType === 'ALL' ? 'bg-purple-100 text-purple-700' : 'bg-emerald-50 text-wa-green'}`}>
+                                                {rule.triggerType}
                                             </span>
-                                        ) : (
-                                            `Reply: "${rule.responseContent}"`
-                                        )}
-                                    </span>
-                                ) : rule.actionType === 'AI_REPLY' ? (
-                                    <span className="flex items-center gap-1 text-purple-600">
-                                        <Bot size={14} /> AI Reply: "{rule.responseContent?.substring(0, 30)}..."
-                                    </span>
-                                ) : (
-                                    <span className="flex items-center gap-1 text-orange-700">
-                                        <Globe size={14} /> Call: {rule.apiMethod} {rule.apiUrl}
-                                    </span>
-                                )}
-                            </div>
-                        </div>
-                        <div className="flex gap-2">
-                            <button onClick={() => handleEdit(rule)} className="p-2 rounded-lg text-gray-400 hover:text-wa-green hover:bg-emerald-50 transition-all" title="Edit Rule">
-                                <Edit size={18} />
-                            </button>
-                            <button onClick={() => handleDelete(rule.id)} className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all" title="Delete Rule">
-                                <Trash size={18} />
-                            </button>
+                                        </div>
+                                        <div className="text-sm text-gray-600 flex items-center gap-2">
+                                            {rule.triggerType !== 'ALL' && (
+                                                <span className="font-mono bg-gray-50 px-1 rounded text-gray-800">"{rule.triggerValue}"</span>
+                                            )}
+                                            <span className="text-gray-400">&rarr;</span>
+                                            {rule.actionType === 'RESPONSE' ? (
+                                                <span className="flex items-center gap-1 text-green-700">
+                                                    <MessageSquare size={14} />
+                                                    {rule.responseMediaType === 'IMAGE' ? (
+                                                        <span className="flex items-center gap-1">
+                                                            <Zap size={14} className="text-orange-500" /> [Image] {rule.responseContent}
+                                                        </span>
+                                                    ) : (
+                                                        `Reply: "${rule.responseContent}"`
+                                                    )}
+                                                </span>
+                                            ) : rule.actionType === 'AI_REPLY' ? (
+                                                <span className="flex items-center gap-1 text-purple-600">
+                                                    <Bot size={14} /> AI Reply: "{rule.responseContent?.substring(0, 30)}..."
+                                                </span>
+                                            ) : (
+                                                <span className="flex items-center gap-1 text-orange-700">
+                                                    <Globe size={14} /> Call: {rule.apiMethod} {rule.apiUrl}
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <button onClick={() => handleEdit(rule)} className="p-2 rounded-lg text-gray-400 hover:text-wa-green hover:bg-emerald-50 transition-all" title="Edit Rule">
+                                            <Edit size={18} />
+                                        </button>
+                                        <button onClick={() => handleDelete(rule.id)} className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all" title="Delete Rule">
+                                            <Trash size={18} />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 ))}
             </div>
+            {/* Gallery Modal */}
+            {showGallery && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-lg w-full max-w-3xl max-h-[80vh] flex flex-col shadow-xl">
+                        <div className="p-4 border-b flex justify-between items-center">
+                            <h3 className="font-bold text-lg">Image Gallery</h3>
+                            <button onClick={() => setShowGallery(false)} className="text-gray-500 hover:text-gray-700">
+                                <X size={24} />
+                            </button>
+                        </div>
+                        <div className="p-4 overflow-y-auto grid grid-cols-2 md:grid-cols-4 gap-4 flex-1">
+                            {galleryImages.map((img, idx) => (
+                                <div
+                                    key={idx}
+                                    onClick={() => selectImage(img.url)}
+                                    className="cursor-pointer border rounded hover:border-blue-500 hover:shadow-lg transition relative group"
+                                >
+                                    <img src={img.url} alt={img.name} className="w-full h-32 object-cover rounded-t" />
+                                    <div className="p-2 text-xs truncate bg-gray-50">{img.name}</div>
+                                </div>
+                            ))}
+                            {galleryImages.length === 0 && <p className="col-span-full text-center text-gray-500">No images found.</p>}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div >
     );
 };

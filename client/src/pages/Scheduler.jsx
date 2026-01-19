@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api';
-import { Plus, Trash, Upload, Loader, Edit, X } from 'lucide-react';
+import { Plus, Trash, Upload, Loader, Edit, X, Grid } from 'lucide-react';
 
 const Scheduler = () => {
     const [schedules, setSchedules] = useState([]);
@@ -19,6 +19,8 @@ const Scheduler = () => {
         mediaUrl: '',
         cronExpression: '* * * * *'
     });
+    const [showGallery, setShowGallery] = useState(false);
+    const [galleryImages, setGalleryImages] = useState([]);
 
     useEffect(() => {
         fetchSchedules();
@@ -78,6 +80,21 @@ const Scheduler = () => {
         } finally {
             setUploading(false);
         }
+    };
+
+    const openGallery = async () => {
+        setShowGallery(true);
+        try {
+            const res = await api.get('/upload');
+            setGalleryImages(res.data);
+        } catch (error) {
+            console.error("Failed to load gallery", error);
+        }
+    };
+
+    const selectImage = (url) => {
+        setFormData(prev => ({ ...prev, mediaUrl: url }));
+        setShowGallery(false);
     };
 
     const fetchSchedules = async () => {
@@ -153,7 +170,7 @@ const Scheduler = () => {
 
             <form onSubmit={handleSubmit} className={`bg-white p-6 rounded-lg shadow-md mb-8 ${editingId ? 'border border-wa-green' : ''}`}>
                 <div className="flex justify-between items-center mb-4">
-                    <h3 className="font-semibold text-gray-700">{editingId ? 'Edit Broadcast' : 'Schedule New Broadcast'}</h3>
+                    <h3 className="font-semibold text-gray-700">{editingId ? 'Edit Schedule' : 'Schedule New Message'}</h3>
                     {editingId && (
                         <button type="button" onClick={handleCancelEdit} className="text-sm text-red-500 hover:text-red-700 flex items-center gap-1">
                             <X size={16} /> Cancel Edit
@@ -194,8 +211,16 @@ const Scheduler = () => {
                                     {uploading ? <Loader size={20} className="animate-spin" /> : <Upload size={20} />}
                                     <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} />
                                 </label>
+                                <button
+                                    type="button"
+                                    onClick={openGallery}
+                                    className="bg-purple-600 text-white px-3 py-2 rounded flex items-center justify-center hover:bg-purple-700"
+                                    title="Choose from Gallery"
+                                >
+                                    <Grid size={20} />
+                                </button>
                             </div>
-                            <p className="text-xs text-gray-500 mt-1">Paste URL or upload an image (max 5MB)</p>
+                            <p className="text-xs text-gray-500 mt-1">Paste URL, upload, or choose from gallery</p>
                         </div>
                     )}
 
@@ -227,9 +252,16 @@ const Scheduler = () => {
                         )}
 
                         {frequency === 'CUSTOM' && (
-                            <input className="w-full border p-2 rounded font-mono text-sm" placeholder="Cron Expression (e.g. * * * * *)" value={formData.cronExpression} onChange={e => setFormData({ ...formData, cronExpression: e.target.value })} required />
+                            <div className="space-y-1">
+                                <input className="w-full border p-2 rounded font-mono text-sm" placeholder="Cron Expression (e.g. * * * * *)" value={formData.cronExpression} onChange={e => setFormData({ ...formData, cronExpression: e.target.value })} required />
+                                <p className="text-xs text-gray-500">
+                                    Format: <code>Minute Hour Day Month Weekday</code> (e.g. <code>00 08 * * *</code> for daily at 08:00)
+                                </p>
+                            </div>
                         )}
-                        <p className="text-xs text-gray-500 mt-1">Cron: {formData.cronExpression}</p>
+                        <p className="text-xs text-gray-500 mt-1">
+                            Current Schedule: <span className="font-mono bg-gray-100 px-1 rounded">{formData.cronExpression}</span>
+                        </p>
                     </div>
                 </div>
                 <button type="submit" className="mt-4 bg-wa-green text-white px-4 py-2 rounded hover:bg-emerald-700 transition flex items-center gap-2">
@@ -257,6 +289,32 @@ const Scheduler = () => {
                     </div>
                 ))}
             </div>
+            {/* Gallery Modal */}
+            {showGallery && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-lg w-full max-w-3xl max-h-[80vh] flex flex-col shadow-xl">
+                        <div className="p-4 border-b flex justify-between items-center">
+                            <h3 className="font-bold text-lg">Image Gallery</h3>
+                            <button onClick={() => setShowGallery(false)} className="text-gray-500 hover:text-gray-700">
+                                <X size={24} />
+                            </button>
+                        </div>
+                        <div className="p-4 overflow-y-auto grid grid-cols-2 md:grid-cols-4 gap-4 flex-1">
+                            {galleryImages.map((img, idx) => (
+                                <div
+                                    key={idx}
+                                    onClick={() => selectImage(img.url)}
+                                    className="cursor-pointer border rounded hover:border-blue-500 hover:shadow-lg transition relative group"
+                                >
+                                    <img src={img.url} alt={img.name} className="w-full h-32 object-cover rounded-t" />
+                                    <div className="p-2 text-xs truncate bg-gray-50">{img.name}</div>
+                                </div>
+                            ))}
+                            {galleryImages.length === 0 && <p className="col-span-full text-center text-gray-500">No images found.</p>}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

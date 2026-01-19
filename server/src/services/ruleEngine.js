@@ -14,7 +14,14 @@ export const processMessage = async (sessionId, message, sock) => {
         if (!session) return; // Should not happen if processing message
 
         const rules = await prisma.rule.findMany({
-            where: { isActive: true, userId: session.userId }
+            where: {
+                isActive: true,
+                userId: session.userId,
+                OR: [
+                    { sessionId: sessionId },
+                    { sessionId: null }
+                ]
+            }
         });
 
         for (const rule of rules) {

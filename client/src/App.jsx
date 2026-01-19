@@ -11,6 +11,9 @@ import Contacts from './pages/Contacts';
 import History from './pages/History';
 import Login from './pages/Login';
 import Users from './pages/Users';
+import Gallery from './pages/Gallery';
+import Logs from './pages/Logs';
+import Broadcast from './pages/Broadcast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
 
@@ -38,6 +41,9 @@ function App() {
             <Route path="contacts" element={<Contacts />} />
             <Route path="history" element={<History />} />
             <Route path="users" element={<Users />} />
+            <Route path="gallery" element={<Gallery />} />
+            <Route path="logs" element={<Logs />} />
+            <Route path="broadcast" element={<Broadcast />} />
           </Route>
         </Routes>
       </Router>

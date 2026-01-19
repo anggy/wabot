@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { logger } from './config/logger.js';
+import { register } from './config/metrics.js';
 import { authenticateToken } from './middleware/authMiddleware.js';
 import { swaggerDocs } from './config/swagger.js';
 
@@ -14,6 +15,15 @@ app.get('/health', (req, res) => {
     res.send('OK');
 });
 
+app.get('/metrics', async (req, res) => {
+    try {
+        res.set('Content-Type', register.contentType);
+        res.end(await register.metrics());
+    } catch (err) {
+        res.status(500).end(err);
+    }
+});
+
 import sessionRoutes from './routes/sessionRoutes.js';
 import ruleRoutes from './routes/ruleRoutes.js';
 import scheduleRoutes from './routes/scheduleRoutes.js';
@@ -22,6 +32,7 @@ import dashboardRoutes from './routes/dashboardRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import logRoutes from './routes/logRoutes.js';
 
 app.use('/api/auth', authRoutes);
 
@@ -33,6 +44,7 @@ app.use('/api/messages', authenticateToken, messageRoutes);
 app.use('/api/dashboard', authenticateToken, dashboardRoutes);
 app.use('/api/contacts', authenticateToken, contactRoutes);
 app.use('/api/users', userRoutes); // userRoutes already has auth middleware inside
+app.use('/api/logs', authenticateToken, logRoutes);
 
 
 import uploadRoutes from './routes/uploadRoutes.js';

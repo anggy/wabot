@@ -8,7 +8,9 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const uploadDir = 'uploads/';
+        const userId = req.user ? req.user.id : 'public';
+        const uploadDir = path.join('uploads', String(userId));
+
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
@@ -44,13 +46,67 @@ router.post('/', upload.single('image'), (req, res) => {
         // Construct public URL
         const protocol = req.protocol;
         const host = req.get('host');
-        const url = `${protocol}://${host}/uploads/${req.file.filename}`;
+        const userId = req.user ? req.user.id : 'public';
+        const url = `${protocol}://${host}/uploads/${userId}/${req.file.filename}`;
 
         res.json({ url });
     } catch (error) {
         logger.error(error);
         res.status(500).json({ error: 'File upload failed' });
     }
+});
+
+router.get('/', (req, res) => {
+    const userId = req.user ? req.user.id : 'public';
+    const uploadDir = path.join('uploads', String(userId));
+
+    if (!fs.existsSync(uploadDir)) {
+        return res.json([]); // Return empty if user folder doesn't exist
+    }
+
+    fs.readdir(uploadDir, (err, files) => {
+        if (err) {
+            logger.error(err);
+            return res.status(500).json({ error: 'Unable to scan directory' });
+        }
+
+        const fileInfos = files
+            .filter(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file))
+            .map(file => {
+                return {
+                    name: file,
+                    url: `${req.protocol}://${req.get('host')}/uploads/${userId}/${file}`
+                };
+            });
+
+        // rudimentary sort by name (timestamp prefix helps) descending
+        fileInfos.sort((a, b) => b.name.localeCompare(a.name));
+
+        res.json(fileInfos);
+    });
+});
+
+router.delete('/:filename', (req, res) => {
+    const userId = req.user ? req.user.id : 'public';
+    const filename = req.params.filename;
+    const filepath = path.join('uploads', String(userId), filename);
+
+    // Prevent directory traversal
+    if (filename.includes('..') || filename.includes('/')) {
+        return res.status(400).json({ error: 'Invalid filename' });
+    }
+
+    if (!fs.existsSync(filepath)) {
+        return res.status(404).json({ error: 'File not found' });
+    }
+
+    fs.unlink(filepath, (err) => {
+        if (err) {
+            logger.error(err);
+            return res.status(500).json({ error: 'Failed to delete file' });
+        }
+        res.json({ success: true, message: 'File deleted' });
+    });
 });
 
 export default router;

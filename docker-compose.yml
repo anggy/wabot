@@ -10,10 +10,13 @@ services:
       - ./server/dev.db:/app/dev.db
       - ./server/uploads:/app/uploads
       - ./server/sessions:/app/sessions
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
     environment:
       - DATABASE_URL=file:./dev.db
       - JWT_SECRET=supersecretkeychangedinprod
       - PORT=3002
+      - TZ=Asia/Jakarta
     restart: always
 
   frontend:

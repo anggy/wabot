@@ -1,0 +1,10 @@
+{"level":30,"time":1768814961110,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Server running on port 3002"}
+{"level":30,"time":1768814961110,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Initializing sessions..."}
+{"level":30,"time":1768814961201,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Resuming session test-session-mention-rule"}
+{"level":30,"time":1768814961202,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Resuming session test-session-misconfig"}
+{"level":30,"time":1768814961205,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Initialized 0 schedules"}
+{"level":30,"time":1768814962304,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-misconfig"}
+{"level":30,"time":1768814962480,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
+{"level":30,"time":1768815022348,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-misconfig"}
+{"level":30,"time":1768815022503,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Generating QR for session test-session-mention-rule"}
+{"level":30,"time":1768815033895,"pid":1934551,"hostname":"gie-OptiPlex-9020","msg":"Socket connected: -lPfpA0qcfBsrZmjAAAC"}

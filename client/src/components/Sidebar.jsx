@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Smartphone, Users, MessageSquare, Calendar, Zap, Send, Database, Shield, LogOut, BookOpen, ChevronLeft, ChevronRight, Coins } from 'lucide-react';
+import { LayoutDashboard, Smartphone, Users, MessageSquare, Calendar, Zap, Send, Database, Shield, LogOut, BookOpen, ChevronLeft, ChevronRight, Coins, Image as ImageIcon, ScrollText, Megaphone } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -14,12 +14,15 @@ const Sidebar = ({ isOpen, onClose }) => {
         { path: '/contacts', label: 'Contacts', icon: Users },
         { path: '/history', label: 'Messages', icon: MessageSquare },
         { path: '/rules', label: 'Auto Reply', icon: Zap },
-        { path: '/scheduler', label: 'Broadcast', icon: Calendar },
+        { path: '/scheduler', label: 'Scheduler', icon: Calendar },
+        { path: '/broadcast', label: 'Broadcast', icon: Megaphone },
         { path: '/groups', label: 'Groups', icon: Database },
+        { path: '/gallery', label: 'Gallery', icon: ImageIcon },
         { path: '/send', label: 'Send Test', icon: Send },
     ];
 
     if (user?.role === 'ADMIN') {
+        links.push({ path: '/logs', label: 'Logs', icon: ScrollText });
         links.push({ path: '/users', label: 'Users', icon: Shield });
     }
 
