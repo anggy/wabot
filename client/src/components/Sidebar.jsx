@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Smartphone, Users, MessageSquare, Calendar, Zap, Send, Database, Shield, LogOut, BookOpen, ChevronLeft, ChevronRight, Coins, Image as ImageIcon, ScrollText, Megaphone } from 'lucide-react';
+import { LayoutDashboard, Smartphone, Users, MessageSquare, Calendar, Zap, Send, Database, Shield, LogOut, BookOpen, ChevronLeft, ChevronRight, Coins, Image as ImageIcon, ScrollText, Megaphone, Wrench } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -14,6 +14,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         { path: '/app/contacts', label: 'Contacts', icon: Users },
         { path: '/app/history', label: 'Messages', icon: MessageSquare },
         { path: '/app/rules', label: 'Auto Reply', icon: Zap },
+        { path: '/app/ai-tools', label: 'AI Actions', icon: Wrench },
         { path: '/app/scheduler', label: 'Scheduler', icon: Calendar },
         { path: '/app/broadcast', label: 'Broadcast', icon: Megaphone },
         { path: '/app/groups', label: 'Groups', icon: Database },
@@ -82,7 +83,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                             <div className="text-sm font-semibold text-white truncate">{user?.username}</div>
 
                             <div className="flex flex-col gap-1 mt-2">
-                                {user?.planType !== 'TIME_BASED' && (
+                                {user?.planType !== 'TIME_BASED' && user?.planType !== 'UNLIMITED' && (
                                     <div className="flex items-center justify-between text-xs font-medium bg-amber-500/10 text-amber-500 px-2 py-1 rounded select-none group relative">
                                         <div className="flex items-center gap-1.5">
                                             <Coins size={12} />

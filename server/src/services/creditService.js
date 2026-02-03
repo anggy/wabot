@@ -22,7 +22,7 @@ export const checkCredits = async (userId, count = 1) => {
         }
 
         // Unlimited credits for subscription plans
-        if (user.planType === 'TIME_BASED') {
+        if (user.planType === 'TIME_BASED' || user.planType === 'UNLIMITED') {
             return true;
         }
 
@@ -45,7 +45,7 @@ export const deductCredit = async (userId, count = 1) => {
         const user = await prisma.user.findUnique({ where: { id: userId } });
 
         // Skip deduction for subscription plans
-        if (user?.planType === 'TIME_BASED') {
+        if (user?.planType === 'TIME_BASED' || user?.planType === 'UNLIMITED') {
             return true;
         }
 

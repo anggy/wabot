@@ -131,67 +131,75 @@ const Contacts = () => {
                 </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="p-4 border-b border-gray-100 bg-gray-50 flex items-center gap-2">
-                    <Search size={18} className="text-gray-400" />
-                    <input
-                        type="text"
-                        placeholder="Search contacts..."
-                        className="bg-transparent outline-none w-full text-sm"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div className="p-5 border-b border-gray-200/50 bg-gray-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="relative flex-1 max-w-md">
+                        <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search by name, phone, or tags..."
+                            className="w-full bg-white border border-gray-200 rounded-lg pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary transition-all shadow-sm"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
+                    <div className="text-xs text-gray-500 font-medium bg-white px-3 py-1.5 rounded-lg border border-gray-200 shadow-sm">
+                        Total Contacts: <span className="text-gray-900 font-bold">{filteredContacts.length}</span>
+                    </div>
                 </div>
 
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
-                        <thead className="bg-gray-50 text-gray-500 text-xs uppercase font-medium">
+                        <thead className="bg-gray-50 border-b border-gray-100">
                             <tr>
-                                <th className="p-4">Name</th>
-                                <th className="p-4">Phone</th>
-                                <th className="p-4">Tags</th>
-                                <th className="p-4 text-right">Actions</th>
+                                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Name</th>
+                                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Phone Number</th>
+                                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Tags</th>
+                                <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-100">
+                        <tbody className="divide-y divide-gray-50">
                             {filteredContacts.map(contact => (
-                                <tr key={contact.id} className="hover:bg-gray-50 transition-colors">
-                                    <td className="p-4">
+                                <tr key={contact.id} className="hover:bg-blue-50/30 transition-colors group">
+                                    <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-sisia-primary-100 text-sisia-primary-600 flex items-center justify-center">
-                                                <User size={16} />
+                                            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sisia-primary/20 to-teal-100 text-sisia-primary flex items-center justify-center font-bold text-xs ring-4 ring-white shadow-sm">
+                                                {contact.name.charAt(0).toUpperCase()}
                                             </div>
-                                            <span className="font-medium text-gray-800">{contact.name}</span>
+                                            <span className="font-semibold text-gray-900">{contact.name}</span>
                                         </div>
                                     </td>
-                                    <td className="p-4 text-gray-600">
-                                        <div className="flex items-center gap-2">
-                                            <Phone size={14} className="text-gray-400" />
+                                    <td className="px-6 py-4 text-gray-600">
+                                        <div className="flex items-center gap-2 font-mono text-xs bg-gray-50 px-2 py-1 rounded w-fit border border-gray-100 text-gray-500">
+                                            <Phone size={12} className="text-gray-400" />
                                             {contact.phone}
                                         </div>
                                     </td>
-                                    <td className="p-4">
-                                        {contact.tags && contact.tags.split(',').map((tag, i) => (
-                                            <span key={i} className="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full mr-1">
-                                                {tag.trim()}
-                                            </span>
-                                        ))}
+                                    <td className="px-6 py-4">
+                                        <div className="flex flex-wrap gap-1">
+                                            {contact.tags && contact.tags.split(',').map((tag, i) => (
+                                                <span key={i} className="inline-flex items-center gap-1 bg-white border border-gray-200 text-gray-600 text-[10px] font-medium px-2 py-1 rounded-md shadow-sm">
+                                                    <Tag size={10} className="text-gray-400" /> {tag.trim()}
+                                                </span>
+                                            ))}
+                                            {!contact.tags && <span className="text-gray-300 text-xs italic">No tags</span>}
+                                        </div>
                                     </td>
-                                    <td className="p-4 text-right">
-                                        <div className="flex justify-end gap-2">
+                                    <td className="px-6 py-4 text-right">
+                                        <div className="flex justify-end gap-1 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
                                             <button
                                                 onClick={() => handleEdit(contact)}
-                                                className="text-gray-400 hover:text-blue-600 transition-colors"
-                                                title="Edit"
+                                                className="p-2 text-gray-400 hover:text-sisia-primary hover:bg-white hover:shadow-sm border border-transparent hover:border-gray-100 rounded-lg transition-all"
+                                                title="Edit Contact"
                                             >
-                                                <Edit size={18} />
+                                                <Edit size={16} />
                                             </button>
                                             <button
                                                 onClick={() => handleDelete(contact.id)}
-                                                className="text-red-400 hover:text-red-600 transition-colors"
-                                                title="Delete"
+                                                className="p-2 text-gray-400 hover:text-red-500 hover:bg-white hover:shadow-sm border border-transparent hover:border-gray-100 rounded-lg transition-all"
+                                                title="Delete Contact"
                                             >
-                                                <Trash size={18} />
+                                                <Trash size={16} />
                                             </button>
                                         </div>
                                     </td>
@@ -199,8 +207,12 @@ const Contacts = () => {
                             ))}
                             {filteredContacts.length === 0 && (
                                 <tr>
-                                    <td colSpan="4" className="p-8 text-center text-gray-400">
-                                        {searchTerm ? "No contacts match search" : "No contacts found"}
+                                    <td colSpan="4" className="p-12 text-center">
+                                        <div className="flex flex-col items-center justify-center text-gray-400">
+                                            <User size={48} className="mb-3 text-gray-200" />
+                                            <p className="font-medium text-gray-500">{searchTerm ? "No contacts match your search" : "No contacts stored yet"}</p>
+                                            <button onClick={() => setIsModalOpen(true)} className="mt-4 text-sisia-primary hover:underline text-sm font-medium">Add your first contact</button>
+                                        </div>
                                     </td>
                                 </tr>
                             )}

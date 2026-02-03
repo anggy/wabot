@@ -33,6 +33,7 @@ import contactRoutes from './routes/contactRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import logRoutes from './routes/logRoutes.js';
+import aiRoutes from './routes/aiRoutes.js';
 
 app.use('/api/auth', authRoutes);
 
@@ -45,6 +46,7 @@ app.use('/api/dashboard', authenticateToken, dashboardRoutes);
 app.use('/api/contacts', authenticateToken, contactRoutes);
 app.use('/api/users', userRoutes); // userRoutes already has auth middleware inside
 app.use('/api/logs', authenticateToken, logRoutes);
+app.use('/api/ai', authenticateToken, aiRoutes);
 
 
 import uploadRoutes from './routes/uploadRoutes.js';

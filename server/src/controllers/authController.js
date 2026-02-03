@@ -21,7 +21,13 @@ export const login = async (req, res) => {
         }
 
         const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, JWT_SECRET, { expiresIn: '24h' });
-        res.json({ token, role: user.role, username: user.username, credits: user.credits });
+        res.json({
+            token,
+            role: user.role,
+            username: user.username,
+            credits: user.credits,
+            planType: user.planType
+        });
     } catch (error) {
         logger.error(error);
         res.status(500).json({ error: 'Login failed' });
@@ -95,7 +101,7 @@ export const getMe = async (req, res) => {
     try {
         const user = await prisma.user.findUnique({
             where: { id: req.user.id },
-            select: { id: true, username: true, role: true, credits: true, isActive: true, planType: true, messageCost: true, planExpiresAt: true, aiApiKey: true, aiBriefing: true, isAiEnabled: true, email: true, phone: true }
+            select: { id: true, username: true, role: true, credits: true, isActive: true, planType: true, messageCost: true, planExpiresAt: true, aiApiKey: true, aiProvider: true, aiBriefing: true, isAiEnabled: true, email: true, phone: true }
         });
         if (!user) return res.sendStatus(404);
         res.json(user);
@@ -105,13 +111,27 @@ export const getMe = async (req, res) => {
 };
 
 export const updateProfile = async (req, res) => {
-    const { email, phone } = req.body;
+    const { email, phone, aiProvider, aiApiKey, isAiEnabled } = req.body;
     try {
         const user = await prisma.user.update({
             where: { id: req.user.id },
-            data: { email, phone }
+            data: {
+                email,
+                phone,
+                aiProvider,
+                aiApiKey,
+                isAiEnabled
+            }
         });
-        res.json({ id: user.id, username: user.username, email: user.email, phone: user.phone });
+        res.json({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            phone: user.phone,
+            aiProvider: user.aiProvider,
+            aiApiKey: user.aiApiKey,
+            isAiEnabled: user.isAiEnabled
+        });
     } catch (error) {
         logger.error(error);
         res.status(500).json({ error: 'Failed to update profile' });

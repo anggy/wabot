@@ -107,104 +107,192 @@ const SendMessage = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-6">Send Message</h2>
-            <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md max-w-2xl">
-                <div className="space-y-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Session</label>
-                        <select className="w-full border p-2 rounded" value={formData.sessionId} onChange={e => setFormData({ ...formData, sessionId: e.target.value })}>
-                            {sessions.map(s => <option key={s.id} value={s.id}>{s.name} ({s.status})</option>)}
-                        </select>
-                    </div>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                    <h2 className="text-2xl font-bold text-gray-900">Send Message</h2>
+                    <p className="text-gray-500 mt-1">Send a single message to a contact or group</p>
+                </div>
+            </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Recipient</label>
-                        <div className="flex gap-2 mb-2">
-                            <button type="button" onClick={() => setInputMode('manual')} className={`px-3 py-1 text-sm rounded ${inputMode === 'manual' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100'}`}>Manual</button>
-                            <button type="button" onClick={() => setInputMode('contact')} className={`px-3 py-1 text-sm rounded ${inputMode === 'contact' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100'}`}>Contact</button>
-                            <button type="button" onClick={() => setInputMode('group')} className={`px-3 py-1 text-sm rounded ${inputMode === 'group' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100'}`}>Group</button>
-                        </div>
-
-                        {inputMode === 'manual' && (
-                            <input className="w-full border p-2 rounded" placeholder="To (Phone e.g 628xxx or Group ID)" value={formData.to} onChange={e => setFormData({ ...formData, to: e.target.value })} required />
-                        )}
-
-                        {inputMode === 'contact' && (
-                            <select className="w-full border p-2 rounded" value={formData.to} onChange={e => setFormData({ ...formData, to: e.target.value })} required>
-                                <option value="">Select Contact</option>
-                                {contacts.map(c => <option key={c.id} value={c.phone}>{c.name} ({c.phone})</option>)}
-                            </select>
-                        )}
-
-                        {inputMode === 'group' && (
-                            <select className="w-full border p-2 rounded" value={formData.to} onChange={e => setFormData({ ...formData, to: e.target.value })} required>
-                                <option value="">Select Group</option>
-                                {groups.map(g => <option key={g.id} value={g.id}>{g.subject} ({g.id})</option>)}
-                            </select>
-                        )}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                        <select className="w-full border p-2 rounded" value={formData.type} onChange={e => setFormData({ ...formData, type: e.target.value })}>
-                            <option value="TEXT">Text</option>
-                            <option value="IMAGE">Image</option>
-                        </select>
-                    </div>
-
-                    <textarea className="w-full border p-2 rounded h-32" placeholder="Content / Caption" value={formData.content} onChange={e => setFormData({ ...formData, content: e.target.value })} required />
-
-                    {formData.type === 'IMAGE' && (
-                        <div className="space-y-3 p-4 border rounded bg-gray-50">
-                            <label className="block text-sm font-medium text-gray-700">Image Source</label>
-
-                            {/* URL Input */}
-                            <input
-                                className="w-full border p-2 rounded"
-                                placeholder="Image URL (or upload below)"
-                                value={formData.mediaUrl}
-                                onChange={e => setFormData({ ...formData, mediaUrl: e.target.value })}
-                            />
-
-                            <div className="flex gap-2">
-                                {/* Upload Button */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <form onSubmit={handleSubmit} className="p-6 md:p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Left Column: Recipient Info */}
+                        <div className="space-y-6">
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">Select Session</label>
                                 <div className="relative">
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleFileUpload}
-                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                    />
-                                    <button type="button" className="bg-blue-600 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-blue-700">
-                                        <Upload size={16} /> {uploading ? 'Uploading...' : 'Upload'}
-                                    </button>
+                                    <select
+                                        className="w-full appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-sisia-primary transition-colors"
+                                        value={formData.sessionId}
+                                        onChange={e => setFormData({ ...formData, sessionId: e.target.value })}
+                                    >
+                                        {sessions.map(s => <option key={s.id} value={s.id}>{s.name} • {s.status}</option>)}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                    </div>
                                 </div>
-
-                                {/* Gallery Button */}
-                                <button
-                                    type="button"
-                                    onClick={openGallery}
-                                    className="bg-purple-600 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-purple-700"
-                                >
-                                    <Grid size={16} /> Gallery
-                                </button>
                             </div>
 
-                            {/* Preview */}
-                            {formData.mediaUrl && (
-                                <div className="mt-2">
-                                    <p className="text-xs text-gray-500 mb-1">Preview:</p>
-                                    <img src={formData.mediaUrl} alt="Preview" className="h-32 object-cover rounded border" />
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">Recipient Type</label>
+                                <div className="flex bg-gray-100 p-1 rounded-lg mb-4">
+                                    {['manual', 'contact', 'group'].map(mode => (
+                                        <button
+                                            key={mode}
+                                            type="button"
+                                            onClick={() => setInputMode(mode)}
+                                            className={`flex-1 capitalize py-2 text-sm font-medium rounded-md transition-all ${inputMode === mode
+                                                    ? 'bg-white text-sisia-primary shadow-sm'
+                                                    : 'text-gray-500 hover:text-gray-700'
+                                                }`}
+                                        >
+                                            {mode}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                {inputMode === 'manual' && (
+                                    <input
+                                        className="w-full bg-gray-50 border border-gray-200 rounded-lg py-3 px-4 focus:outline-none focus:bg-white focus:border-sisia-primary transition-colors"
+                                        placeholder="Phone number (e.g. 62812...)"
+                                        value={formData.to}
+                                        onChange={e => setFormData({ ...formData, to: e.target.value })}
+                                        required
+                                    />
+                                )}
+
+                                {inputMode === 'contact' && (
+                                    <div className="relative">
+                                        <select
+                                            className="w-full appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg focus:outline-none focus:bg-white focus:border-sisia-primary"
+                                            value={formData.to}
+                                            onChange={e => setFormData({ ...formData, to: e.target.value })}
+                                            required
+                                        >
+                                            <option value="">Select a Contact...</option>
+                                            {contacts.map(c => <option key={c.id} value={c.phone}>{c.name} ({c.phone})</option>)}
+                                        </select>
+                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {inputMode === 'group' && (
+                                    <div className="relative">
+                                        <select
+                                            className="w-full appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg focus:outline-none focus:bg-white focus:border-sisia-primary"
+                                            value={formData.to}
+                                            onChange={e => setFormData({ ...formData, to: e.target.value })}
+                                            required
+                                        >
+                                            <option value="">Select a Group...</option>
+                                            {groups.map(g => <option key={g.id} value={g.id}>{g.subject}</option>)}
+                                        </select>
+                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Right Column: Message Content */}
+                        <div className="space-y-6">
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">Message Content</label>
+                                <div className="flex gap-4 mb-3">
+                                    <label className={`flex-1 cursor-pointer border rounded-lg p-3 flex items-center justify-center gap-2 transition-all ${formData.type === 'TEXT' ? 'bg-blue-50 border-sisia-primary text-sisia-primary' : 'bg-white hover:bg-gray-50 text-gray-600'}`}>
+                                        <input type="radio" className="hidden" name="msgType" checked={formData.type === 'TEXT'} onChange={() => setFormData({ ...formData, type: 'TEXT' })} />
+                                        <span className="font-semibold text-sm">Text Message</span>
+                                    </label>
+                                    <label className={`flex-1 cursor-pointer border rounded-lg p-3 flex items-center justify-center gap-2 transition-all ${formData.type === 'IMAGE' ? 'bg-orange-50 border-orange-500 text-orange-600' : 'bg-white hover:bg-gray-50 text-gray-600'}`}>
+                                        <input type="radio" className="hidden" name="msgType" checked={formData.type === 'IMAGE'} onChange={() => setFormData({ ...formData, type: 'IMAGE' })} />
+                                        <ImageIcon size={18} />
+                                        <span className="font-semibold text-sm">Image Message</span>
+                                    </label>
+                                </div>
+
+                                <textarea
+                                    className="w-full bg-gray-50 border border-gray-200 rounded-lg p-4 h-40 focus:outline-none focus:bg-white focus:border-sisia-primary transition-colors resize-none"
+                                    placeholder={formData.type === 'IMAGE' ? "Add a caption for your image..." : "Type your message here..."}
+                                    value={formData.content}
+                                    onChange={e => setFormData({ ...formData, content: e.target.value })}
+                                    required
+                                />
+                            </div>
+
+                            {formData.type === 'IMAGE' && (
+                                <div className="border-2 border-dashed border-gray-200 rounded-xl p-4 bg-gray-50/50">
+                                    <div className="flex flex-col gap-3">
+                                        <div className="flex gap-2">
+                                            <input
+                                                className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-sisia-primary"
+                                                placeholder="https://example.com/image.jpg"
+                                                value={formData.mediaUrl}
+                                                onChange={e => setFormData({ ...formData, mediaUrl: e.target.value })}
+                                            />
+                                        </div>
+
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <label className="cursor-pointer bg-white border border-gray-200 hover:border-sisia-primary hover:text-sisia-primary text-gray-600 py-2 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm">
+                                                {uploading ? <div className="animate-spin w-4 h-4 border-2 border-sisia-primary border-t-transparent rounded-full"></div> : <Upload size={16} />}
+                                                <span className="text-sm font-medium">Upload File</span>
+                                                <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} />
+                                            </label>
+
+                                            <button
+                                                type="button"
+                                                onClick={openGallery}
+                                                className="bg-purple-50 text-purple-600 border border-purple-200 hover:bg-purple-100 py-2 rounded-lg flex items-center justify-center gap-2 transition-all"
+                                            >
+                                                <Grid size={16} /> <span className="text-sm font-medium">Choose from Gallery</span>
+                                            </button>
+                                        </div>
+
+                                        {formData.mediaUrl && (
+                                            <div className="mt-2 relative group rounded-lg overflow-hidden border border-gray-200 shadow-sm aspect-video bg-gray-100 flex items-center justify-center">
+                                                <img src={formData.mediaUrl} alt="Preview" className="h-full w-full object-contain" />
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setFormData({ ...formData, mediaUrl: '' })}
+                                                    className="absolute top-2 right-2 p-1 bg-black/50 text-white rounded-full hover:bg-red-500 transition-colors opacity-0 group-hover:opacity-100"
+                                                >
+                                                    <X size={14} />
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             )}
                         </div>
-                    )}
-                </div>
-                <button type="submit" className="mt-6 bg-green-600 text-white px-6 py-2 rounded flex items-center gap-2">
-                    <Send size={18} /> Send
-                </button>
-                {status && <p className="mt-4 text-center font-semibold">{status}</p>}
-            </form>
+                    </div>
+
+                    <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+                        <div className="text-sm">
+                            {status && (
+                                <span className={`font-medium ${status.includes('success') ? 'text-emerald-600' : status.includes('Sending') ? 'text-blue-600' : 'text-red-500'}`}>
+                                    {status}
+                                </span>
+                            )}
+                        </div>
+                        <button
+                            type="submit"
+                            disabled={status === 'Sending...'}
+                            className={`bg-sisia-primary text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-sisia-primary/20 hover:shadow-xl hover:translate-y-[-1px] active:translate-y-[1px] transition-all ${status === 'Sending...' ? 'opacity-70 cursor-not-allowed' : 'hover:bg-emerald-700'}`}
+                        >
+                            {status === 'Sending...' ? (
+                                <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></div>
+                            ) : (
+                                <Send size={20} />
+                            )}
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
             {/* Gallery Modal */}
             {showGallery && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">

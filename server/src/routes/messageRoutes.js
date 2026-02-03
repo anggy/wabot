@@ -84,5 +84,41 @@ router.post('/send', messageController.sendMessage);
  */
 router.post('/broadcast', messageController.broadcastMessage);
 
+/**
+ * @swagger
+ * /api/messages/broadcasts:
+ *   get:
+ *     summary: Get broadcast history
+ *     tags: [Messages]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of broadcasts
+ */
+router.get('/broadcasts', messageController.getBroadcasts);
+
+/**
+ * @swagger
+ * /api/messages/broadcast/:id/retry:
+ *   post:
+ *     summary: Retry failed messages in a broadcast
+ *     tags: [Messages]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Retry started
+ *       404:
+ *         description: Broadcast not found
+ */
+router.post('/broadcast/:id/retry', messageController.retryBroadcast);
+
 
 export default router;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User, Mail, Phone, Shield, Coins, Zap, Edit2, Key, Loader } from 'lucide-react';
+import { User, Mail, Phone, Shield, Coins, Zap, Edit2, Key, Loader, Bot } from 'lucide-react';
 import api from '../api';
 import { useAuth } from '../context/AuthContext';
 
@@ -14,7 +14,7 @@ const Profile = () => {
     const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
 
     // Edit Profile State
-    const [editForm, setEditForm] = useState({ email: '', phone: '' });
+    const [editForm, setEditForm] = useState({ email: '', phone: '', aiProvider: 'openai', aiApiKey: '', isAiEnabled: false });
 
     // Change Password State
     const [passwordForm, setPasswordForm] = useState({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
@@ -32,7 +32,10 @@ const Profile = () => {
             setProfile(res.data);
             setEditForm({
                 email: res.data.email || '',
-                phone: res.data.phone || ''
+                phone: res.data.phone || '',
+                aiProvider: res.data.aiProvider || 'openai',
+                aiApiKey: res.data.aiApiKey || '',
+                isAiEnabled: res.data.isAiEnabled || false
             });
             if (setUser) setUser(res.data);
         } catch (err) {
@@ -126,9 +129,14 @@ const Profile = () => {
                 <div className="flex gap-3">
                     <button
                         onClick={() => {
-                            setEditForm({ email: profile?.email || '', phone: profile?.phone || '' });
+                            setEditForm({
+                                email: profile?.email || '',
+                                phone: profile?.phone || '',
+                                aiProvider: profile?.aiProvider || 'openai',
+                                aiApiKey: profile?.aiApiKey || '',
+                                isAiEnabled: profile?.isAiEnabled || false
+                            });
                             setModalError('');
-                            setModalSuccess('');
                             setIsEditModalOpen(true);
                         }}
                         className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors flex items-center gap-2"
@@ -188,16 +196,20 @@ const Profile = () => {
                             <div className="flex-1">
                                 <div className="flex justify-between items-center mb-1">
                                     <p className="text-sm text-gray-500 font-medium">Credits Balance</p>
-                                    <a
-                                        href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to buy more credits for my account: ${profile?.username}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-xs font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded hover:bg-amber-200 transition-colors"
-                                    >
-                                        BUY CREDITS
-                                    </a>
+                                    {profile?.planType !== 'UNLIMITED' && (
+                                        <a
+                                            href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to buy more credits for my account: ${profile?.username}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-xs font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded hover:bg-amber-200 transition-colors"
+                                        >
+                                            BUY CREDITS
+                                        </a>
+                                    )}
                                 </div>
-                                <p className="text-2xl font-bold text-gray-900">{profile?.credits || 0}</p>
+                                <p className="text-2xl font-bold text-gray-900">
+                                    {profile?.planType === 'UNLIMITED' ? '∞' : (profile?.credits || 0)}
+                                </p>
                             </div>
                         </div>
                         <div className="flex items-start gap-3">
@@ -207,25 +219,56 @@ const Profile = () => {
                             <div className="flex-1">
                                 <div className="flex justify-between items-center mb-1">
                                     <p className="text-sm text-gray-500 font-medium">Current Plan</p>
-                                    <a
-                                        href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to change my plan schema for account: ${profile?.username}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-xs font-bold text-purple-600 bg-purple-100 px-2 py-0.5 rounded hover:bg-purple-200 transition-colors"
-                                    >
-                                        CHANGE PLAN
-                                    </a>
+                                    {profile?.planType !== 'UNLIMITED' && (
+                                        <a
+                                            href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}?text=Hello, I would like to change my plan schema for account: ${profile?.username}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-xs font-bold text-purple-600 bg-purple-100 px-2 py-0.5 rounded hover:bg-purple-200 transition-colors"
+                                        >
+                                            CHANGE PLAN
+                                        </a>
+                                    )}
                                 </div>
                                 <p className="text-lg font-bold text-gray-900">
-                                    {profile?.planType === 'TIME_BASED' ? 'Time Based Subscription' : 'Pay As You Go'}
+                                    {profile?.planType === 'UNLIMITED' ? 'Unlimited Plan' :
+                                        profile?.planType === 'TIME_BASED' ? 'Time Based Subscription' : 'Pay As You Go'}
                                 </p>
-                                {profile?.planType === 'TIME_BASED' && (
+                                {profile?.planType === 'UNLIMITED' ? (
+                                    <p className="text-xs font-medium mt-1 text-emerald-600">
+                                        Lifetime access with unlimited credits
+                                    </p>
+                                ) : profile?.planType === 'TIME_BASED' && (
                                     <p className={`text-xs font-medium mt-1 ${profile?.planExpiresAt ? 'text-gray-600' : 'text-amber-600'}`}>
                                         Valid Until: {profile?.planExpiresAt ? new Date(profile.planExpiresAt).toLocaleDateString() : 'Pending verification'}
                                     </p>
                                 )}
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* AI Configuration */}
+            <div className="bg-white rounded-2xl shadow-md p-6 border border-gray-100 flex flex-col gap-4 mt-6">
+                <h3 className="text-lg font-bold text-gray-800 border-b pb-2 flex items-center gap-2">
+                    <Bot size={20} className="text-sisia-primary" />
+                    AI Configuration
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <p className="text-sm text-gray-500 font-medium mb-1">AI Provider</p>
+                        <div className="flex items-center gap-2">
+                            <span className={`px-2 py-1 rounded-md text-sm font-medium ${profile?.aiProvider === 'gemini' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}`}>
+                                {profile?.aiProvider === 'gemini' ? 'Google Gemini' : 'OpenAI'}
+                            </span>
+                        </div>
+                    </div>
+                    <div>
+                        <p className="text-sm text-gray-500 font-medium mb-1">API Key Status</p>
+                        <p className={`font-medium ${profile?.aiApiKey ? 'text-green-600' : 'text-red-500'}`}>
+                            {profile?.aiApiKey ? '● Configured' : '○ Not Configured'}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -257,6 +300,48 @@ const Profile = () => {
                                     className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary"
                                 />
                             </div>
+
+                            <div className="border-t pt-4 mt-2">
+                                <h4 className="font-medium text-gray-800 mb-3 flex items-center justify-between">
+                                    AI Settings
+                                    <label className="flex items-center gap-2 cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            checked={editForm.isAiEnabled}
+                                            onChange={e => setEditForm({ ...editForm, isAiEnabled: e.target.checked })}
+                                            className="w-4 h-4 text-sisia-primary rounded focus:ring-sisia-primary"
+                                        />
+                                        <span className="text-xs font-normal text-gray-500">Enable AI Features</span>
+                                    </label>
+                                </h4>
+                                <div className={`space-y-4 ${!editForm.isAiEnabled ? 'opacity-50 pointer-events-none' : ''}`}>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">AI Provider</label>
+                                        <select
+                                            value={editForm.aiProvider}
+                                            onChange={e => setEditForm({ ...editForm, aiProvider: e.target.value })}
+                                            className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary bg-white"
+                                        >
+                                            <option value="openai">OpenAI (GPT)</option>
+                                            <option value="gemini">Google Gemini</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">API Key</label>
+                                        <input
+                                            type="password"
+                                            value={editForm.aiApiKey}
+                                            onChange={e => setEditForm({ ...editForm, aiApiKey: e.target.value })}
+                                            placeholder="sk-..."
+                                            className="w-full px-4 py-2 border rounded-xl outline-none focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary"
+                                        />
+                                        <p className="text-xs text-gray-500 mt-1">
+                                            {editForm.aiProvider === 'gemini' ? 'Get key from Google AI Studio' : 'Get key from OpenAI Platform'}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className="flex justify-end gap-3 pt-4">
                                 <button
                                     type="button"

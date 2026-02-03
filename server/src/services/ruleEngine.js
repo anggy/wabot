@@ -3,6 +3,7 @@ import { logger } from '../config/logger.js';
 import { jidNormalizedUser } from '@whiskeysockets/baileys';
 import * as creditService from './creditService.js';
 import * as aiService from './aiService.js';
+import { getToolsForUser } from './toolManager.js';
 
 export const processMessage = async (sessionId, message, sock) => {
     try {
@@ -147,10 +148,10 @@ const executeAction = async (rule, sessionId, originalMessage, sock) => {
         try {
             const jid = originalMessage.key.remoteJid;
 
-            // Fetch User's API Key
+            // Fetch User's API Key & Provider
             const user = await prisma.user.findUnique({
                 where: { id: rule.userId },
-                select: { aiApiKey: true, isAiEnabled: true }
+                select: { aiApiKey: true, aiProvider: true, isAiEnabled: true }
             });
 
             if (!user?.aiApiKey) {
@@ -158,17 +159,23 @@ const executeAction = async (rule, sessionId, originalMessage, sock) => {
                 return;
             }
 
-            logger.info(`Generating AI response for rule ${rule.id} (System Prompt: ${rule.responseContent?.substring(0, 20)}...)`);
+            logger.info(`Generating AI response for rule ${rule.id} (Provider: ${user.aiProvider})`);
 
+            const tools = await getToolsForUser(rule.userId);
             const userMessage = originalMessage.message?.conversation || originalMessage.message?.extendedTextMessage?.text || "";
-            const response = await aiService.generateResponse(user.aiApiKey, rule.responseContent, userMessage);
+
+            const response = await aiService.generateResponse({
+                apiKey: user.aiApiKey,
+                provider: user.aiProvider || 'openai',
+                tools: tools
+            }, rule.responseContent, userMessage);
 
             if (response) {
                 await sock.sendMessage(jid, { text: response });
                 await creditService.deductCredit(rule.userId);
                 logger.info(`Rule ${rule.id} AI response sent to ${jid}`);
             } else {
-                logger.warn(`Rule ${rule.id} AI response generation failed (returned null)`);
+                logger.warn(`Rule ${rule.id} AI response generation failed`);
             }
         } catch (error) {
             logger.error(`Rule ${rule.id} AI execution failed: ${error.message}`);

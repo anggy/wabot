@@ -17,11 +17,19 @@ async function main() {
                     username: 'admin',
                     password: hashedPassword,
                     role: 'ADMIN',
+                    planType: 'UNLIMITED',
+                    credits: 99999,
                 },
             });
             console.log('Default admin user created: admin / password123');
         } else {
-            console.log('Admin user already exists.');
+            console.log('Admin user exists. Updating password to ensure access...');
+            const hashedPassword = await bcrypt.hash('password123', 10);
+            await prisma.user.update({
+                where: { username: 'admin' },
+                data: { password: hashedPassword }
+            });
+            console.log('Admin password reset to: password123');
         }
     } catch (e) {
         console.error(e);

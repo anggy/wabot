@@ -297,7 +297,7 @@ const Rules = () => {
                 </div>
             </form>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
                 {/* Group by Session Logic */}
                 {Object.entries(rules.reduce((acc, rule) => {
                     const sessionName = rule.sessionId
@@ -307,50 +307,70 @@ const Rules = () => {
                     acc[sessionName].push(rule);
                     return acc;
                 }, {})).map(([groupName, groupRules]) => (
-                    <div key={groupName} className="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                        <h3 className="font-bold text-gray-700 mb-3 uppercase text-xs tracking-wider">{groupName}</h3>
-                        <div className="space-y-3">
+                    <div key={groupName} className="relative">
+                        <div className="absolute -left-3 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                        <h3 className="flex items-center gap-2 font-bold text-gray-500 mb-4 text-xs uppercase tracking-wider pl-4">
+                            <span className="w-2 h-2 rounded-full bg-gray-400"></span>
+                            {groupName}
+                        </h3>
+                        <div className="grid grid-cols-1 gap-4 pl-4">
                             {groupRules.map(rule => (
-                                <div key={rule.id} className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center group hover:shadow-md transition-shadow">
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <h4 className="font-bold text-gray-800">{rule.name}</h4>
-                                            <span className={`text-xs px-2 py-0.5 rounded-full ${rule.triggerType === 'ALL' ? 'bg-purple-100 text-purple-700' : 'bg-emerald-50 text-sisia-primary'}`}>
-                                                {rule.triggerType}
+                                <div key={rule.id} className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-4 group hover:shadow-md hover:border-sisia-primary/30 transition-all">
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <span className={`h-8 w-8 rounded-lg flex items-center justify-center ${rule.triggerType === 'ALL' ? 'bg-purple-100 text-purple-600' :
+                                                    rule.triggerType === 'MENTION' ? 'bg-orange-100 text-orange-600' :
+                                                        'bg-blue-100 text-blue-600'
+                                                }`}>
+                                                {rule.triggerType === 'ALL' ? <Globe size={16} /> :
+                                                    rule.triggerType === 'MENTION' ? <Zap size={16} /> :
+                                                        <MessageSquare size={16} />}
                                             </span>
+                                            <div>
+                                                <h4 className="font-bold text-gray-900 leading-tight">{rule.name}</h4>
+                                                <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wide">
+                                                    Topic: {rule.triggerType}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="text-sm text-gray-600 flex items-center gap-2">
+
+                                        <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-700 space-y-2 border border-gray-100">
                                             {rule.triggerType !== 'ALL' && (
-                                                <span className="font-mono bg-gray-50 px-1 rounded text-gray-800">"{rule.triggerValue}"</span>
+                                                <div className="flex items-start gap-2">
+                                                    <span className="text-xs font-semibold text-gray-400 w-16 uppercase">Trigger:</span>
+                                                    <span className="font-mono bg-white px-1.5 py-0.5 rounded border border-gray-200 text-gray-800 break-all">{rule.triggerValue}</span>
+                                                </div>
                                             )}
-                                            <span className="text-gray-400">&rarr;</span>
-                                            {rule.actionType === 'RESPONSE' ? (
-                                                <span className="flex items-center gap-1 text-green-700">
-                                                    <MessageSquare size={14} />
-                                                    {rule.responseMediaType === 'IMAGE' ? (
-                                                        <span className="flex items-center gap-1">
-                                                            <Zap size={14} className="text-orange-500" /> [Image] {rule.responseContent}
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-xs font-semibold text-gray-400 w-16 uppercase">Action:</span>
+                                                <div className="flex-1">
+                                                    {rule.actionType === 'RESPONSE' ? (
+                                                        <span className="flex flex-col gap-1">
+                                                            {rule.responseMediaType === 'IMAGE' && (
+                                                                <span className="flex items-center gap-1 text-orange-600 text-xs font-semibold">
+                                                                    <Zap size={12} /> Sends Image
+                                                                </span>
+                                                            )}
+                                                            <span className="text-gray-800 italic">"{rule.responseContent}"</span>
+                                                        </span>
+                                                    ) : rule.actionType === 'AI_REPLY' ? (
+                                                        <span className="flex items-center gap-1.5 text-purple-600 font-medium">
+                                                            <Bot size={14} /> AI Auto-Response
                                                         </span>
                                                     ) : (
-                                                        `Reply: "${rule.responseContent}"`
+                                                        <span className="flex items-center gap-1.5 text-blue-600 font-mono text-xs">
+                                                            <Globe size={14} /> {rule.apiMethod} {rule.apiUrl}
+                                                        </span>
                                                     )}
-                                                </span>
-                                            ) : rule.actionType === 'AI_REPLY' ? (
-                                                <span className="flex items-center gap-1 text-purple-600">
-                                                    <Bot size={14} /> AI Reply: "{rule.responseContent?.substring(0, 30)}..."
-                                                </span>
-                                            ) : (
-                                                <span className="flex items-center gap-1 text-orange-700">
-                                                    <Globe size={14} /> Call: {rule.apiMethod} {rule.apiUrl}
-                                                </span>
-                                            )}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="flex gap-2">
-                                        <button onClick={() => handleEdit(rule)} className="p-2 rounded-lg text-gray-400 hover:text-sisia-primary hover:bg-emerald-50 transition-all" title="Edit Rule">
+                                    <div className="flex md:flex-col gap-2 border-t md:border-t-0 md:border-l border-gray-100 pt-3 md:pt-0 md:pl-4">
+                                        <button onClick={() => handleEdit(rule)} className="flex-1 md:flex-none flex items-center justify-center p-2 rounded-lg text-gray-400 hover:text-sisia-primary hover:bg-sisia-primary/5 transition-all" title="Edit Rule">
                                             <Edit size={18} />
                                         </button>
-                                        <button onClick={() => handleDelete(rule.id)} className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all" title="Delete Rule">
+                                        <button onClick={() => handleDelete(rule.id)} className="flex-1 md:flex-none flex items-center justify-center p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-all" title="Delete Rule">
                                             <Trash size={18} />
                                         </button>
                                     </div>
@@ -359,6 +379,13 @@ const Rules = () => {
                         </div>
                     </div>
                 ))}
+                {rules.length === 0 && (
+                    <div className="text-center py-12 bg-gray-50 rounded-xl border-dashed border-2 border-gray-200">
+                        <Bot size={48} className="mx-auto text-gray-300 mb-4" />
+                        <h3 className="text-lg font-medium text-gray-600">No Auto-Reply Rules</h3>
+                        <p className="text-gray-400 text-sm max-w-sm mx-auto mt-2">Create rules to automatically reply to messages based on keywords or other triggers.</p>
+                    </div>
+                )}
             </div>
             {/* Gallery Modal */}
             {showGallery && (

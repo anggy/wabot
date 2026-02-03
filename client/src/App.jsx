@@ -11,6 +11,7 @@ import Contacts from './pages/Contacts';
 import History from './pages/History';
 import Login from './pages/Login';
 import Users from './pages/Users';
+import AiTools from './pages/AiTools';
 import Gallery from './pages/Gallery';
 import Logs from './pages/Logs';
 import Broadcast from './pages/Broadcast';
@@ -50,6 +51,7 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="logs" element={<Logs />} />
+            <Route path="ai-tools" element={<AiTools />} />
 
             <Route path="broadcast" element={<Broadcast />} />
             <Route path="profile" element={<Profile />} />

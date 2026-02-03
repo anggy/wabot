@@ -272,6 +272,133 @@ const Broadcast = () => {
                     </div>
                 </div>
             )}
+            {/* Broadcast History */}
+            <div className="bg-white p-6 rounded-lg shadow-md max-w-2xl mt-8">
+                <h3 className="text-xl font-bold mb-4">Broadcast History</h3>
+                <BroadcastHistory />
+            </div>
+        </div>
+    );
+};
+
+const BroadcastHistory = () => {
+    const [broadcasts, setBroadcasts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [expandedId, setExpandedId] = useState(null);
+
+    const fetchHistory = async () => {
+        try {
+            const res = await api.get('/messages/broadcasts');
+            setBroadcasts(res.data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchHistory();
+        const interval = setInterval(fetchHistory, 5000); // Auto-refresh every 5s
+        return () => clearInterval(interval);
+    }, []);
+
+    const handleRetry = async (id) => {
+        try {
+            await api.post(`/messages/broadcast/${id}/retry`);
+            alert("Retry started");
+            fetchHistory();
+        } catch (error) {
+            alert(error.response?.data?.error || "Failed to retry");
+        }
+    };
+
+    if (loading) return <p>Loading history...</p>;
+    if (broadcasts.length === 0) return <p className="text-gray-500">No broadcasts found.</p>;
+
+    return (
+        <div className="space-y-4">
+            {broadcasts.map(b => (
+                <div key={b.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-all hover:shadow-md">
+                    <div className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer hover:bg-gray-50/50" onClick={() => setExpandedId(expandedId === b.id ? null : b.id)}>
+                        <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                                <span className={`text-xs px-2.5 py-1 rounded-md font-bold uppercase tracking-wider ${b.status === 'COMPLETED' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'
+                                    }`}>
+                                    {b.status}
+                                </span>
+                                <span className="flex items-center gap-1.5 text-sm font-semibold text-gray-700">
+                                    <Tag size={14} className="text-sisia-primary" />
+                                    {b.tag}
+                                </span>
+                                <span className="text-xs text-gray-400 font-mono hidden md:inline-block">•</span>
+                                <span className="text-xs text-gray-500 hidden md:inline-block">
+                                    {new Date(b.cratedAt).toLocaleDateString()} {new Date(b.cratedAt).toLocaleTimeString()}
+                                </span>
+                            </div>
+
+                            <div className="flex items-center gap-6 text-sm text-gray-600">
+                                <div className="flex items-center gap-2" title="Total Messages">
+                                    <span className="font-medium">{b.total}</span> <span className="text-gray-400 text-xs uppercase">Total</span>
+                                </div>
+                                <div className="flex items-center gap-2" title="Sent Successfully">
+                                    <span className="font-medium text-emerald-600">{b.sent}</span> <span className="text-gray-400 text-xs uppercase">Sent</span>
+                                </div>
+                                <div className="flex items-center gap-2" title="Failed">
+                                    <span className={`font-medium ${b.failed > 0 ? 'text-red-500' : 'text-gray-600'}`}>{b.failed}</span> <span className="text-gray-400 text-xs uppercase">Failed</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center justify-between md:justify-end gap-4 min-w-[120px]">
+                            <div className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${expandedId === b.id
+                                    ? 'bg-gray-100 border-gray-200 text-gray-600'
+                                    : 'bg-white border-transparent text-gray-400 group-hover:border-gray-200'
+                                }`}>
+                                {expandedId === b.id ? "Hide Details" : "Show Details"}
+                            </div>
+                        </div>
+                    </div>
+
+                    {expandedId === b.id && (
+                        <div className="bg-gray-50 border-t border-gray-100 p-4">
+                            <div className="flex justify-between items-center mb-3">
+                                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Delivery Logs</h4>
+                                {b.failed > 0 && (
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); handleRetry(b.id); }}
+                                        className="text-xs font-bold bg-white text-red-600 border border-red-200 px-3 py-1.5 rounded-lg hover:bg-red-50 hover:border-red-300 transition-all shadow-sm flex items-center gap-1"
+                                    >
+                                        <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                                        Retry {b.failed} Failed
+                                    </button>
+                                )}
+                            </div>
+
+                            <div className="bg-white rounded-lg border border-gray-200 max-h-60 overflow-y-auto">
+                                <div className="divide-y divide-gray-100">
+                                    {b.logs.map(log => (
+                                        <div key={log.id} className="p-3 flex justify-between items-center hover:bg-gray-50/50 text-sm">
+                                            <div className="flex items-center gap-3">
+                                                <div className={`w-2 h-2 rounded-full ${log.status === 'SUCCESS' ? 'bg-emerald-500' :
+                                                        log.status === 'FAILED' ? 'bg-red-500' : 'bg-gray-300'
+                                                    }`}></div>
+                                                <span className="font-medium text-gray-700">{log.contactName || 'Unknown'}</span>
+                                                <span className="text-gray-400 text-xs font-mono">({log.contactPhone})</span>
+                                            </div>
+                                            <span className={`text-xs font-medium px-2 py-0.5 rounded ${log.status === 'SUCCESS' ? 'bg-emerald-50 text-emerald-600' :
+                                                    log.status === 'FAILED' ? 'bg-red-50 text-red-600' : 'bg-gray-100 text-gray-500'
+                                                }`}>
+                                                {log.status} {log.errorMessage && ` - ${log.errorMessage}`}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            ))}
         </div>
     );
 };
