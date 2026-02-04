@@ -156,11 +156,11 @@ const LandingPage = () => {
                         Have questions about plans or need custom integration? Our team is ready to assist you.
                     </p>
                     <div className="flex flex-col md:flex-row gap-6 justify-center">
-                        <a href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE}`} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                        <a href={`https://wa.me/${import.meta.env.VITE_ADMIN_PHONE || '6283819278102'}`} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 px-8 py-4 bg-[#25D366] text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
                             <Smartphone size={24} />
                             Chat via WhatsApp
                         </a>
-                        <a href={`mailto:${import.meta.env.VITE_ADMIN_EMAIL}`} className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-800 border border-gray-200 rounded-xl font-bold shadow hover:shadow-md transition-all">
+                        <a href={`mailto:${import.meta.env.VITE_ADMIN_EMAIL || 'anggy.all@gmail.com'}`} className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-800 border border-gray-200 rounded-xl font-bold shadow hover:shadow-md transition-all">
                             <MessageSquare size={24} />
                             Email Support
                         </a>
