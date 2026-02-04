@@ -21,13 +21,24 @@ const Rules = () => {
         sessionId: ''
     });
     const [sessions, setSessions] = useState([]);
+    const [groups, setGroups] = useState([]);
+    const [credentials, setCredentials] = useState([]);
     const [showGallery, setShowGallery] = useState(false);
     const [galleryImages, setGalleryImages] = useState([]);
 
     useEffect(() => {
         fetchRules();
         fetchSessions();
+        fetchCredentials();
     }, []);
+
+    useEffect(() => {
+        if (formData.sessionId) {
+            fetchGroups(formData.sessionId);
+        } else {
+            setGroups([]);
+        }
+    }, [formData.sessionId]);
 
     const fetchSessions = async () => {
         try {
@@ -41,6 +52,24 @@ const Rules = () => {
     const fetchRules = async () => {
         const res = await api.get('/rules');
         setRules(res.data);
+    };
+
+    const fetchCredentials = async () => {
+        try {
+            const res = await api.get('/credentials');
+            setCredentials(res.data);
+        } catch (error) {
+            console.error("Failed to fetch credentials", error);
+        }
+    };
+
+    const fetchGroups = async (sessionId) => {
+        try {
+            const res = await api.get(`/sessions/${sessionId}/groups`);
+            setGroups(res.data);
+        } catch (error) {
+            console.error("Failed to fetch groups", error);
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -73,8 +102,11 @@ const Rules = () => {
             apiPayload: rule.apiPayload || '{}',
             responseContent: rule.responseContent || '',
             responseMediaType: rule.responseMediaType || 'TEXT',
+            responseMediaType: rule.responseMediaType || 'TEXT',
             responseMediaUrl: rule.responseMediaUrl || '',
-            sessionId: rule.sessionId || ''
+            sessionId: rule.sessionId || '',
+            filterGroupId: rule.filterGroupId || '',
+            credentialId: rule.credentialId || ''
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -91,8 +123,11 @@ const Rules = () => {
             apiPayload: '{}',
             responseContent: '',
             responseMediaType: 'TEXT',
+            responseMediaType: 'TEXT',
             responseMediaUrl: '',
-            sessionId: ''
+            sessionId: '',
+            filterGroupId: '',
+            credentialId: ''
         });
     };
 
@@ -166,6 +201,19 @@ const Rules = () => {
                             ))}
                         </select>
                     </div>
+
+                    {formData.sessionId && (
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Filter by Group (Optional)</label>
+                            <select className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" value={formData.filterGroupId} onChange={e => setFormData({ ...formData, filterGroupId: e.target.value })}>
+                                <option value="">All Chats</option>
+                                {groups.map(g => (
+                                    <option key={g.id} value={g.id}>{g.subject}</option>
+                                ))}
+                            </select>
+                            <p className="text-xs text-gray-500 mt-1">Only reply if message is in this group</p>
+                        </div>
+                    )}
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Trigger Type</label>
@@ -258,7 +306,14 @@ const Rules = () => {
                         <>
                             <div className="md:col-span-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Webhook URL</label>
-                                <input className="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" placeholder="https://api.myapp.com/webhook" value={formData.apiUrl} onChange={e => setFormData({ ...formData, apiUrl: e.target.value })} required />
+                                <div className="flex gap-2">
+                                    <input className="flex-1 border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" placeholder="https://api.myapp.com/webhook" value={formData.apiUrl} onChange={e => setFormData({ ...formData, apiUrl: e.target.value })} required />
+                                    <select className="w-1/3 border p-2 rounded-lg outline-none focus:ring-2 focus:ring-sisia-primary" value={formData.credentialId} onChange={e => setFormData({ ...formData, credentialId: e.target.value })}>
+                                        <option value="">No Auth</option>
+                                        {credentials.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                                    </select>
+                                </div>
+                                <p className="text-xs text-gray-500 mt-1">Select a Credential to secure the request</p>
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Method</label>
@@ -319,8 +374,8 @@ const Rules = () => {
                                     <div className="flex-1">
                                         <div className="flex items-center gap-3 mb-2">
                                             <span className={`h-8 w-8 rounded-lg flex items-center justify-center ${rule.triggerType === 'ALL' ? 'bg-purple-100 text-purple-600' :
-                                                    rule.triggerType === 'MENTION' ? 'bg-orange-100 text-orange-600' :
-                                                        'bg-blue-100 text-blue-600'
+                                                rule.triggerType === 'MENTION' ? 'bg-orange-100 text-orange-600' :
+                                                    'bg-blue-100 text-blue-600'
                                                 }`}>
                                                 {rule.triggerType === 'ALL' ? <Globe size={16} /> :
                                                     rule.triggerType === 'MENTION' ? <Zap size={16} /> :

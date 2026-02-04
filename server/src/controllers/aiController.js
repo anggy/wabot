@@ -21,7 +21,7 @@ export const createTool = async (req, res) => {
 
         const tool = await prisma.aiTool.create({
             data: {
-                userId: req.user.id,
+                user: { connect: { id: req.user.id } },
                 name,
                 description,
                 method,

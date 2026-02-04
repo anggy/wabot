@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "npx tsx prisma/seed.js && tsx index.js",
-    "dev": "nodemon --ignore sessions/ --exec tsx index.js"
+    "dev": "nodemon --ignore sessions/ --exec tsx index.js",
+    "test": "npx prisma migrate dev && npx tsx test_ai_flow.js"
   },
   "keywords": [],
   "author": "",

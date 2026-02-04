@@ -22,10 +22,17 @@ export const processMessage = async (sessionId, message, sock) => {
                     { sessionId: sessionId },
                     { sessionId: null }
                 ]
-            }
+            },
+            include: { credential: true } // Include credential for API calls
         });
 
         for (const rule of rules) {
+            // Check Filter Group ID
+            if (rule.filterGroupId) {
+                const jid = message.key.remoteJid;
+                if (jid !== rule.filterGroupId) continue; // Skip if not the target group
+            }
+
             let matched = false;
 
             if (rule.triggerType === 'KEYWORD') {
@@ -101,9 +108,23 @@ const executeAction = async (rule, sessionId, originalMessage, sock) => {
             };
 
             const method = rule.apiMethod || 'POST';
+            const headers = { 'Content-Type': 'application/json' };
+
+            // Inject Credential if available
+            if (rule.credential) {
+                if (rule.credential.location === 'HEADER' && rule.credential.key) {
+                    headers[rule.credential.key] = rule.credential.value;
+                } else if (rule.credential.location === 'QUERY') {
+                    const separator = url.includes('?') ? '&' : '?';
+                    url += `${separator}${rule.credential.key}=${rule.credential.value}`;
+                } else if (rule.credential.type === 'BEARER') {
+                    headers['Authorization'] = `Bearer ${rule.credential.value}`;
+                }
+            }
+
             const options = {
                 method,
-                headers: { 'Content-Type': 'application/json' }
+                headers
             };
 
             if (method !== 'GET' && method !== 'HEAD') {

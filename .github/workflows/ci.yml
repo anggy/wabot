@@ -51,10 +51,9 @@ jobs:
       working-directory: ./server
       run: npx prisma generate
 
-    # Add test step here if you add tests in the future
-    # - name: Run Backend Tests
-    #   working-directory: ./server
-    #   run: npm test
+    - name: Run Backend Tests
+      working-directory: ./server
+      run: npm test
 
   deploy:
     needs: [frontend-build, backend-check]

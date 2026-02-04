@@ -7,6 +7,7 @@ const Scheduler = () => {
     const [sessions, setSessions] = useState([]);
     const [contacts, setContacts] = useState([]);
     const [groups, setGroups] = useState([]);
+    const [credentials, setCredentials] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [editingId, setEditingId] = useState(null);
     const [frequency, setFrequency] = useState('CUSTOM'); // HOURLY, DAILY, CUSTOM
@@ -14,9 +15,14 @@ const Scheduler = () => {
     const [formData, setFormData] = useState({
         sessionId: '',
         recipient: '',
-        messageType: 'TEXT',
+        messageType: 'TEXT', // Legacy
+        actionType: 'TEXT',  // New
         content: '',
         mediaUrl: '',
+        apiUrl: '',
+        apiMethod: 'GET',
+        apiPayload: '{}',
+        credentialId: '',
         cronExpression: '* * * * *'
     });
     const [showGallery, setShowGallery] = useState(false);
@@ -40,6 +46,7 @@ const Scheduler = () => {
             }
         };
         loadSessions();
+        fetchCredentials();
     }, []);
 
     useEffect(() => {
@@ -66,6 +73,15 @@ const Scheduler = () => {
         } catch (error) {
             console.error("Failed to fetch groups", error);
             setGroups([]);
+        }
+    };
+
+    const fetchCredentials = async () => {
+        try {
+            const res = await api.get('/credentials');
+            setCredentials(res.data);
+        } catch (error) {
+            console.error("Failed to fetch credentials", error);
         }
     };
 
@@ -147,8 +163,13 @@ const Scheduler = () => {
             sessionId: schedule.sessionId,
             recipient: schedule.recipient,
             messageType: schedule.messageType,
+            actionType: schedule.actionType || schedule.messageType,
             content: schedule.content,
             mediaUrl: schedule.mediaUrl || '',
+            apiUrl: schedule.apiUrl || '',
+            apiMethod: schedule.apiMethod || 'GET',
+            apiPayload: schedule.apiPayload || '{}',
+            credentialId: schedule.credentialId || '',
             cronExpression: schedule.cronExpression
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -161,8 +182,13 @@ const Scheduler = () => {
             sessionId: sessions.length > 0 ? sessions[0].id : '',
             recipient: '',
             messageType: 'TEXT',
+            actionType: 'TEXT',
             content: '',
             mediaUrl: '',
+            apiUrl: '',
+            apiMethod: 'GET',
+            apiPayload: '{}',
+            credentialId: '',
             cronExpression: '* * * * *'
         });
     };
@@ -218,19 +244,21 @@ const Scheduler = () => {
                             </div>
 
                             <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Message Type</label>
-                                <div className="flex gap-1 p-1 bg-gray-100/50 rounded-lg inline-flex">
-                                    <button
-                                        type="button"
-                                        className={`flex-1 px-4 py-1.5 rounded-md text-sm font-medium transition-all ${formData.messageType === 'TEXT' ? 'bg-white text-sisia-primary shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                                        onClick={() => setFormData({ ...formData, messageType: 'TEXT' })}
-                                    >Text</button>
-                                    <button
-                                        type="button"
-                                        className={`flex-1 px-4 py-1.5 rounded-md text-sm font-medium transition-all ${formData.messageType === 'IMAGE' ? 'bg-white text-sisia-primary shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
-                                        onClick={() => setFormData({ ...formData, messageType: 'IMAGE' })}
-                                    >Image</button>
-                                </div>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Action Type</label>
+                                <select
+                                    className="w-full border border-gray-200 bg-white p-2.5 rounded-lg focus:ring-2 focus:ring-sisia-primary/20 outline-none"
+                                    value={formData.actionType}
+                                    onChange={e => setFormData({
+                                        ...formData,
+                                        actionType: e.target.value,
+                                        messageType: (e.target.value === 'IMAGE') ? 'IMAGE' : 'TEXT'
+                                    })}
+                                >
+                                    <option value="TEXT">Send Text Message</option>
+                                    <option value="IMAGE">Send Image</option>
+                                    <option value="AI_REPLY">Generate with AI</option>
+                                    <option value="API_CALL">Call Webhook API</option>
+                                </select>
                             </div>
                         </div>
 
@@ -279,18 +307,50 @@ const Scheduler = () => {
                         </div>
                     </div>
 
-                    <div className="space-y-2">
-                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Content</label>
-                        <textarea
-                            className="w-full border border-gray-200 bg-gray-50/50 p-4 rounded-xl h-32 focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary outline-none transition-all resize-none"
-                            placeholder="Type your message content here..."
-                            value={formData.content}
-                            onChange={e => setFormData({ ...formData, content: e.target.value })}
-                            required
-                        />
-                    </div>
+                    {formData.actionType === 'API_CALL' ? (
+                        <div className="space-y-4 mb-4">
+                            <div>
+                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Webhook URL</label>
+                                <div className="flex gap-2">
+                                    <input className="flex-1 border p-2 rounded-lg" placeholder="https://api.example.com" value={formData.apiUrl} onChange={e => setFormData({ ...formData, apiUrl: e.target.value })} required />
+                                    <select className="w-1/3 border p-2 rounded-lg" value={formData.credentialId} onChange={e => setFormData({ ...formData, credentialId: e.target.value })}>
+                                        <option value="">No Auth</option>
+                                        {credentials.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Method</label>
+                                    <select className="w-full border p-2 rounded-lg" value={formData.apiMethod} onChange={e => setFormData({ ...formData, apiMethod: e.target.value })}>
+                                        <option value="GET">GET</option>
+                                        <option value="POST">POST</option>
+                                    </select>
+                                </div>
+                                {formData.apiMethod === 'POST' && (
+                                    <div>
+                                        <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Payload (JSON)</label>
+                                        <input className="w-full border p-2 rounded-lg font-mono text-xs" placeholder="{}" value={formData.apiPayload} onChange={e => setFormData({ ...formData, apiPayload: e.target.value })} />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="space-y-2">
+                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">
+                                {formData.actionType === 'AI_REPLY' ? 'AI Prompt' : 'Content'}
+                            </label>
+                            <textarea
+                                className="w-full border border-gray-200 bg-gray-50/50 p-4 rounded-xl h-32 focus:ring-2 focus:ring-sisia-primary/20 focus:border-sisia-primary outline-none transition-all resize-none"
+                                placeholder={formData.actionType === 'AI_REPLY' ? "e.g. Generate a daily quote about success" : "Type your message content here..."}
+                                value={formData.content}
+                                onChange={e => setFormData({ ...formData, content: e.target.value })}
+                                required={formData.actionType !== 'API_CALL'}
+                            />
+                        </div>
+                    )}
 
-                    {formData.messageType === 'IMAGE' && (
+                    {(formData.actionType === 'IMAGE' || formData.messageType === 'IMAGE') && ( // Fallback for legacy
                         <div className="mt-4 p-4 border border-dashed border-gray-300 rounded-xl bg-gray-50/50 hover:bg-gray-50 transition-colors">
                             <div className="flex gap-3">
                                 <input className="flex-1 border border-gray-200 p-2.5 rounded-lg bg-white" placeholder="Image URL" value={formData.mediaUrl} onChange={e => setFormData({ ...formData, mediaUrl: e.target.value })} />

@@ -32,6 +32,9 @@ model Rule {
   responseMediaUrl  String?
   isActive          Boolean  @default(true)
   sessionId         String?  // Optional, if null it applies to all sessions
+  filterGroupId     String?  // Optional: Specific Group JID
+  credentialId      Int?
+  credential        AiCredential? @relation(fields: [credentialId], references: [id])
   userId            Int      @default(1)
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
@@ -45,6 +48,12 @@ model Schedule {
   messageType    String
   content        String
   mediaUrl       String?
+  actionType     String    @default("TEXT") // TEXT, IMAGE, AI_REPLY, API_CALL
+  apiUrl         String?
+  apiMethod      String?   @default("GET")
+  apiPayload     String?
+  credentialId   Int?
+  credential     AiCredential? @relation(fields: [credentialId], references: [id])
   cronExpression String
   lastRun        DateTime?
   isActive       Boolean   @default(true)
@@ -110,6 +119,12 @@ model Broadcast {
   messageType String
   content   String
   mediaUrl  String?
+  actionType String          @default("TEXT") // TEXT, IMAGE, AI_REPLY, API_CALL
+  apiUrl     String?
+  apiMethod  String?         @default("GET")
+  apiPayload String?
+  credentialId Int?
+  credential AiCredential?   @relation(fields: [credentialId], references: [id])
   total     Int            @default(0)
   sent      Int            @default(0)
   failed    Int            @default(0)
@@ -173,6 +188,9 @@ model AiCredential {
   user        User     @relation(fields: [userId], references: [id])
   
   tools       AiTool[]
+  rules       Rule[]
+  schedules   Schedule[]
+  broadcasts  Broadcast[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

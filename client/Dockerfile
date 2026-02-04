@@ -4,6 +4,13 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
+
+# Pass Environment Variables during Build
+ARG VITE_ADMIN_PHONE
+ARG VITE_ADMIN_EMAIL
+ENV VITE_ADMIN_PHONE=$VITE_ADMIN_PHONE
+ENV VITE_ADMIN_EMAIL=$VITE_ADMIN_EMAIL
+
 RUN npm run build
 
 # Serve Stage

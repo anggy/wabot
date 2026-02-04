@@ -3,11 +3,16 @@ import { prisma } from '../prisma.js';
 import { logger } from '../config/logger.js';
 import { getSession } from './sessionManager.js';
 import * as creditService from './creditService.js';
+import * as aiService from './aiService.js';
+import { getToolsForUser } from './toolManager.js';
 
 const jobs = new Map();
 
 export const initScheduler = async () => {
-    const schedules = await prisma.schedule.findMany({ where: { isActive: true } });
+    const schedules = await prisma.schedule.findMany({
+        where: { isActive: true },
+        include: { credential: true }
+    });
     schedules.forEach(scheduleJob);
     logger.info(`Initialized ${schedules.length} schedules`);
 };
@@ -40,13 +45,68 @@ export const scheduleJob = (schedule) => {
 
                 const jid = schedule.recipient.includes('@') ? schedule.recipient : `${schedule.recipient}@s.whatsapp.net`; // Simple formatting
 
-                if (schedule.messageType === 'TEXT') {
-                    await sock.sendMessage(jid, { text: schedule.content });
-                } else if (schedule.messageType === 'IMAGE' && schedule.mediaUrl) {
-                    await sock.sendMessage(jid, {
-                        image: { url: schedule.mediaUrl },
-                        caption: schedule.content
+                if (schedule.actionType === 'AI_REPLY') {
+                    // Fetch User Data for AI
+                    const user = await prisma.user.findUnique({
+                        where: { id: schedule.userId },
+                        select: { aiApiKey: true, aiProvider: true }
                     });
+
+                    if (user?.aiApiKey) {
+                        const tools = await getToolsForUser(schedule.userId);
+                        const response = await aiService.generateResponse({
+                            apiKey: user.aiApiKey,
+                            provider: user.aiProvider || 'openai',
+                            tools: tools
+                        }, schedule.content, "Generate a scheduled message."); // System prompt is content, user message is dummy/context
+
+                        if (response) {
+                            await sock.sendMessage(jid, { text: response });
+                        }
+                    } else {
+                        logger.warn(`Schedule ${schedule.id} skipped: Missing AI Key`);
+                        return; // Don't deduct credit
+                    }
+
+                } else if (schedule.actionType === 'API_CALL' && schedule.apiUrl) {
+                    let url = schedule.apiUrl;
+                    const method = schedule.apiMethod || 'GET';
+                    const headers = { 'Content-Type': 'application/json' };
+
+                    // Inject Credential
+                    if (schedule.credential) {
+                        if (schedule.credential.location === 'HEADER' && schedule.credential.key) {
+                            headers[schedule.credential.key] = schedule.credential.value;
+                        } else if (schedule.credential.location === 'QUERY') {
+                            const separator = url.includes('?') ? '&' : '?';
+                            url += `${separator}${schedule.credential.key}=${schedule.credential.value}`;
+                        } else if (schedule.credential.type === 'BEARER') {
+                            headers['Authorization'] = `Bearer ${schedule.credential.value}`;
+                        }
+                    }
+
+                    const options = { method, headers };
+                    if (method !== 'GET' && method !== 'HEAD' && schedule.apiPayload) {
+                        options.body = schedule.apiPayload;
+                    }
+
+                    const res = await fetch(url, options);
+                    const data = await res.json();
+
+                    // Respond with result (simple text or 'message' field)
+                    const replyText = data.message ? (typeof data.message === 'string' ? data.message : JSON.stringify(data.message)) : JSON.stringify(data);
+                    await sock.sendMessage(jid, { text: replyText });
+
+                } else if (schedule.messageType === 'IMAGE' || schedule.actionType === 'IMAGE') {
+                    if (schedule.mediaUrl) {
+                        await sock.sendMessage(jid, {
+                            image: { url: schedule.mediaUrl },
+                            caption: schedule.content
+                        });
+                    }
+                } else {
+                    // Default TEXT
+                    await sock.sendMessage(jid, { text: schedule.content });
                 }
 
                 await creditService.deductCredit(schedule.userId);

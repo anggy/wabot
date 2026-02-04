@@ -19,7 +19,11 @@ services:
     restart: always
 
   frontend:
-    build: ./client
+    build:
+      context: ./client
+      args:
+        VITE_ADMIN_PHONE: "6283819278102"
+        VITE_ADMIN_EMAIL: "anggy.all@gmail.com"
     container_name: wabot-frontend
     ports:
       - "8002:80"

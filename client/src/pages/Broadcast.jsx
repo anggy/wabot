@@ -5,15 +5,21 @@ import { Send, Upload, Loader, Grid, X, Tag } from 'lucide-react';
 const Broadcast = () => {
     const [sessions, setSessions] = useState([]);
     const [tags, setTags] = useState([]);
+    const [credentials, setCredentials] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [sending, setSending] = useState(false);
     const [result, setResult] = useState(null);
     const [formData, setFormData] = useState({
         sessionId: '',
         tag: '',
-        messageType: 'TEXT',
+        messageType: 'TEXT', // Legacy
+        actionType: 'TEXT',  // New
         content: '',
-        mediaUrl: ''
+        mediaUrl: '',
+        apiUrl: '',
+        apiMethod: 'GET',
+        apiPayload: '{}',
+        credentialId: ''
     });
     const [showGallery, setShowGallery] = useState(false);
     const [galleryImages, setGalleryImages] = useState([]);
@@ -21,6 +27,7 @@ const Broadcast = () => {
     useEffect(() => {
         fetchSessions();
         fetchContacts();
+        fetchCredentials();
     }, []);
 
     const fetchSessions = async () => {
@@ -49,6 +56,15 @@ const Broadcast = () => {
             setTags(Array.from(allTags).sort());
         } catch (error) {
             console.error("Failed to fetch contacts", error);
+        }
+    };
+
+    const fetchCredentials = async () => {
+        try {
+            const res = await api.get('/credentials');
+            setCredentials(res.data);
+        } catch (error) {
+            console.error("Failed to fetch credentials", error);
         }
     };
 
@@ -96,9 +112,13 @@ const Broadcast = () => {
             const res = await api.post('/messages/broadcast', {
                 sessionId: formData.sessionId,
                 tag: formData.tag,
-                type: formData.messageType,
+                type: formData.actionType, // Send actionType as type
                 content: formData.content,
-                mediaUrl: formData.mediaUrl
+                mediaUrl: formData.mediaUrl,
+                apiUrl: formData.apiUrl,
+                apiMethod: formData.apiMethod,
+                apiPayload: formData.apiPayload,
+                credentialId: formData.credentialId
             });
             setResult({ type: 'success', message: res.data.message });
             setFormData(prev => ({ ...prev, content: '', mediaUrl: '' }));
@@ -155,45 +175,67 @@ const Broadcast = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Message Type</label>
-                        <div className="flex gap-4">
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="messageType"
-                                    value="TEXT"
-                                    checked={formData.messageType === 'TEXT'}
-                                    onChange={e => setFormData({ ...formData, messageType: e.target.value })}
-                                    className="text-sisia-primary focus:ring-sisia-primary"
-                                />
-                                <span>Text</span>
-                            </label>
-                            <label className="flex items-center gap-2 cursor-pointer">
-                                <input
-                                    type="radio"
-                                    name="messageType"
-                                    value="IMAGE"
-                                    checked={formData.messageType === 'IMAGE'}
-                                    onChange={e => setFormData({ ...formData, messageType: e.target.value })}
-                                    className="text-sisia-primary focus:ring-sisia-primary"
-                                />
-                                <span>Image</span>
-                            </label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Action Type</label>
+                        <select
+                            className="w-full border border-gray-200 bg-white p-2.5 rounded-lg focus:ring-2 focus:ring-sisia-primary/20 outline-none"
+                            value={formData.actionType}
+                            onChange={e => setFormData({
+                                ...formData,
+                                actionType: e.target.value,
+                                messageType: (e.target.value === 'IMAGE') ? 'IMAGE' : 'TEXT'
+                            })}
+                        >
+                            <option value="TEXT">Send Text Message</option>
+                            <option value="IMAGE">Send Image</option>
+                            <option value="AI_REPLY">Generate with AI</option>
+                            <option value="API_CALL">Call Webhook API</option>
+                        </select>
+                    </div>
+
+                    {formData.actionType === 'API_CALL' ? (
+                        <div className="space-y-4 border p-4 rounded-lg bg-gray-50/50">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Webhook URL</label>
+                                <div className="flex gap-2">
+                                    <input className="flex-1 border p-2 rounded focus:ring-2 focus:ring-sisia-primary outline-none" placeholder="https://api.example.com" value={formData.apiUrl} onChange={e => setFormData({ ...formData, apiUrl: e.target.value })} required />
+                                    <select className="w-1/3 border p-2 rounded focus:ring-2 focus:ring-sisia-primary outline-none" value={formData.credentialId} onChange={e => setFormData({ ...formData, credentialId: e.target.value })}>
+                                        <option value="">No Auth</option>
+                                        {credentials.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Method</label>
+                                    <select className="w-full border p-2 rounded focus:ring-2 focus:ring-sisia-primary outline-none" value={formData.apiMethod} onChange={e => setFormData({ ...formData, apiMethod: e.target.value })}>
+                                        <option value="GET">GET</option>
+                                        <option value="POST">POST</option>
+                                    </select>
+                                </div>
+                                {formData.apiMethod === 'POST' && (
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Payload (JSON)</label>
+                                        <input className="w-full border p-2 rounded font-mono text-xs focus:ring-2 focus:ring-sisia-primary outline-none" placeholder="{}" value={formData.apiPayload} onChange={e => setFormData({ ...formData, apiPayload: e.target.value })} />
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                {formData.actionType === 'AI_REPLY' ? 'AI Prompt' : 'Message Content'}
+                            </label>
+                            <textarea
+                                className="w-full border p-2 rounded h-32 focus:ring-2 focus:ring-sisia-primary focus:border-transparent outline-none resize-none"
+                                placeholder={formData.actionType === 'AI_REPLY' ? "e.g. Write a promotion message for our summer sale." : "Type your message here..."}
+                                value={formData.content}
+                                onChange={e => setFormData({ ...formData, content: e.target.value })}
+                                required={formData.actionType !== 'API_CALL'}
+                            />
+                        </div>
+                    )}
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Message Content</label>
-                        <textarea
-                            className="w-full border p-2 rounded h-32 focus:ring-2 focus:ring-sisia-primary focus:border-transparent outline-none resize-none"
-                            placeholder="Type your message here..."
-                            value={formData.content}
-                            onChange={e => setFormData({ ...formData, content: e.target.value })}
-                            required
-                        />
-                    </div>
-
-                    {formData.messageType === 'IMAGE' && (
+                    {(formData.actionType === 'IMAGE' || formData.messageType === 'IMAGE') && (
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Image Source</label>
                             <div className="flex gap-2">
