@@ -102,7 +102,7 @@ const Rules = () => {
             apiPayload: rule.apiPayload || '{}',
             responseContent: rule.responseContent || '',
             responseMediaType: rule.responseMediaType || 'TEXT',
-            responseMediaType: rule.responseMediaType || 'TEXT',
+
             responseMediaUrl: rule.responseMediaUrl || '',
             sessionId: rule.sessionId || '',
             filterGroupId: rule.filterGroupId || '',
@@ -123,7 +123,7 @@ const Rules = () => {
             apiPayload: '{}',
             responseContent: '',
             responseMediaType: 'TEXT',
-            responseMediaType: 'TEXT',
+
             responseMediaUrl: '',
             sessionId: '',
             filterGroupId: '',
