@@ -109,7 +109,7 @@ const AiTools = () => {
 
         try {
             if (editingTool) {
-                await api.put(`/ ai / tools / ${editingTool.id} `, payload);
+                await api.put(`/ai/tools/${editingTool.id}`, payload);
                 alert("Tool updated successfully");
             } else {
                 await api.post('/ai/tools', payload);
@@ -126,7 +126,7 @@ const AiTools = () => {
     const handleDelete = async (id) => {
         if (!window.confirm("Are you sure you want to delete this tool?")) return;
         try {
-            await api.delete(`/ ai / tools / ${id} `);
+            await api.delete(`/ai/tools/${id}`);
             fetchTools();
         } catch {
             alert("Failed to delete tool");
