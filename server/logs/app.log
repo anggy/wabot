@@ -8759,3 +8759,26 @@
 {"level":30,"time":1770156759289,"pid":74,"hostname":"16465633ef7e","msg":"Resuming session homesislab"}
 {"level":30,"time":1770156759292,"pid":74,"hostname":"16465633ef7e","msg":"Initialized 0 schedules"}
 {"level":30,"time":1770156760907,"pid":74,"hostname":"16465633ef7e","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1770157403004,"pid":75,"hostname":"a4aff9facac1","msg":"Server running on port 3002"}
+{"level":30,"time":1770157403004,"pid":75,"hostname":"a4aff9facac1","msg":"Initializing sessions..."}
+{"level":30,"time":1770157403027,"pid":75,"hostname":"a4aff9facac1","msg":"Resuming session homesislab"}
+{"level":30,"time":1770157403029,"pid":75,"hostname":"a4aff9facac1","msg":"Initialized 0 schedules"}
+{"level":30,"time":1770157404551,"pid":75,"hostname":"a4aff9facac1","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1770157483499,"pid":75,"hostname":"a4aff9facac1","msg":"Socket connected: DegGMUqjs9sdB9ZgAAAB"}
+{"level":30,"time":1770157484270,"pid":75,"hostname":"a4aff9facac1","msg":"Socket disconnected: DegGMUqjs9sdB9ZgAAAB"}
+{"level":30,"time":1770158699112,"pid":75,"hostname":"d93df015c43f","msg":"Server running on port 3002"}
+{"level":30,"time":1770158699112,"pid":75,"hostname":"d93df015c43f","msg":"Initializing sessions..."}
+{"level":30,"time":1770158699133,"pid":75,"hostname":"d93df015c43f","msg":"Resuming session homesislab"}
+{"level":30,"time":1770158699135,"pid":75,"hostname":"d93df015c43f","msg":"Initialized 0 schedules"}
+{"level":30,"time":1770158701330,"pid":75,"hostname":"d93df015c43f","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1770159356100,"pid":75,"hostname":"6a80898da1ac","msg":"Server running on port 3002"}
+{"level":30,"time":1770159356101,"pid":75,"hostname":"6a80898da1ac","msg":"Initializing sessions..."}
+{"level":30,"time":1770159356115,"pid":75,"hostname":"6a80898da1ac","msg":"Resuming session homesislab"}
+{"level":30,"time":1770159356117,"pid":75,"hostname":"6a80898da1ac","msg":"Initialized 0 schedules"}
+{"level":30,"time":1770159357637,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab opened successfully"}
+{"level":50,"time":1770168185895,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab closed. StatusCode: 503, Error: Stream Errored (unknown). Reconnecting: true"}
+{"level":30,"time":1770168188154,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab opened successfully"}
+{"level":50,"time":1770168501985,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab closed. StatusCode: 503, Error: Stream Errored (unknown). Reconnecting: true"}
+{"level":30,"time":1770168504385,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab opened successfully"}
+{"level":50,"time":1770169664422,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab closed. StatusCode: 503, Error: Stream Errored (unknown). Reconnecting: true"}
+{"level":30,"time":1770169666241,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab opened successfully"}

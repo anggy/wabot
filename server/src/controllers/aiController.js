@@ -17,7 +17,7 @@ export const getTools = async (req, res) => {
 
 export const createTool = async (req, res) => {
     try {
-        const { name, description, method, baseUrl, endpoint, parameters, headers, body, authType, authKey, authToken, authLocation } = req.body;
+        const { name, description, method, baseUrl, endpoint, parameters, headers, body, authType, authKey, authToken, authLocation, authRefreshUrl, authRefreshPayload, authTokenPath } = req.body;
 
         const tool = await prisma.aiTool.create({
             data: {
@@ -33,7 +33,10 @@ export const createTool = async (req, res) => {
                 authType,
                 authKey,
                 authToken,
-                authLocation: authLocation || 'HEADER'
+                authLocation: authLocation || 'HEADER',
+                authRefreshUrl,
+                authRefreshPayload: authRefreshPayload ? JSON.stringify(authRefreshPayload) : null,
+                authTokenPath
             }
         });
         res.status(201).json(tool);

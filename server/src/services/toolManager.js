@@ -8,16 +8,17 @@ import { logger } from '../config/logger.js';
  */
 export const getToolsForUser = async (userId) => {
     const tools = await prisma.aiTool.findMany({
-        where: { userId, isEnabled: true }
+        where: { userId, isEnabled: true },
+        include: { credential: true } // Include linked credential
     });
 
     return tools.map(tool => ({
-        // Common format, but we might need specific formats for OpenAI vs Gemini later
-        // For now, we use a generic structure that we can map in the AI Service
-        name: tool.name,
-        description: tool.description,
-        parameters: JSON.parse(tool.parameters || '{}'),
-        // Internal metadata not sent to AI
+        type: 'function',
+        function: {
+            name: tool.name,
+            description: tool.description,
+            parameters: tool.parameters ? JSON.parse(tool.parameters) : {}
+        },
         _internal: {
             id: tool.id,
             method: tool.method,
@@ -25,11 +26,27 @@ export const getToolsForUser = async (userId) => {
             endpoint: tool.endpoint,
             headers: tool.headers ? JSON.parse(tool.headers) : {},
             body: tool.body ? JSON.parse(tool.body) : {},
-            auth: {
+            // Use Credential if available, otherwise fallback to Tool's inline auth
+            auth: tool.credential ? {
+                id: tool.credential.id,
+                source: 'CREDENTIAL', // Marker to know where to update token
+                type: tool.credential.type,
+                key: tool.credential.key,
+                token: tool.credential.value, // Credential uses 'value' for the token
+                location: tool.credential.location,
+                refreshUrl: tool.credential.refreshUrl,
+                refreshPayload: tool.credential.refreshPayload,
+                tokenPath: tool.credential.tokenPath
+            } : {
+                id: tool.id, // Use tool's ID for tool-specific auth
+                source: 'TOOL',
                 type: tool.authType,
                 key: tool.authKey,
                 token: tool.authToken,
-                location: tool.authLocation
+                location: tool.authLocation,
+                refreshUrl: tool.authRefreshUrl,
+                refreshPayload: tool.authRefreshPayload,
+                tokenPath: tool.authTokenPath
             }
         }
     }));
@@ -42,7 +59,38 @@ export const getToolsForUser = async (userId) => {
  * @returns {Promise<Object>} The API response
  */
 export const executeTool = async (toolInternalConfig, args) => {
-    const { method, baseUrl, endpoint, headers, auth } = toolInternalConfig;
+    // 1. First Attempt
+    const result = await runRequest(toolInternalConfig, args);
+
+    // 2. Check for 401 and Auto-Refresh availability
+    if (result.status === 401 && toolInternalConfig.auth && toolInternalConfig.auth.refreshUrl) {
+        logger.warn(`Tool execution failed with 401. Attempting token refresh for tool ${toolInternalConfig.id}...`);
+
+        const success = await refreshToolToken(toolInternalConfig);
+
+        if (success) {
+            // Reload credentials (the refresh function updated the DB, but we need the new token here)
+            // Ideally validation returns the new token, but for safety we can just query or pass it back.
+            // Simplified: we blindly fetch the updated tool from DB to get the new token or pass it from refreshToolToken.
+            // Let's refetch or update the config object in place.
+
+            // To be efficient, let's have refreshToolToken return the new token string.
+            toolInternalConfig.auth.token = success;
+
+            logger.info("Token refreshed successfully. Retrying request...");
+            return await runRequest(toolInternalConfig, args);
+        } else {
+            logger.error("Token refresh failed.");
+            return result; // Return the original 401
+        }
+    }
+
+    return result;
+};
+
+// Helper to actually run the fetch
+const runRequest = async (config, args) => {
+    const { method, baseUrl, endpoint, headers, auth } = config;
     let urlString = `${baseUrl}${endpoint}`;
 
     // Replace path variables (e.g., /users/{id})
@@ -112,5 +160,69 @@ export const executeTool = async (toolInternalConfig, args) => {
         return {
             error: error.message
         };
+    }
+};
+
+/**
+ * Refreshes the token for a specific tool.
+ * @param {Object} toolConfig - The _internal object from the tool list
+ * @returns {Promise<string|null>} New token if success, null otherwise
+ */
+const refreshToolToken = async (toolConfig) => {
+    try {
+        const { auth } = toolConfig; // auth object is now well-structured
+        const { refreshUrl, refreshPayload, tokenPath, source, id } = auth; // id is the ID of the source entity (Tool or Credential)
+
+        if (!refreshUrl) return null;
+
+        const payload = refreshPayload ? JSON.parse(refreshPayload) : {};
+
+        logger.info(`Refreshing token via ${refreshUrl} for ${source} #${id}`);
+        const response = await fetch(refreshUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(`Refresh failed with status ${response.status}: ${errText}`);
+        }
+
+        const data = await response.json();
+
+        // Extract token using dot notation path
+        let newToken = null;
+        if (tokenPath) {
+            newToken = tokenPath.split('.').reduce((obj, key) => obj && obj[key], data);
+        } else {
+            newToken = data.access_token || data.token || data.accessToken;
+        }
+
+        if (!newToken) {
+            throw new Error("Could not find new token in refresh response");
+        }
+
+        // Update Database based on Source
+        if (source === 'CREDENTIAL') {
+            await prisma.aiCredential.update({
+                where: { id: parseInt(id) },
+                data: { value: newToken }
+            });
+        } else {
+            await prisma.aiTool.update({
+                where: { id: parseInt(id) },
+                data: { authToken: newToken }
+            });
+        }
+
+        return newToken;
+
+    } catch (error) {
+        logger.error(`Token Refresh Error: ${error.message}`);
+        return null;
     }
 };

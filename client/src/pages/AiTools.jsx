@@ -1,5 +1,7 @@
+
 import React, { useEffect, useState } from 'react';
 import api from '../api';
+import { Link } from 'react-router-dom';
 import { Plus, Trash, Edit2, Wrench, Globe, Code, Key } from 'lucide-react';
 
 const AiTools = () => {
@@ -7,6 +9,8 @@ const AiTools = () => {
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingTool, setEditingTool] = useState(null);
+
+    const [credentials, setCredentials] = useState([]);
 
     const initialFormState = {
         name: '',
@@ -17,28 +21,38 @@ const AiTools = () => {
         headers: '{}',
         body: '{}',
         parameters: '{\n  "type": "object",\n  "properties": {\n    "param1": {\n      "type": "string",\n      "description": "Description of param1"\n    }\n  },\n  "required": ["param1"]\n}',
-        authType: 'NONE',
-        authKey: '',
-        authToken: '',
-        authLocation: 'HEADER'
+        authType: 'NONE', // Deprecated but kept for compatibility
+        credentialId: '' // NEW
     };
 
     const [formData, setFormData] = useState(initialFormState);
 
     useEffect(() => {
-        fetchTools();
+        fetchData();
     }, []);
 
-    const fetchTools = async () => {
+    const fetchData = async () => {
         setLoading(true);
         try {
-            const res = await api.get('/ai/tools');
-            setTools(res.data);
+            const [toolsRes, credsRes] = await Promise.all([
+                api.get('/ai/tools'),
+                api.get('/credentials')
+            ]);
+            setTools(toolsRes.data);
+            setCredentials(credsRes.data);
         } catch (error) {
-            console.error("Failed to fetch tools", error);
+            console.error("Failed to fetch data", error);
         } finally {
             setLoading(false);
         }
+    };
+
+    // Kept for manual refresh if needed
+    const fetchTools = async () => {
+        try {
+            const res = await api.get('/ai/tools');
+            setTools(res.data);
+        } catch (error) { console.error(error); }
     };
 
     const handleOpenModal = (tool = null) => {
@@ -54,9 +68,7 @@ const AiTools = () => {
                 body: tool.body || '{}',
                 parameters: tool.parameters || '{}',
                 authType: tool.authType || 'NONE',
-                authKey: tool.authKey || '',
-                authToken: tool.authToken || '',
-                authLocation: tool.authLocation || 'HEADER'
+                credentialId: tool.credentialId || ''
             });
         } else {
             setEditingTool(null);
@@ -82,16 +94,22 @@ const AiTools = () => {
             return;
         }
 
+        if (formData.authRefreshPayload && !validateJson(formData.authRefreshPayload)) {
+            alert("Refresh Payload must be valid JSON.");
+            return;
+        }
+
         const payload = {
             ...formData,
             headers: JSON.parse(formData.headers),
             body: JSON.parse(formData.body),
-            parameters: JSON.parse(formData.parameters)
+            parameters: JSON.parse(formData.parameters),
+            authRefreshPayload: formData.authRefreshPayload ? JSON.parse(formData.authRefreshPayload) : null
         };
 
         try {
             if (editingTool) {
-                await api.put(`/ai/tools/${editingTool.id}`, payload);
+                await api.put(`/ ai / tools / ${editingTool.id} `, payload);
                 alert("Tool updated successfully");
             } else {
                 await api.post('/ai/tools', payload);
@@ -108,7 +126,7 @@ const AiTools = () => {
     const handleDelete = async (id) => {
         if (!window.confirm("Are you sure you want to delete this tool?")) return;
         try {
-            await api.delete(`/ai/tools/${id}`);
+            await api.delete(`/ ai / tools / ${id} `);
             fetchTools();
         } catch (error) {
             alert("Failed to delete tool");
@@ -147,10 +165,10 @@ const AiTools = () => {
                     {tools.map(tool => (
                         <div key={tool.id} className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-col h-full hover:shadow-md transition-shadow">
                             <div className="flex justify-between items-start mb-4">
-                                <span className={`px-2 py-1 rounded text-xs font-bold uppercase tracking-wide ${tool.method === 'GET' ? 'bg-blue-100 text-blue-700' :
-                                    tool.method === 'POST' ? 'bg-green-100 text-green-700' :
-                                        tool.method === 'DELETE' ? 'bg-red-100 text-red-700' : 'bg-orange-100 text-orange-700'
-                                    }`}>
+                                <span className={`px - 2 py - 1 rounded text - xs font - bold uppercase tracking - wide ${tool.method === 'GET' ? 'bg-blue-100 text-blue-700' :
+                                        tool.method === 'POST' ? 'bg-green-100 text-green-700' :
+                                            tool.method === 'DELETE' ? 'bg-red-100 text-red-700' : 'bg-orange-100 text-orange-700'
+                                    } `}>
                                     {tool.method}
                                 </span>
                                 <div className="flex gap-2">
@@ -254,77 +272,30 @@ const AiTools = () => {
                                 </div>
                             </div>
 
-                            {/* Authentication Section */}
+                            {/* Authentication */}
                             <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
                                 <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
                                     <Key size={16} /> Authentication
                                 </h4>
 
-                                <div className="grid grid-cols-2 gap-4 mb-3">
-                                    <div>
-                                        <label className="block text-xs font-medium text-gray-700 mb-1">Auth Type</label>
-                                        <select
-                                            className="w-full border p-2 rounded-lg text-sm"
-                                            value={formData.authType}
-                                            onChange={e => setFormData({ ...formData, authType: e.target.value })}
-                                        >
-                                            <option value="NONE">None</option>
-                                            <option value="API_KEY">API Key</option>
-                                            <option value="BEARER">Bearer Token (JWT)</option>
-                                        </select>
-                                    </div>
-                                    {formData.authType === 'API_KEY' && (
-                                        <div>
-                                            <label className="block text-xs font-medium text-gray-700 mb-1">Add To</label>
-                                            <select
-                                                className="w-full border p-2 rounded-lg text-sm"
-                                                value={formData.authLocation}
-                                                onChange={e => setFormData({ ...formData, authLocation: e.target.value })}
-                                            >
-                                                <option value="HEADER">Header</option>
-                                                <option value="QUERY">Query Parameter</option>
-                                            </select>
-                                        </div>
-                                    )}
+                                <div>
+                                    <label className="block text-xs font-medium text-gray-700 mb-1">Credential</label>
+                                    <select
+                                        className="w-full border p-2 rounded-lg text-sm bg-white"
+                                        value={formData.credentialId || ''}
+                                        onChange={e => setFormData({ ...formData, credentialId: e.target.value ? parseInt(e.target.value) : '' })}
+                                    >
+                                        <option value="">No Authentication</option>
+                                        {credentials.map(cred => (
+                                            <option key={cred.id} value={cred.id}>
+                                                {cred.name} ({cred.type})
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <p className="text-xs text-gray-500 mt-1">
+                                        Manage credentials in the <Link to="/app/credentials" className="text-sisia-primary hover:underline">Credentials Manager</Link>.
+                                    </p>
                                 </div>
-
-                                {formData.authType === 'API_KEY' && (
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-xs font-medium text-gray-700 mb-1">Key Name</label>
-                                            <input
-                                                type="text"
-                                                className="w-full border p-2 rounded-lg text-sm font-mono"
-                                                placeholder="e.g. X-API-KEY"
-                                                value={formData.authKey}
-                                                onChange={e => setFormData({ ...formData, authKey: e.target.value })}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-medium text-gray-700 mb-1">Value</label>
-                                            <input
-                                                type="text"
-                                                className="w-full border p-2 rounded-lg text-sm font-mono"
-                                                placeholder="Required key value"
-                                                value={formData.authToken}
-                                                onChange={e => setFormData({ ...formData, authToken: e.target.value })}
-                                            />
-                                        </div>
-                                    </div>
-                                )}
-
-                                {formData.authType === 'BEARER' && (
-                                    <div>
-                                        <label className="block text-xs font-medium text-gray-700 mb-1">Token</label>
-                                        <input
-                                            type="text"
-                                            className="w-full border p-2 rounded-lg text-sm font-mono"
-                                            placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                                            value={formData.authToken}
-                                            onChange={e => setFormData({ ...formData, authToken: e.target.value })}
-                                        />
-                                    </div>
-                                )}
                             </div>
 
                             <div>

@@ -11,7 +11,7 @@ async function main() {
 
         if (!adminExists) {
             console.log('Creating default admin user...');
-            const hashedPassword = await bcrypt.hash('password123', 10);
+            const hashedPassword = await bcrypt.hash('adminpassword', 10);
             await prisma.user.create({
                 data: {
                     username: 'admin',
@@ -21,15 +21,15 @@ async function main() {
                     credits: 99999,
                 },
             });
-            console.log('Default admin user created: admin / password123');
+            console.log('Default admin user created: admin / adminpassword');
         } else {
             console.log('Admin user exists. Updating password to ensure access...');
-            const hashedPassword = await bcrypt.hash('password123', 10);
+            const hashedPassword = await bcrypt.hash('adminpassword', 10);
             await prisma.user.update({
                 where: { username: 'admin' },
                 data: { password: hashedPassword }
             });
-            console.log('Admin password reset to: password123');
+            console.log('Admin password reset to: adminpassword');
         }
     } catch (e) {
         console.error(e);

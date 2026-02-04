@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Smartphone, Users, MessageSquare, Calendar, Zap, Send, Database, Shield, LogOut, BookOpen, ChevronLeft, ChevronRight, Coins, Image as ImageIcon, ScrollText, Megaphone, Wrench } from 'lucide-react';
+import { LayoutDashboard, Smartphone, Users, MessageSquare, Calendar, Zap, Send, Database, Shield, LogOut, BookOpen, ChevronLeft, ChevronRight, Coins, Image as ImageIcon, ScrollText, Megaphone, Wrench, Key } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -15,6 +15,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         { path: '/app/history', label: 'Messages', icon: MessageSquare },
         { path: '/app/rules', label: 'Auto Reply', icon: Zap },
         { path: '/app/ai-tools', label: 'AI Actions', icon: Wrench },
+        { path: '/app/credentials', label: 'Credentials', icon: Key },
         { path: '/app/scheduler', label: 'Scheduler', icon: Calendar },
         { path: '/app/broadcast', label: 'Broadcast', icon: Megaphone },
         { path: '/app/groups', label: 'Groups', icon: Database },

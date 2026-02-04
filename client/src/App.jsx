@@ -19,6 +19,7 @@ import LandingPage from './pages/LandingPage';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Documentation from './pages/Documentation';
+import Credentials from './pages/Credentials';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
 
@@ -52,7 +53,7 @@ function App() {
             <Route path="gallery" element={<Gallery />} />
             <Route path="logs" element={<Logs />} />
             <Route path="ai-tools" element={<AiTools />} />
-
+            <Route path="credentials" element={<Credentials />} />
             <Route path="broadcast" element={<Broadcast />} />
             <Route path="profile" element={<Profile />} />
             <Route path="docs" element={<Documentation />} />
