@@ -64,7 +64,7 @@ const Credentials = () => {
         if (payload.refreshPayload) {
             try {
                 payload.refreshPayload = JSON.parse(payload.refreshPayload);
-            } catch (e) {
+            } catch {
                 alert("Refresh Payload must be valid JSON");
                 return;
             }
@@ -91,7 +91,7 @@ const Credentials = () => {
         try {
             await api.delete(`/credentials/${id}`);
             fetchCredentials();
-        } catch (error) {
+        } catch {
             alert("Failed to delete credential");
         }
     };

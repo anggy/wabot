@@ -81,7 +81,7 @@ const AiTools = () => {
         try {
             JSON.parse(str);
             return true;
-        } catch (e) {
+        } catch {
             return false;
         }
     };
@@ -128,7 +128,7 @@ const AiTools = () => {
         try {
             await api.delete(`/ ai / tools / ${id} `);
             fetchTools();
-        } catch (error) {
+        } catch {
             alert("Failed to delete tool");
         }
     };
@@ -166,8 +166,8 @@ const AiTools = () => {
                         <div key={tool.id} className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex flex-col h-full hover:shadow-md transition-shadow">
                             <div className="flex justify-between items-start mb-4">
                                 <span className={`px - 2 py - 1 rounded text - xs font - bold uppercase tracking - wide ${tool.method === 'GET' ? 'bg-blue-100 text-blue-700' :
-                                        tool.method === 'POST' ? 'bg-green-100 text-green-700' :
-                                            tool.method === 'DELETE' ? 'bg-red-100 text-red-700' : 'bg-orange-100 text-orange-700'
+                                    tool.method === 'POST' ? 'bg-green-100 text-green-700' :
+                                        tool.method === 'DELETE' ? 'bg-red-100 text-red-700' : 'bg-orange-100 text-orange-700'
                                     } `}>
                                     {tool.method}
                                 </span>

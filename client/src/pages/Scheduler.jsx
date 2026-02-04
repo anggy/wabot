@@ -24,8 +24,22 @@ const Scheduler = () => {
 
     useEffect(() => {
         fetchSchedules();
-        fetchSessions();
         fetchContacts();
+        const loadSessions = async () => {
+            try {
+                const res = await api.get('/sessions');
+                setSessions(res.data);
+                setFormData(prev => {
+                    if (res.data.length > 0 && !prev.sessionId) {
+                        return { ...prev, sessionId: res.data[0].id };
+                    }
+                    return prev;
+                });
+            } catch (e) {
+                console.error("Failed to fetch sessions", e);
+            }
+        };
+        loadSessions();
     }, []);
 
     useEffect(() => {
@@ -34,13 +48,7 @@ const Scheduler = () => {
         }
     }, [formData.sessionId]);
 
-    const fetchSessions = async () => {
-        const res = await api.get('/sessions');
-        setSessions(res.data);
-        if (res.data.length > 0 && !formData.sessionId) {
-            setFormData(prev => ({ ...prev, sessionId: res.data[0].id }));
-        }
-    };
+
 
     const fetchContacts = async () => {
         try {

@@ -4,7 +4,6 @@ import { Send, Upload, Loader, Grid, X, Tag } from 'lucide-react';
 
 const Broadcast = () => {
     const [sessions, setSessions] = useState([]);
-    const [contacts, setContacts] = useState([]);
     const [tags, setTags] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [sending, setSending] = useState(false);
@@ -39,7 +38,6 @@ const Broadcast = () => {
     const fetchContacts = async () => {
         try {
             const res = await api.get('/contacts');
-            setContacts(res.data);
 
             // Extract unique tags
             const allTags = new Set();
@@ -352,8 +350,8 @@ const BroadcastHistory = () => {
 
                         <div className="flex items-center justify-between md:justify-end gap-4 min-w-[120px]">
                             <div className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${expandedId === b.id
-                                    ? 'bg-gray-100 border-gray-200 text-gray-600'
-                                    : 'bg-white border-transparent text-gray-400 group-hover:border-gray-200'
+                                ? 'bg-gray-100 border-gray-200 text-gray-600'
+                                : 'bg-white border-transparent text-gray-400 group-hover:border-gray-200'
                                 }`}>
                                 {expandedId === b.id ? "Hide Details" : "Show Details"}
                             </div>
@@ -381,13 +379,13 @@ const BroadcastHistory = () => {
                                         <div key={log.id} className="p-3 flex justify-between items-center hover:bg-gray-50/50 text-sm">
                                             <div className="flex items-center gap-3">
                                                 <div className={`w-2 h-2 rounded-full ${log.status === 'SUCCESS' ? 'bg-emerald-500' :
-                                                        log.status === 'FAILED' ? 'bg-red-500' : 'bg-gray-300'
+                                                    log.status === 'FAILED' ? 'bg-red-500' : 'bg-gray-300'
                                                     }`}></div>
                                                 <span className="font-medium text-gray-700">{log.contactName || 'Unknown'}</span>
                                                 <span className="text-gray-400 text-xs font-mono">({log.contactPhone})</span>
                                             </div>
                                             <span className={`text-xs font-medium px-2 py-0.5 rounded ${log.status === 'SUCCESS' ? 'bg-emerald-50 text-emerald-600' :
-                                                    log.status === 'FAILED' ? 'bg-red-50 text-red-600' : 'bg-gray-100 text-gray-500'
+                                                log.status === 'FAILED' ? 'bg-red-50 text-red-600' : 'bg-gray-100 text-gray-500'
                                                 }`}>
                                                 {log.status} {log.errorMessage && ` - ${log.errorMessage}`}
                                             </span>
