@@ -71,8 +71,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /home/gie/workspace/wabot
-            # Pull latest code
-            git pull origin main
+            # Force sync with remote to avoid merge conflicts
+            git fetch origin main
+            git reset --hard origin/main
             
             # Rebuild and restart containers
             # Using --build to force rebuild from new code
