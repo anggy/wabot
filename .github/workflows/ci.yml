@@ -64,9 +64,9 @@ jobs:
       - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          host: ${{ home.SSH_HOST }}
+          username: ${{ home.SSH_USER }}
+          key: ${{ home.SSH_KEY }}
           script: |
             cd ~/wabot
             # Pull latest code
