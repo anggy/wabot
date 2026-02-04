@@ -9,18 +9,19 @@ const Contacts = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [editingId, setEditingId] = useState(null);
 
-    useEffect(() => {
-        fetchContacts();
-    }, []);
-
-    const fetchContacts = async () => {
+    const fetchContacts = React.useCallback(async () => {
         try {
             const res = await api.get('/contacts');
             setContacts(res.data);
         } catch (error) {
             console.error(error);
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        fetchContacts();
+    }, [fetchContacts]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,7 +33,7 @@ const Contacts = () => {
             }
             fetchContacts();
             handleCloseModal();
-        } catch (error) {
+        } catch {
             alert('Failed to save contact');
         }
     };

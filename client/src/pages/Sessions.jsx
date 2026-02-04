@@ -12,9 +12,25 @@ const Sessions = () => {
     const [editingName, setEditingName] = useState('');
     const [isAdding, setIsAdding] = useState(false);
 
+    const fetchSessions = async () => {
+        try {
+            const res = await api.get('/sessions');
+            setSessions(res.data);
+
+            // Initialize QRs from API response
+            const newQrs = {};
+            res.data.forEach(s => {
+                if (s.qr) newQrs[s.id] = s.qr;
+            });
+            setQrCodes(prev => ({ ...prev, ...newQrs }));
+        } catch (error) {
+            console.error("Failed to fetch sessions", error);
+        }
+    };
+
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         fetchSessions();
-        // ... socket logic ...
         const socket = io(import.meta.env.VITE_API_URL || undefined);
 
         socket.on('session-qr', ({ sessionId, qr }) => {
@@ -35,18 +51,6 @@ const Sessions = () => {
         return () => socket.disconnect();
     }, []);
 
-    const fetchSessions = async () => {
-        const res = await api.get('/sessions');
-        setSessions(res.data);
-
-        // Initialize QRs from API response
-        const newQrs = {};
-        res.data.forEach(s => {
-            if (s.qr) newQrs[s.id] = s.qr;
-        });
-        setQrCodes(prev => ({ ...prev, ...newQrs }));
-    };
-
     const handleCreate = async () => {
         if (!newSessionId) return;
         await api.post('/sessions', { id: newSessionId, name: newSessionId });
@@ -66,7 +70,7 @@ const Sessions = () => {
             await api.put(`/sessions/${id}`, { name: editingName });
             setEditingSessionId(null);
             fetchSessions();
-        } catch (error) {
+        } catch {
             alert("Failed to update session name");
         }
     };
@@ -229,6 +233,7 @@ const Sessions = () => {
             </div>
         </div>
     );
+
 };
 
 export default Sessions;

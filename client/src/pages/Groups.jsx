@@ -14,13 +14,7 @@ const Groups = () => {
         });
     }, []);
 
-    useEffect(() => {
-        if (selectedSession) {
-            fetchGroups(selectedSession);
-        }
-    }, [selectedSession]);
-
-    const fetchGroups = async (id) => {
+    const fetchGroups = React.useCallback(async (id) => {
         setLoading(true);
         try {
             const res = await api.get(`/sessions/${id}/groups`);
@@ -30,7 +24,14 @@ const Groups = () => {
             setGroups([]);
         }
         setLoading(false);
-    };
+    }, []);
+
+    useEffect(() => {
+        if (selectedSession) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
+            fetchGroups(selectedSession);
+        }
+    }, [selectedSession, fetchGroups]);
 
     return (
         <div>

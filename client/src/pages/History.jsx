@@ -9,19 +9,7 @@ const History = () => {
     const [sessions, setSessions] = useState([]);
     const [selectedSession, setSelectedSession] = useState('');
 
-    useEffect(() => {
-        fetchLogs(page);
-    }, [page]);
-
-    useEffect(() => {
-        fetchLogs(page);
-    }, [page, selectedSession]);
-
-    useEffect(() => {
-        fetchSessions();
-    }, []);
-
-    const fetchSessions = async () => {
+    const fetchSessions = React.useCallback(async () => {
         try {
             const res = await api.get('/sessions');
             setSessions(res.data);
@@ -31,8 +19,9 @@ const History = () => {
         } catch (error) {
             console.error("Failed to fetch sessions", error);
         }
-    };
-    const fetchLogs = async (p) => {
+    }, [selectedSession]);
+
+    const fetchLogs = React.useCallback(async (p) => {
         try {
             const res = await api.get(`/dashboard/history?page=${p}&limit=20${selectedSession ? `&sessionId=${selectedSession}` : ''}`);
             setLogs(res.data.data);
@@ -40,7 +29,17 @@ const History = () => {
         } catch (error) {
             console.error(error);
         }
-    };
+    }, [selectedSession]);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        fetchLogs(page);
+    }, [page, fetchLogs]);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        fetchSessions();
+    }, [fetchSessions]);
 
     return (
         <div>

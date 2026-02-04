@@ -54,7 +54,7 @@ const Users = () => {
             setIsAddModalOpen(false);
             fetchUsers();
             alert("User created successfully");
-        } catch (error) {
+        } catch {
             alert("Failed to create user");
         }
     };
@@ -66,7 +66,7 @@ const Users = () => {
             setUserToEdit(null);
             fetchUsers();
             alert("User updated successfully");
-        } catch (error) {
+        } catch {
             alert("Failed to update user");
         }
     };
@@ -76,7 +76,7 @@ const Users = () => {
         try {
             await api.delete(`/users/${id}`);
             fetchUsers();
-        } catch (error) {
+        } catch {
             alert("Failed to delete user");
         }
     };
@@ -86,7 +86,7 @@ const Users = () => {
         try {
             await api.put(`/users/${user.id}`, { isActive: !user.isActive });
             fetchUsers();
-        } catch (error) {
+        } catch {
             alert("Failed to update status");
         }
     };
@@ -98,7 +98,7 @@ const Users = () => {
             setUserToCredit(null);
             fetchUsers();
             alert("Credits updated");
-        } catch (error) {
+        } catch {
             alert("Failed to update credits");
         }
     };
@@ -110,7 +110,7 @@ const Users = () => {
             setUserToConfig(null);
             fetchUsers();
             alert("Settings updated");
-        } catch (error) {
+        } catch {
             alert("Failed to update settings");
         }
     };

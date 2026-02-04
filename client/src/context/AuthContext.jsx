@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import api from '../api';
 import { Loader } from 'lucide-react';
@@ -6,7 +7,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(!!localStorage.getItem('token'));
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -18,8 +19,6 @@ export const AuthProvider = ({ children }) => {
                     setUser(null);
                 })
                 .finally(() => setLoading(false));
-        } else {
-            setLoading(false);
         }
     }, []);
 

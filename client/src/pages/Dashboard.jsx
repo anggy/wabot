@@ -4,7 +4,7 @@ import { LayoutDashboard, MessageSquare, Users, Zap, Smartphone, ArrowUpRight, A
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 
-const StatCard = ({ icon: IconComp, label, value, subValue, color, delay }) => (
+const StatCard = ({ icon: Icon, label, value, subValue, color, delay }) => ( // eslint-disable-line no-unused-vars
     <div
         className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
         style={{ animationDelay: `${delay}ms` }}
@@ -16,19 +16,19 @@ const StatCard = ({ icon: IconComp, label, value, subValue, color, delay }) => (
                 {subValue && <p className="text-xs text-gray-400 mt-1">{subValue}</p>}
             </div>
             <div className={`p-3 rounded-xl bg-${color}-50 text-${color}-600`}>
-                <IconComp size={24} strokeWidth={2} />
+                <Icon size={24} strokeWidth={2} />
             </div>
         </div>
     </div>
 );
 
-const QuickAction = ({ to, icon: IconComp, label, color }) => (
+const QuickAction = ({ to, icon: Icon, label, color }) => ( // eslint-disable-line no-unused-vars
     <Link
         to={to}
         className={`flex flex-col items-center justify-center p-4 rounded-xl border border-gray-100 bg-white hover:bg-${color}-50 hover:border-${color}-200 transition-all duration-200 group`}
     >
         <div className={`p-3 rounded-full bg-${color}-50 text-${color}-600 mb-2 group-hover:scale-110 transition-transform`}>
-            <IconComp size={20} />
+            <Icon size={20} />
         </div>
         <span className="text-sm font-medium text-gray-600 group-hover:text-gray-900">{label}</span>
     </Link>
@@ -48,13 +48,6 @@ const Dashboard = () => {
         credits: 0
     });
 
-    useEffect(() => {
-        fetchStats();
-        // Refresh stats every minute
-        const interval = setInterval(fetchStats, 60000);
-        return () => clearInterval(interval);
-    }, []);
-
     const fetchStats = async () => {
         try {
             const res = await api.get('/dashboard/stats');
@@ -63,6 +56,14 @@ const Dashboard = () => {
             console.error("Failed to fetch stats", error);
         }
     };
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        fetchStats();
+        // Refresh stats every minute
+        const interval = setInterval(fetchStats, 60000);
+        return () => clearInterval(interval);
+    }, []);
 
     const getGreeting = () => {
         const hour = new Date().getHours();

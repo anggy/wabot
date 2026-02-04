@@ -4,7 +4,7 @@ import api from '../api';
 import { useAuth } from '../context/AuthContext';
 
 const Profile = () => {
-    const { user: authUser, setUser } = useAuth(); // If set user is available in context, use it to update local user state if needed
+    const { setUser } = useAuth(); // If set user is available in context, use it to update local user state if needed
 
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -22,11 +22,7 @@ const Profile = () => {
     const [modalSuccess, setModalSuccess] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    useEffect(() => {
-        fetchProfile();
-    }, []);
-
-    const fetchProfile = async () => {
+    const fetchProfile = React.useCallback(async () => {
         try {
             const res = await api.get('/auth/me');
             setProfile(res.data);
@@ -38,12 +34,16 @@ const Profile = () => {
                 isAiEnabled: res.data.isAiEnabled || false
             });
             if (setUser) setUser(res.data);
-        } catch (err) {
+        } catch {
             setError('Failed to load profile');
         } finally {
             setLoading(false);
         }
-    };
+    }, [setUser]);
+
+    useEffect(() => {
+        fetchProfile();
+    }, [fetchProfile]);
 
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
