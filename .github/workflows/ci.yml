@@ -1,0 +1,81 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  frontend-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+        cache-dependency-path: client/package-lock.json
+
+    - name: Install Frontend Dependencies
+      working-directory: ./client
+      run: npm ci
+
+    - name: Lint Frontend
+      working-directory: ./client
+      run: npm run lint
+
+    - name: Build Frontend
+      working-directory: ./client
+      run: npm run build
+
+  backend-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+        cache-dependency-path: server/package-lock.json
+
+    - name: Install Backend Dependencies
+      working-directory: ./server
+      run: npm ci
+
+    - name: Generate Prisma Client
+      working-directory: ./server
+      run: npx prisma generate
+
+    # Add test step here if you add tests in the future
+    # - name: Run Backend Tests
+    #   working-directory: ./server
+    #   run: npm test
+
+  deploy:
+    needs: [frontend-build, backend-check]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ~/wabot
+            # Pull latest code
+            git pull origin main
+            
+            # Rebuild and restart containers
+            # Using --build to force rebuild from new code
+            docker compose up -d --build
+            
+            # Cleanup unused images (builders etc)
+            docker image prune -f
+
