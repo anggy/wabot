@@ -69,7 +69,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~/wabot
+            cd /home/gie/workspace/wabot
             # Pull latest code
             git pull origin main
             
