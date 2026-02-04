@@ -8791,3 +8791,14 @@
 {"level":30,"time":1770185390731,"pid":34632,"hostname":"MSI","msg":"Initializing sessions..."}
 {"level":30,"time":1770191997242,"pid":27520,"hostname":"MSI","msg":"Server running on port 3002"}
 {"level":30,"time":1770191997242,"pid":27520,"hostname":"MSI","msg":"Initializing sessions..."}
+{"level":30,"time":1770196072166,"pid":35680,"hostname":"MSI","msg":"Server running on port 3002"}
+{"level":30,"time":1770196072167,"pid":35680,"hostname":"MSI","msg":"Initializing sessions..."}
+{"level":30,"time":1770196072230,"pid":35680,"hostname":"MSI","msg":"Resuming session homesislab"}
+{"level":30,"time":1770196072294,"pid":35680,"hostname":"MSI","msg":"Initialized 0 schedules"}
+{"level":30,"time":1770196074158,"pid":35680,"hostname":"MSI","msg":"Generating QR for session homesislab"}
+{"level":30,"time":1770196123114,"pid":35680,"hostname":"MSI","msg":"Socket connected: b_cDRCwteXndCXHiAAAC"}
+{"level":30,"time":1770196126609,"pid":35680,"hostname":"MSI","msg":"Socket disconnected: b_cDRCwteXndCXHiAAAC"}
+{"level":30,"time":1770196129636,"pid":35680,"hostname":"MSI","msg":"Socket connected: 8amozNQKajNShucbAAAF"}
+{"level":30,"time":1770196132088,"pid":35680,"hostname":"MSI","msg":"Socket disconnected: 8amozNQKajNShucbAAAF"}
+{"level":30,"time":1770196134188,"pid":35680,"hostname":"MSI","msg":"Generating QR for session homesislab"}
+{"level":30,"time":1770196154209,"pid":35680,"hostname":"MSI","msg":"Generating QR for session homesislab"}
