@@ -31,9 +31,6 @@ export const createTool = async (req, res) => {
                 headers: JSON.stringify(headers || {}),
                 body: JSON.stringify(body || {}),
                 authType,
-                authKey,
-                authToken,
-                authLocation: authLocation || 'HEADER',
                 authRefreshUrl,
                 authRefreshPayload: authRefreshPayload ? JSON.stringify(authRefreshPayload) : null,
                 authTokenPath
@@ -54,7 +51,13 @@ export const updateTool = async (req, res) => {
             return res.status(404).json({ error: 'Tool not found' });
         }
 
+
         const data = { ...req.body };
+        // Clean up legacy fields
+        delete data.authKey;
+        delete data.authToken;
+        delete data.authLocation;
+
         // Stringify JSON fields if present
         if (data.parameters) data.parameters = JSON.stringify(data.parameters);
         if (data.headers) data.headers = JSON.stringify(data.headers);
