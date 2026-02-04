@@ -8782,3 +8782,8 @@
 {"level":30,"time":1770168504385,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab opened successfully"}
 {"level":50,"time":1770169664422,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab closed. StatusCode: 503, Error: Stream Errored (unknown). Reconnecting: true"}
 {"level":30,"time":1770169666241,"pid":75,"hostname":"6a80898da1ac","msg":"Session homesislab opened successfully"}
+{"level":30,"time":1770179268470,"pid":74,"hostname":"6a80898da1ac","msg":"Server running on port 3002"}
+{"level":30,"time":1770179268470,"pid":74,"hostname":"6a80898da1ac","msg":"Initializing sessions..."}
+{"level":30,"time":1770179268485,"pid":74,"hostname":"6a80898da1ac","msg":"Resuming session homesislab"}
+{"level":30,"time":1770179268487,"pid":74,"hostname":"6a80898da1ac","msg":"Initialized 0 schedules"}
+{"level":30,"time":1770179270256,"pid":74,"hostname":"6a80898da1ac","msg":"Session homesislab opened successfully"}
