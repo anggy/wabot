@@ -2,6 +2,20 @@ import { prisma } from '../prisma.js';
 import { logger } from '../config/logger.js';
 
 /**
+ * Sanitizes tool name to meet Gemini API requirements.
+ * Must start with letter/underscore, contain only alphanumerics/underscore/dot/colon/dash, max 64 chars.
+ */
+const sanitizeToolName = (name) => {
+    // Replace invalid characters with underscores
+    let sanitized = name.replace(/[^a-zA-Z0-9_.:-]/g, '_');
+    // Ensure starts with letter or underscore
+    if (!/^[a-zA-Z_]/.test(sanitized)) {
+        sanitized = '_' + sanitized;
+    }
+    return sanitized.substring(0, 64);
+};
+
+/**
  * Loads all enabled tools for a user and formats them for AI providers.
  * @param {number} userId 
  * @returns {Promise<Array>} Array of tool definitions
@@ -15,7 +29,7 @@ export const getToolsForUser = async (userId) => {
     return tools.map(tool => ({
         type: 'function',
         function: {
-            name: tool.name,
+            name: sanitizeToolName(tool.name),
             description: tool.description,
             parameters: tool.parameters ? JSON.parse(tool.parameters) : {}
         },
