@@ -36,7 +36,6 @@ export const createTool = async (req, res) => {
             authTokenPath
         };
 
-        console.log("DEBUG: createTool payload:", JSON.stringify(prismaData, null, 2));
 
         const tool = await prisma.aiTool.create({
             data: prismaData
