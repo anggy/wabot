@@ -77,8 +77,8 @@ jobs:
           # ProxyCommand ini yang bertugas 'menyuap' Cloudflare dengan Service Token
           proxy_command: >
             cloudflared access ssh --hostname ssh.homesislab.my.id 
-            --cid ${{ secrets.CF_CLIENT_ID }} 
-            --csecret ${{ secrets.CF_CLIENT_SECRET }}
+            --id ${{ secrets.CF_CLIENT_ID }} 
+            --secret ${{ secrets.CF_CLIENT_SECRET }}
           script: |
             cd /home/gie/workspace/wabot
             git fetch origin main
