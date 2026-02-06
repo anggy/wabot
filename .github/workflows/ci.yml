@@ -71,6 +71,7 @@ jobs:
       - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
+          debug: true
           host: ssh.homesislab.my.id
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
