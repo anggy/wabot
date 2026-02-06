@@ -183,6 +183,8 @@ model AiCredential {
   refreshUrl      String?
   refreshPayload  String?
   tokenPath       String?
+  refreshInterval Int?     // In minutes
+  lastRefreshed   DateTime?
 
   userId      Int
   user        User     @relation(fields: [userId], references: [id])

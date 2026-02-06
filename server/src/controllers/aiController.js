@@ -1,5 +1,6 @@
 import { prisma } from '../prisma.js';
 import { logger } from '../config/logger.js';
+console.log("AI Controller Loaded V2");
 import * as aiService from '../services/aiService.js';
 import { getToolsForUser } from '../services/toolManager.js';
 
@@ -19,22 +20,26 @@ export const createTool = async (req, res) => {
     try {
         const { name, description, method, baseUrl, endpoint, parameters, headers, body, authType, authKey, authToken, authLocation, authRefreshUrl, authRefreshPayload, authTokenPath } = req.body;
 
+        const prismaData = {
+            user: { connect: { id: req.user.id } },
+            name,
+            description,
+            method,
+            baseUrl,
+            endpoint,
+            parameters: JSON.stringify(parameters || {}),
+            headers: JSON.stringify(headers || {}),
+            body: JSON.stringify(body || {}),
+            authType,
+            authRefreshUrl,
+            authRefreshPayload: authRefreshPayload ? JSON.stringify(authRefreshPayload) : null,
+            authTokenPath
+        };
+
+        console.log("DEBUG: createTool payload:", JSON.stringify(prismaData, null, 2));
+
         const tool = await prisma.aiTool.create({
-            data: {
-                user: { connect: { id: req.user.id } },
-                name,
-                description,
-                method,
-                baseUrl,
-                endpoint,
-                parameters: JSON.stringify(parameters || {}),
-                headers: JSON.stringify(headers || {}),
-                body: JSON.stringify(body || {}),
-                authType,
-                authRefreshUrl,
-                authRefreshPayload: authRefreshPayload ? JSON.stringify(authRefreshPayload) : null,
-                authTokenPath
-            }
+            data: prismaData
         });
         res.status(201).json(tool);
     } catch (error) {
@@ -52,16 +57,30 @@ export const updateTool = async (req, res) => {
         }
 
 
-        const data = { ...req.body };
-        // Clean up legacy fields
-        delete data.authKey;
-        delete data.authToken;
-        delete data.authLocation;
+        const {
+            name, description, method, baseUrl, endpoint, parameters, headers, body,
+            authType, authRefreshUrl, authRefreshPayload, authTokenPath, credentialId
+        } = req.body;
+
+        const data = {
+            name,
+            description,
+            method,
+            baseUrl,
+            endpoint,
+            authType,
+            authRefreshUrl,
+            authRefreshPayload: authRefreshPayload ? JSON.stringify(authRefreshPayload) : null,
+            authTokenPath,
+            credentialId: credentialId ? parseInt(credentialId) : undefined
+        };
 
         // Stringify JSON fields if present
         if (data.parameters) data.parameters = JSON.stringify(data.parameters);
         if (data.headers) data.headers = JSON.stringify(data.headers);
         if (data.body) data.body = JSON.stringify(data.body);
+
+        console.log("DEBUG: updateTool payload:", JSON.stringify(data, null, 2));
 
         const updated = await prisma.aiTool.update({
             where: { id: parseInt(id) },
@@ -70,6 +89,7 @@ export const updateTool = async (req, res) => {
         res.json(updated);
     } catch (error) {
         logger.error(error);
+        logger.error(res);
         res.status(500).json({ error: 'Failed to update tool' });
     }
 };

@@ -210,9 +210,12 @@ const Broadcast = () => {
                                     <select className="w-full border p-2 rounded focus:ring-2 focus:ring-sisia-primary outline-none" value={formData.apiMethod} onChange={e => setFormData({ ...formData, apiMethod: e.target.value })}>
                                         <option value="GET">GET</option>
                                         <option value="POST">POST</option>
+                                        <option value="PUT">PUT</option>
+                                        <option value="PATCH">PATCH</option>
+                                        <option value="DELETE">DELETE</option>
                                     </select>
                                 </div>
-                                {formData.apiMethod === 'POST' && (
+                                {['POST', 'PUT', 'PATCH', 'DELETE'].includes(formData.apiMethod) && (
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Payload (JSON)</label>
                                         <input className="w-full border p-2 rounded font-mono text-xs focus:ring-2 focus:ring-sisia-primary outline-none" placeholder="{}" value={formData.apiPayload} onChange={e => setFormData({ ...formData, apiPayload: e.target.value })} />

@@ -325,9 +325,12 @@ const Scheduler = () => {
                                     <select className="w-full border p-2 rounded-lg" value={formData.apiMethod} onChange={e => setFormData({ ...formData, apiMethod: e.target.value })}>
                                         <option value="GET">GET</option>
                                         <option value="POST">POST</option>
+                                        <option value="PUT">PUT</option>
+                                        <option value="PATCH">PATCH</option>
+                                        <option value="DELETE">DELETE</option>
                                     </select>
                                 </div>
-                                {formData.apiMethod === 'POST' && (
+                                {['POST', 'PUT', 'PATCH', 'DELETE'].includes(formData.apiMethod) && (
                                     <div>
                                         <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1.5">Payload (JSON)</label>
                                         <input className="w-full border p-2 rounded-lg font-mono text-xs" placeholder="{}" value={formData.apiPayload} onChange={e => setFormData({ ...formData, apiPayload: e.target.value })} />
