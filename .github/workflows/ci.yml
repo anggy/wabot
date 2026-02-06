@@ -63,22 +63,26 @@ jobs:
     if: github.ref == 'refs/heads/main'
     environment: home
     steps:
+      - name: Install Cloudflared
+        run: |
+          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+          sudo dpkg -i cloudflared.deb
+
       - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST }}
+          host: ssh.homesislab.my.id
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
+          # ProxyCommand ini yang bertugas 'menyuap' Cloudflare dengan Service Token
+          proxy_command: >
+            cloudflared access ssh --hostname ssh.homesislab.my.id 
+            --cid ${{ secrets.CF_CLIENT_ID }} 
+            --csecret ${{ secrets.CF_CLIENT_SECRET }}
           script: |
             cd /home/gie/workspace/wabot
-            # Force sync with remote to avoid merge conflicts
             git fetch origin main
             git reset --hard origin/main
-            
-            # Rebuild and restart containers
-            # Using --build to force rebuild from new code
             docker compose up -d --build
-            
-            # Cleanup unused images (builders etc)
             docker image prune -f
 
