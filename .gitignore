@@ -1,3 +1,4 @@
 server/prisma/dev.db
 client/.env
 server/logs/app.log
+server/logs/app.log
