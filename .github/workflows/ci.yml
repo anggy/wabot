@@ -68,22 +68,32 @@ jobs:
           curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
           sudo dpkg -i cloudflared.deb
 
-      - name: Deploy to Server via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          debug: true
-          host: ssh.homesislab.my.id
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          # ProxyCommand ini yang bertugas 'menyuap' Cloudflare dengan Service Token
-          proxy_command: >
-            cloudflared access ssh --hostname ssh.homesislab.my.id 
-            --id ${{ secrets.CF_CLIENT_ID }} 
-            --secret ${{ secrets.CF_CLIENT_SECRET }}
-          script: |
+      - name: Deploy to Server (Native SSH)
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          CF_ID: ${{ secrets.CF_CLIENT_ID }}
+          CF_SECRET: ${{ secrets.CF_CLIENT_SECRET }}
+        run: |
+          # 1. Siapkan folder .ssh dan file private key
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          
+          # 2. Atur Config agar otomatis pakai Cloudflared saat panggil hostname
+          # Penting: Kita masukkan konfigurasi ProxyCommand ke file config agar lebih rapi
+          echo "Host ssh.homesislab.my.id" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "  User $SSH_USER" >> ~/.ssh/config
+          echo "  ProxyCommand cloudflared access ssh --hostname %h --id $CF_ID --secret $CF_SECRET" >> ~/.ssh/config
+
+          # 3. Jalankan Script Deploy
+          # Karena config sudah diatur di atas, kita cukup panggil ssh hostname saja
+          ssh ssh.homesislab.my.id << 'EOF'
             cd /home/gie/workspace/wabot
             git fetch origin main
             git reset --hard origin/main
             docker compose up -d --build
             docker image prune -f
+          EOF
 
