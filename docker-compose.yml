@@ -6,27 +6,33 @@ services:
       - "3003:3002"
     volumes:
       - ./server/prisma:/app/prisma
-      - ./server/uploads:/app/uploads
-      - ./server/sessions:/app/sessions
-      - ./server/logs:/app/logs
+      - ./data/uploads:/app/uploads
+      - ./data/sessions:/app/sessions
+      - ./data/logs:/app/logs
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
     environment:
-      - DATABASE_URL=file:/app/prisma/dev.db
-      - JWT_SECRET=supersecretkeychangedinprod
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
       - PORT=3002
       - TZ=Asia/Jakarta
     restart: always
+    networks:
+      - shared_apps
 
   frontend:
     build:
       context: ./client
       args:
-        VITE_ADMIN_PHONE: "6283819278102"
-        VITE_ADMIN_EMAIL: "anggy.all@gmail.com"
+        VITE_ADMIN_PHONE: "${VITE_ADMIN_PHONE}"
+        VITE_ADMIN_EMAIL: "${VITE_ADMIN_EMAIL}"
     container_name: wabot-frontend
     ports:
       - "8002:80"
     depends_on:
       - backend
     restart: always
+
+networks:
+  shared_apps:
+    external: true
