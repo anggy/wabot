@@ -4,7 +4,7 @@ const BASE_URL = 'http://localhost:3002/api';
 
 async function run() {
     // 1. Login
-    console.log("Logging in...");
+    console.log("Logging in..");
     const loginRes = await fetch(`${BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
