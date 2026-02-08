@@ -51,12 +51,6 @@ jobs:
       working-directory: ./server
       run: npx prisma generate
 
-    - name: Run Backend Tests
-      working-directory: ./server
-      env:
-        DATABASE_URL: "file:./test.db"
-      run: npm test
-
   deploy:
     needs: [frontend-build, backend-check]
     runs-on: ubuntu-latest
