@@ -32,6 +32,8 @@ services:
     depends_on:
       - backend
     restart: always
+    networks:
+      - shared_apps
 
 networks:
   shared_apps:
